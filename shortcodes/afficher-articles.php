@@ -24,11 +24,15 @@ function ccnbtc_shortcode_afficher_articles() {
 
 
         // == 3. == on récupère les articles de la catégorie
+        // to debug via REST : http://www.bethechurch.fr/wp-json/wp/v2/posts?categories=47
         $query_args = array(
             'category_name' => $atts['categorie'],
-            'meta_key' => 'ccnbtc_post_order',
-            'orderby' => 'meta_value_num', // nécessaire lorsque la meta_key est numérique
-            'order' => 'ASC'
+            'post_status'   => 'publish',
+            'lang'          => 'en,'.pll_current_language(),
+            'meta_key'      => 'ccnbtc_post_order',
+            'orderby'       => 'meta_value_num', // nécessaire lorsque la meta_key est numérique
+            'order'         => 'ASC',
+            'limit'         => 100,
         );
         $query = new WP_Query( $query_args );
         
@@ -45,9 +49,9 @@ function ccnbtc_shortcode_afficher_articles() {
             wp_reset_postdata();
 
         } else {
-            // no posts found
+            // no posts found ($query->request permet de voir la requête SQL)
             $html .= '<section class="row section" data-index="1">
-                <div class="col-lg-12 bg-green">Aucun article de la catégorie '.$atts['categorie']." n'a été trouvé, sorry :(</div>
+                <div class="col-lg-12 bg-green">Aucun article de la catégorie '.$atts['categorie']." n'a été trouvé, sorry :(<br>".$query->request."</div>
             </section>";
         }
         
@@ -167,8 +171,8 @@ function render_HTML_homepage($categorie, $query, $compteur) {
     $title_arr = explode(" ", $title);
 
     $html .= '<h2 class="text-center title">
-                <span class="title_first_part">' . $title_arr[0].' '.$title_arr[1] . '</span>
-                <span class="title_second_part">' . $title_arr[2] . '</h2>';
+                <span class="title_first_part">' . implode(' ', array_slice($title_arr, 0, count($title_arr)-1)) . '</span>
+                <span class="title_second_part">' . $title_arr[count($title_arr)-1] . '</h2>';
     $html .= '' . do_shortcode(get_the_content()) . '';
     $html .= '
             </div>
