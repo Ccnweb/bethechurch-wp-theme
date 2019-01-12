@@ -1,0 +1,339 @@
+/*
+Theme Name: Be The Church
+Theme URI: http://www.bethechurch.fr
+Author: Communauté du Chemin Neuf
+Author URI: https://www.chemin-neuf.fr
+Description: Le beau thème du festival Be The Church !
+Version: 1.0.0
+License: GNU General Public License v3
+License URI: http://www.gnu.org/licenses/gpl-3.0.txt
+Text Domain: ccn_btc
+*/
+
+/* ==================================================== */
+/*                   LES POLICES                        */
+/* ==================================================== */
+
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url('fonts/HelveticaNeue.ttf');
+    src: url('fonts/HelveticaNeue.ttf') format('truetype');
+    font-style: normal
+}
+
+@font-face {
+    font-family: 'Louis George Café';
+    src: url('fonts/Louis George Cafe.ttf');
+    src: url('fonts/Louis George Cafe.ttf') format('truetype');
+    font-style: normal
+}
+
+@font-face {
+    font-family: 'Futura Extra Black BT';
+    src: url('fonts/Futura Extra Black.ttf');
+    src: url('fonts/Futura Extra Black.ttf') format('truetype');
+    font-style: normal
+}
+
+/* ==================================================== */
+/*                     GLOBAL                           */
+/* ==================================================== */
+
+:root {
+    --green: #31D2AE;
+    --red: #EA5E6B;
+    --yellow: #FCC300;
+    --blue-klein: #242148;
+    --blue-light: #34ACB6;
+}
+
+html, body {
+    font-family: 'Helvetica Neue', Roboto;
+}
+
+/* bugfix lorsqu'on ajoute onepage-scroll car sinon la page ne scroll pas :( */
+/* .page {
+    overflow-y: auto;
+} */
+
+h2 {
+    font-family: "Futura Extra Black BT";
+    font-size: 6.5vw;
+    line-height: 6vw;
+    color: white;
+    margin: 0;
+}
+
+h2.point::after {
+    content: ".";
+}
+
+a {text-decoration: none !important}
+
+p {
+    font-family: "Louis George Café";
+    font-size: 1.5rem;
+    line-height: 1.8rem;
+    letter-spacing: 2px;
+    text-align: justify;
+}
+
+td {
+    padding: 0.6rem;
+    border: 1px solid black;
+    font-family: 'Louis George Café';
+}
+table.has-blanc-color td {
+    border: 1px solid white;
+}
+
+/* fix wordpress class */
+p.has-background {
+    padding: 0;
+}
+
+/* LES BOUTONS */
+div.wp-block-button {margin:0.5rem}
+
+a.wp-block-button__link {
+    background: transparent;
+    border: 1px solid white;
+    padding: 0.5rem 1.5rem;
+    margin: 1rem 1rem;
+    font-family: 'Helvetica Neue';
+    letter-spacing: 3px;
+    font-size: 1rem;
+    min-width: 200px;
+    transition: all 0.2s ease-in;
+}
+
+a.wp-block-button__link:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transition: all 0.2s ease-in;
+}
+
+a.wp-block-button__link.black, a.wp-block-button__link.noir, .is-style-outline > a.wp-block-button__link {
+    border: 1px solid black;
+    color: black;
+}
+a.wp-block-button__link.black:hover, a.wp-block-button__link.noir:hover, .is-style-outline:hover > a.wp-block-button__link {
+    background: rgba(200, 200, 200, 0.3);
+    transition: all 0.2s ease-in;
+}
+
+/* ==================================================== */
+/*                 HELPFUL CLASSES                      */
+/* ==================================================== */
+
+.bg-green, .bg-vert {background: var(--green)}
+.bg-red, .bg-rouge {background: var(--red)}
+.bg-yellow, .bg-jaune {background: var(--yellow)}
+.bg-blue-klein, .bg-bleu-klein {background: var(--blue-klein)}
+.bg-blue-light, .bg-bleu-clair {background: var(--blue-light)}
+
+.has-text-color.has-blanc-color {color:white}
+.has-text-color.has-noir-color {color:black}
+.has-text-color.has-vert-color {color:var(--green)}
+.has-text-color.has-rouge-color {color:var(--red)}
+.has-text-color.has-jaune-color {color:var(--yellow)}
+.has-text-color.has-bleu-klein-color {color:var(--blue-klein)}
+.has-text-color.has-bleu-clair-color {color:var(--blue-ligth)}
+
+.font-cafe {font-family: 'Louis George Café'}
+
+.hollow {
+    -webkit-text-stroke: 2px white;
+    -webkit-text-fill-color: transparent;
+}
+.hollow.has-text-color.has-noir-color {
+    -webkit-text-stroke: 2px black;
+}
+
+/* ==================================================== */
+/*                 MENU NAVIGATION                      */
+/* ==================================================== */
+
+nav.menu-principal {
+    background: white;
+}
+
+/* titres des menus */
+li.menu-item {
+    margin-right: 4vw;
+}
+
+a.nav-link {
+    font-family: 'Louis George Café';
+}
+
+
+/* ==================================================== */
+/*                 LOGO BE THE CHURCH                   */
+/* ==================================================== */
+
+a.custom-logo-link {
+    position: fixed;
+    z-index: 200;
+    top: 0.4cm;
+    left: 1.4cm;
+}
+
+a.custom-logo-link > img {
+    width: 3cm;
+    height: 3cm;
+}
+
+/* ==================================================== */
+/*                      SLIDES                          */
+/* ==================================================== */
+
+.section {
+    min-height: 100vh;
+}
+
+.section > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+}
+
+.fleche_slide_suivant {
+    position: fixed;
+    bottom: 3px;
+    font-size: 2vw;
+    color: white;
+    margin-left: 50%;
+    cursor: pointer;
+    text-shadow: white 0px 1px 2px;
+}
+
+
+/* ==================================================== */
+/*    TODO PASSER CETTE PARTIE DANS festival/page.css
+/* ==================================================== */
+
+h2.title {
+    line-height: 6.5vw;
+    margin-top: auto;
+}
+
+.title_first_part {
+    display: block;
+    font-size: 7vw;
+}
+
+.title_second_part {
+    display: block;
+    font-size: 8.55vw;
+    -webkit-text-stroke: 2px white;
+    -webkit-text-fill-color: transparent;
+}
+
+.slide_text {
+    margin: 4rem;
+}
+/* pour le premier slide de la page programme */
+.slide_text ul {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-height: 25vh;
+    align-items: center;
+    list-style: none;
+    color: white;
+    font-family: 'Louis George Café';
+    font-size: 1.6vw;
+}
+
+.notitle-text-left {
+    width: 40vw;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* bouton réserver ma place */
+.wp-block-button.reserver_place {
+    margin-top: auto;
+    margin-bottom: 2cm;
+}
+
+/* ==================================================== */
+/*    TODO PASSER CETTE PARTIE DANS intervenants/intervenants.css
+/* ==================================================== */
+
+.intervenant_content {
+    /* margin: 2rem; */
+}
+
+.intervenant_content > h2 {
+    color: black;
+    font-size: 3vw;
+    line-height: 3vw;
+    margin: 1rem;
+    font-family: "Louis George Café";
+}
+
+.intervenant_content > p {
+    font-size: calc(12px + 0.5vw);
+    margin: 0.3rem 4rem;
+}
+
+.img_intervenant_mobile {
+    height: 50vw;
+}
+
+/* ==================================================== */
+/*    TODO PASSER CETTE PARTIE DANS programme/programme.css
+/* ==================================================== */
+
+h2.programme {
+    font-size: calc(20px + 3vw);
+}
+
+.programme_section h2 {
+    font-family: 'Louis George Café';
+    font-size: calc(1.5rem + 1vw);
+    margin-top: 1.5rem;
+}
+
+.programme_section p {
+    color: white;
+    font-size: 1rem;
+    line-height: 1rem;
+}
+
+.carre_container {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    width: 100%;
+    white-space: nowrap;
+    flex-wrap: nowrap;
+}
+
+.carre {
+    width: 20vw;
+    display: inline-block;
+    margin: 0.3rem;
+    height: 15vw;
+    max-height: 20vh;
+    max-width: 25vh;
+}
+
+.carre > .gradient {
+    width: 23vw;
+    height: 6vw;
+    background: linear-gradient(transparent 8%, #000000cc);
+}
+
+.carre h4 {
+    font-size: 1.5vw;
+    text-transform: uppercase;
+    color: white;
+    font-weight: bold;
+}
