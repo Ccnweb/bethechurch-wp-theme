@@ -44,8 +44,8 @@ function render_HTML_programme($categorie, $query, $compteur) {
 
     // Add everything
     $html = '
-        <section id="post__'.$slug.'" class="row section" data-index="'.$compteur.'">
-            <div class="col-lg-12 bg-'.$bg_color.'" '.$bg_img.'>
+        <section id="post__'.$slug.'" class="row section bg-'.$bg_color.'" data-index="'.$compteur.'" '.$bg_img.'>
+            <div class="col-lg-12 ">
     ';
     $html .= $html_title;
     $html .= '<div class="row w-100">
@@ -112,8 +112,8 @@ function render_HTML_programme_homepage($categorie, $query, $compteur) {
 
     // Add everything
     $html = '
-        <section id="post__'.$slug.'" class="row section" data-index="'.$compteur.'">
-            <div class="col-lg-12 '.$flex_type.' bg-'.$bg_color.'" '.$bg_img.'>
+        <section id="post__'.$slug.'" class="row section bg-'.$bg_color.'" data-index="'.$compteur.'" '.$bg_img.'>
+            <div class="col-lg-12 '.$flex_type.'">
     ';
     if (in_array($mise_en_page, array('texte-droite', 'texte-centre'))) $html .= $html_title;
     $html .= '<div class="slide_text w-100 mt-auto">' . do_shortcode(get_the_content()) . '</div>';

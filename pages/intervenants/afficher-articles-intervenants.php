@@ -14,7 +14,7 @@ function render_HTML_intervenant($categorie, $query, $compteur) {
 
     // Featured image
     $img_html = buildBgImg(get_the_post_thumbnail_url());
-    $img_square = '<div class="d-none d-md-block col-md-6 h-100 img_intervenant" '.$img_html.'"></div>';
+    $img_square = '<div class="d-none d-md-block col-md-6 img_intervenant" '.$img_html.'"></div>';
 
     $html = '
         <section class="row section" data-index="'.$compteur.'">

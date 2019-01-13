@@ -24,7 +24,6 @@ function ccnbtc_shortcode_afficher_articles() {
 
 
         // == 3. == on récupère les articles de la catégorie
-        // to debug via REST : http://www.bethechurch.fr/wp-json/wp/v2/posts?categories=47
         $query_args = array(
             'category_name' => $atts['categorie'],
             'post_status'   => 'publish',
@@ -50,8 +49,8 @@ function ccnbtc_shortcode_afficher_articles() {
 
         } else {
             // no posts found ($query->request permet de voir la requête SQL)
-            $html .= '<section class="row section" data-index="1">
-                <div class="col-lg-12 bg-green">Aucun article de la catégorie '.$atts['categorie']." n'a été trouvé, sorry :(<br>".$query->request."</div>
+            $html .= '<section class="row section bg-green" data-index="1">
+                <div class="col-lg-12">Aucun article de la catégorie '.$atts['categorie']." n'a été trouvé, sorry :(<br>".$query->request."</div>
             </section>";
         }
         
@@ -76,6 +75,7 @@ function render_HTML($categorie, $query, $compteur) {
     if ($categorie == 'intervenant') return render_HTML_intervenant($categorie, $query, $compteur);
     if ($categorie == 'programme') return render_HTML_programme($categorie, $query, $compteur);
     if ($categorie == 'programme_accueil') return render_HTML_programme_homepage($categorie, $query, $compteur);
+    //if ($categorie == 'journee-type') return render_HTML_journeetype($categorie, $query, $compteur);
 
 
     // ==================
@@ -92,15 +92,16 @@ function render_HTML($categorie, $query, $compteur) {
 
     // Post title
     $title_orig = get_the_title();
-    $title = implode("<br>", explode('§', $title_orig));
+    
 
     // Background image
     $bg_img = buildBgImg(get_the_post_thumbnail_url());
-    // Background color
-    $bg_color = 'green';
     
 
     // computed properties
+    $bg_color = 'green';
+    $titre_position = 'titre-centre';
+
     if ($posttags) {
         foreach($posttags as $tag) {
             // bg_image
@@ -108,42 +109,45 @@ function render_HTML($categorie, $query, $compteur) {
                 if (count($matches) > 1) $bg_color = $matches[1];
             }
             // mise en page
-            if(preg_match("/^texte\-(gauche|droite)$/i", $tag->name, $matches)) {
+            if(preg_match("/^texte\-(gauche|droite|centre)$/i", $tag->name, $matches)) {
                 $mise_en_page = $matches[0];
+            }
+            // position titre
+            if(preg_match("/^titre\-(gauche|droite|centre)$/i", $tag->name, $matches)) {
+                $titre_position = $matches[0];
             }
         }
     }
     
     $flex_type = "d-flex flex-row";
-    if ($mise_en_page == "texte-centre") $flex_type = "";
+    if ($mise_en_page == "texte-centre") $flex_type = "d-flex flex-column justify-content-around";
 
-    $title_black = ($bg_color == 'blanc') ? ' has-text-color has-noir-color' : '';
+    
 
 
     // Render HTML
 
-    // render title
-    $html_title = '<div class="double_title">
-                        <h2 class="text-center point '.$title_black.'">' . $title . '</h2>
-                        <h2 class="text-center point hollow '.$title_black.'">' . $title . '</h2>
-                    </div>';
-    if ($mise_en_page == "texte-centre" && strpos($title_orig, '§') !== false) $html_title = '<h2 class="text-center point">' . $title . '</h2>';
-    if ($title == '') $html_title = "";
+    // the title
+    $html_title = render_HTML_title($title_orig, $mise_en_page, $bg_color, $titre_position);
 
     // special case if no title
-    $special_texte_no_title = ($title == '') ? "align-self-start notitle-text-left": '';
+    $special_texte_no_title = '';//($title == '') ? "align-self-start notitle-text-left": '';
 
-    // flex-grow = 2 if !texte-centre
-    $ifflexgrow = ($mise_en_page == 'texte-centre') ? '' : ' flex-grow-2';
+    // mb-auto
+    $ifmbauto = ($mise_en_page == 'texte-centre') ? ' mb-auto' : '';
+
+    // taille de la colonne du texte du slide
+    $text_column_classes = ($mise_en_page !== 'texte-centre') ? 'col-sm-12 col-md-8 d-flex flex-column align-items-start': 'col-md-12';
+    $text_column_classes = ($mise_en_page !== 'texte-centre' && $title_orig == '') ? 'col-sm-12 col-md-6': $text_column_classes;
 
 
     // Add everything
     $html = '
-        <section id="post__'.$slug.'" class="row section" data-index="'.$compteur.'">
-            <div class="col-lg-12 '.$flex_type.' bg-'.$bg_color.'" '.$bg_img.'>
+        <section id="post__'.$slug.'" class="row section layout__'.$mise_en_page.' '.$flex_type.' bg-'.$bg_color.'" data-index="'.$compteur.'" '.$bg_img.'>
+            
     ';
     if (in_array($mise_en_page, array('texte-droite', 'texte-centre'))) $html .= $html_title;
-    $html .= '<div class="slide_text '.$special_texte_no_title.$ifflexgrow.'">' . do_shortcode(get_the_content()) . '</div>';
+    $html .= '<div class="slide_text '.$text_column_classes.' '.$special_texte_no_title.$ifmbauto.'">' . do_shortcode(get_the_content()) . '</div>';
     if ($mise_en_page == 'texte-gauche') $html .= $html_title;
     $html .= '
             </div>
@@ -161,8 +165,8 @@ function render_HTML_homepage($categorie, $query, $compteur) {
      */
 
     $html = '
-        <section class="row section" data-index="'.$compteur.'">
-            <div class="col-lg-12 d-flex flex-col bg-green">
+        <section class="row section bg-green" data-index="'.$compteur.'">
+            <div class="col-lg-12 d-flex flex-col">
     ';
     $query->the_post();
 
@@ -181,5 +185,43 @@ function render_HTML_homepage($categorie, $query, $compteur) {
     return $html;
 }
 
+
+
+function render_HTML_title($title_orig, $mise_en_page, $bg_color, $titre_position) {
+    /**
+     * Redners the HTML for the titles
+     */
+
+    
+    $title_br = implode("<br>", explode('§', $title_orig));
+    
+    // on split le titre en 2 si besoin (trop long ou présence d'un '§')
+    $title1 = $title_orig; $title2 = $title_orig;
+    if ((strlen($title_orig) > 6 && $mise_en_page != 'texte-centre') || strpos($title_orig, '§') !== false) {
+        if (strpos($title_orig, ' ') !== false || strpos($title_orig, '§') !== false) {
+            $arr = explode('§', $title_orig);
+            if (count($arr) < 2) $arr = explode(' ', $title_orig);
+            $title1 = implode(' ', array_slice($arr, 0, count($arr)-1)); $title2 = $arr[count($arr)-1];
+        } else {
+            $n = round(strlen($title_orig) / 2, 0, PHP_ROUND_HALF_DOWN);
+            $title1 = substr($title_orig, 0, $n);
+            $title2 = substr($title_orig, $n);
+        }
+    }
+
+    $title_black = ($bg_color == 'blanc') ? ' has-text-color has-noir-color' : '';
+
+    // render title
+    $ifmtauto = ($mise_en_page == 'texte-centre') ? ' mt-auto' : 'col-md-4' ;
+    $title_align = ($titre_position == 'titre-centre') ? 'text-center' : 'text-left';
+    $html_title = '<div class="col-sm-12 double_title '.$ifmtauto.'">
+                        <h2 class="w-100 '.$title_align.' point '.$title_black.'">' . $title1 . '</h2>
+                        <h2 class="w-100 '.$title_align.' point hollow '.$title_black.'">' . $title2 . '</h2>
+                    </div>';
+    if ($mise_en_page == "texte-centre" && strpos($title_orig, '§') !== false) $html_title = '<h2 class="w-100 col-lg-12 '.$title_align.' point mt-auto">' . $title_br . '</h2>';
+    if ($title_orig == '') $html_title = "";
+
+    return $html_title;
+}
 
 ?>

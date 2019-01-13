@@ -4,11 +4,10 @@ Theme URI: http://www.bethechurch.fr
 Author: Communauté du Chemin Neuf
 Author URI: https://www.chemin-neuf.fr
 Description: Le beau thème du festival Be The Church !
-Version: 1.0.1
+Version: 1.1.0
 License: GNU General Public License v3
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 Text Domain: ccn_btc
-GitHub Theme URI: https://github.com/Ccnweb/bethechurch-wp-theme.git
 */
 
 /* ==================================================== */
@@ -73,10 +72,19 @@ a {text-decoration: none !important}
 
 p {
     font-family: "Louis George Café";
-    font-size: 1.5rem;
-    line-height: 1.8rem;
+    font-size: 1rem;
+    line-height: 1.4rem;
     letter-spacing: 2px;
     text-align: justify;
+}
+
+.layout__texte-centre p {
+    font-size: 1.5rem;
+    line-height: 1.8rem;
+}
+
+bg-red p, bg-rouge p, bg-vert p, bg-green p {
+    color: white;
 }
 
 td {
@@ -190,6 +198,7 @@ a.custom-logo-link > img {
 
 .section {
     min-height: 100vh;
+    padding: 3rem;
 }
 
 .section > div {
@@ -197,7 +206,6 @@ a.custom-logo-link > img {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
     padding-bottom: 2rem;
     padding-top: 2rem;
 }
@@ -234,9 +242,9 @@ h2.title {
     -webkit-text-fill-color: transparent;
 }
 
-.slide_text {
+/* .slide_text {
     margin: 4rem;
-}
+} */
 /* pour le premier slide de la page programme */
 .slide_text ul {
     display: flex;
@@ -333,7 +341,7 @@ h2.programme {
 }
 
 .carre h4 {
-    font-size: 1.5vw;
+    font-size: calc(1rem + 0.3vw);
     text-transform: uppercase;
     color: white;
     font-weight: bold;
