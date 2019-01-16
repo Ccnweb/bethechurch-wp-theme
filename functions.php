@@ -38,8 +38,9 @@ function ccnbtc_setup() {
     ) );
 
     // Les menus (wp_nav_menu())
+    // source: https://www.wpbeginner.com/wp-themes/how-to-add-custom-navigation-menus-in-wordpress-3-0-themes/
     register_nav_menus( array(
-        'header' => 'Menu principal',
+        'header' => 'Menu principal.',
     ) );
 
     // Les palettes de couleur dans l'éditeur d'articles
@@ -161,6 +162,11 @@ function ccnbtc_add_custom_fields_to_posts() {
 ccnbtc_add_custom_fields_to_posts();
 
 
+/* ========================================================= */
+/*                  LOAD CUSTOM POST TYPES                   */
+/* ========================================================= */
+
+require_once_all_regex(get_template_directory() . '/custom post types/', "");
 
 /* ========================================================= */
 /*                   LOAD SHORTCODES                         */

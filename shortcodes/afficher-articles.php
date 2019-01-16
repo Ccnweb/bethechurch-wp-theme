@@ -27,7 +27,7 @@ function ccnbtc_shortcode_afficher_articles() {
         $query_args = array(
             'category_name' => $atts['categorie'],
             'post_status'   => 'publish',
-            'lang'          => 'en,'.pll_current_language(),
+            'lang'          =>  pll_current_language(),
             'meta_key'      => 'ccnbtc_post_order',
             'orderby'       => 'meta_value_num', // nécessaire lorsque la meta_key est numérique
             'order'         => 'ASC',

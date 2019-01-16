@@ -3,7 +3,7 @@
 <!--  #################################### -->
 
 <nav class="navbar navbar-expand-md navbar-light fixed-top menu-principal" role="navigation">
-    <div class="container d-flex justify-content-end">
+    <div class="container-fluid d-flex justify-content-end">
         
         <!-- Logo -->
         <?php the_custom_logo(); ?>
@@ -13,18 +13,20 @@
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <!-- Menu défini dans Wordpress -->
+        <!-- Menu principal. défini dans Wordpress -->
         <?php
             wp_nav_menu( array(
                 'theme_location'  => 'header',
-                'depth'            => 2, // 1 = no dropdowns, 2 = with dropdowns.
+                'depth'           => 2, // 1 = no dropdowns, 2 = with dropdowns.
                 'container'       => 'div',
                 'container_class' => 'collapse navbar-collapse',
                 'container_id'    => 'navbarResponsive',
-                'menu_class'      => 'navbar-nav ml-auto mr-auto',
+                'menu_class'      => 'navbar-nav w-100 menu_principal',
                 'fallback_cb'     => 'WP_Bootstrap_Navwalker::fallback',
                 'walker'          => new WP_Bootstrap_Navwalker(),
             ) ); 
         ?>
+
     </div>
 </nav>
+

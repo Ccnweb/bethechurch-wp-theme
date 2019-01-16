@@ -23,15 +23,16 @@
 jQuery(document).ready(function($) {
 
     // ========================================
-    // INITIALIZE FLECHE POUR CHANGER DE SLIDE
+    // INITIALISE FLECHE POUR CHANGER DE SLIDE
     // ========================================
 
     let height_section = $('.section').height();
     let height_header = $('nav.navbar').height();
     $('.fleche_slide_suivant > i').click(function() {
         start = $(window).scrollTop();
-        if (start == 0) start = -height_header;
-        $('html, body, .page').animate( { scrollTop: start + height_section }, 400 );
+        //if (start == 0) start = -height_header;
+        //$('html, body, .page').animate( { scrollTop: start + height_section + height_header }, 400 );
+        $('html, body, .page').animate( { scrollTop: start + $(window).height() }, 400 );
     })
 
     /* $('#fullpage').fullpage({
@@ -41,7 +42,7 @@ jQuery(document).ready(function($) {
 	}); */
 
     // ========================================
-    // INITIALIZE CONTRÔLE DU DEFILEMENT
+    // INITIALISE CONTRÔLE DU DEFILEMENT
     // ========================================
 
     /* jQuery(window).scroll(function() {
@@ -49,6 +50,24 @@ jQuery(document).ready(function($) {
       
     }); */
 
-    
+    // ========================================
+    // Correction HTML à la volée
+    // ========================================
+
+    // ici on customize un peu le design les horaires pour les journées type
+    $('h3,li').each(function() {
+        let texte = $(this).text();
+        if (/^[0-9]{2,3}/gi.test(texte)) {
+            console.log(texte);
+            let regex_res = /^([0-9]{3,4})\s+(.*)$/gi.exec(texte);
+            if (regex_res && regex_res.length > 2) {
+                console.log(regex_res);
+                let hours = regex_res[1].substr(0, regex_res[1].length-2);
+                let minutes = regex_res[1].substr(regex_res[1].length-2);
+                let horaire = `<span class="has-text-color has-rouge-color">${hours}<sup>${minutes}</sup></span>`;
+                $(this).html(horaire + ' ' + regex_res[2]);
+            }
+        }
+    })
 
 });

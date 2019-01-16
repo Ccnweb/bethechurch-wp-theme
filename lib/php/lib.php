@@ -32,7 +32,8 @@ function buildBgImg($img_url, $options = array()) {
 /*     CHARGEMENT DE FICHIERS PHP       */
 /* ==================================== */
 
-function require_once_all_regex($dir_path, $regex) {
+if (!function_exists('require_once_all_regex')):
+function require_once_all_regex($dir_path, $regex = "") {
     /**
      * Require once all files in $dir_path that have a filename matching $regex
      * 
@@ -51,6 +52,7 @@ function require_once_all_regex($dir_path, $regex) {
         }
     }
 }
+endif;
 
 /* ==================================== */
 /*     LOW-LEVEL USEFUL FUNCTIONS       */
