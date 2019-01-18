@@ -127,6 +127,16 @@ function ccnbtc_scripts() {
 add_action( 'wp_enqueue_scripts', 'ccnbtc_scripts' );
 
 
+// Add Page Slug to Body Class
+function add_slug_body_class( $classes ) {
+    global $post;
+    if ( isset( $post ) ) {
+        $classes[] = $post->post_type . '__' . $post->post_name;
+    }
+    return $classes;
+}
+add_filter( 'body_class', 'add_slug_body_class' );
+
 
 /* ========================================================= */
 /*               ADD CUSTOM FIELDS TO POSTS                  */
@@ -173,5 +183,12 @@ require_once_all_regex(get_template_directory() . '/custom post types/', "");
 /* ========================================================= */
 
 require_once_all_regex(get_template_directory() . '/shortcodes/', "");
+// load contact form shortcode
+ccnlib_register_contact_form(array(
+        'title' => '',
+        'submit_btn_text' => 'Envoyer',
+        'required' => array('@ALL'),
+    )
+);
 
 ?>

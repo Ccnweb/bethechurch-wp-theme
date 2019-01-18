@@ -35,6 +35,9 @@ function render_HTML_programme($categorie, $query, $compteur) {
         }
     }
 
+    // lien pour éditer l'article
+    $ifeditlink = (current_user_can('edit_posts')) ? '<a class="edit_post_link" href="'.get_edit_post_link(get_the_ID()).'">Éditer</a>' : '';
+
 
     // Render HTML
 
@@ -45,6 +48,7 @@ function render_HTML_programme($categorie, $query, $compteur) {
     // Add everything
     $html = '
         <section id="post__'.$slug.'" class="row section bg-'.$bg_color.'" data-index="'.$compteur.'" '.$bg_img.'>
+            '.$ifeditlink.'
             <div class="col-lg-12 ">
     ';
     $html .= $html_title;
@@ -82,6 +86,8 @@ function render_HTML_programme_homepage($categorie, $query, $compteur) {
     
 
     // computed properties
+    $titre_style = 'titre-double'; // 'titre-simple' ou 'titre-double' avec hollow title (titre + son "ombre")
+
     if ($posttags) {
         foreach($posttags as $tag) {
             // bg_image
@@ -92,11 +98,18 @@ function render_HTML_programme_homepage($categorie, $query, $compteur) {
             if(preg_match("/^texte\-(gauche|droite)$/i", $tag->name, $matches)) {
                 $mise_en_page = $matches[0];
             }
+            // style titre
+            if(preg_match("/^titre\-(simple|double)$/i", $tag->name, $matches)) {
+                $titre_style = $matches[0];
+            }
         }
     }
     
     $flex_type = "d-flex flex-row";
     if ($mise_en_page == "texte-centre") $flex_type = "";
+
+    // lien pour éditer l'article
+    $ifeditlink = (current_user_can('edit_posts')) ? '<a class="edit_post_link" href="'.get_edit_post_link(get_the_ID()).'">Éditer</a>' : '';
 
 
     // Render HTML
@@ -106,13 +119,14 @@ function render_HTML_programme_homepage($categorie, $query, $compteur) {
                         <h2 class="text-center point">' . $title . '</h2>
                         <h2 class="text-center point hollow">' . $title . '</h2>
                     </div>';
-    if ($mise_en_page == "texte-centre" && strpos($title_orig, '§') !== false) $html_title = '<h2 class="text-center point">' . $title . '</h2>';
+    if ($titre_style == 'titre-simple' || $mise_en_page == "texte-centre" && strpos($title_orig, '§') !== false) $html_title = '<h2 class="text-center mt-auto">' . $title . '</h2>';
     if ($title == '') $html_title = "";
 
 
     // Add everything
     $html = '
         <section id="post__'.$slug.'" class="row section bg-'.$bg_color.'" data-index="'.$compteur.'" '.$bg_img.'>
+            '.$ifeditlink.'
             <div class="col-lg-12 '.$flex_type.'">
     ';
     if (in_array($mise_en_page, array('texte-droite', 'texte-centre'))) $html .= $html_title;

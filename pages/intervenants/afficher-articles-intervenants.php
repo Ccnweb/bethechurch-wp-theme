@@ -16,9 +16,12 @@ function render_HTML_intervenant($categorie, $query, $compteur) {
     $img_html = buildBgImg(get_the_post_thumbnail_url());
     $img_square = '<div class="d-none d-md-block col-md-6 img_intervenant" '.$img_html.'"></div>';
 
+    // lien pour éditer l'article
+    $ifeditlink = (current_user_can('edit_posts')) ? '<a class="edit_post_link" href="'.get_edit_post_link(get_the_ID()).'">Éditer</a>' : '';
+
     $html = '
         <section class="row section" data-index="'.$compteur.'">
-    ';
+    '.$ifeditlink;
 
     // on parse le titre
     $title = get_the_title();

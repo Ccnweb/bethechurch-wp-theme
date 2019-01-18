@@ -35,7 +35,7 @@ function ccnbtc_shortcode_afficher_articles() {
         );
         $query = new WP_Query( $query_args );
         
-        // == 4. == en construit le HTML
+        // == 4. == on construit le HTML
         $html = '';
         $compteur = 1;
 
@@ -93,7 +93,6 @@ function render_HTML($categorie, $query, $compteur) {
     // Post title
     $title_orig = get_the_title();
     
-
     // Background image
     $bg_img = buildBgImg(get_the_post_thumbnail_url());
     
@@ -101,6 +100,7 @@ function render_HTML($categorie, $query, $compteur) {
     // computed properties
     $bg_color = 'green';
     $titre_position = 'titre-centre';
+    $titre_style = 'titre-double'; // 'titre-simple' ou 'titre-double' avec hollow title (titre + son "ombre")
 
     if ($posttags) {
         foreach($posttags as $tag) {
@@ -116,6 +116,10 @@ function render_HTML($categorie, $query, $compteur) {
             if(preg_match("/^titre\-(gauche|droite|centre)$/i", $tag->name, $matches)) {
                 $titre_position = $matches[0];
             }
+            // style titre
+            if(preg_match("/^titre\-(simple|double)$/i", $tag->name, $matches)) {
+                $titre_style = $matches[0];
+            }
         }
     }
     
@@ -128,7 +132,7 @@ function render_HTML($categorie, $query, $compteur) {
     // Render HTML
 
     // the title
-    $html_title = render_HTML_title($title_orig, $mise_en_page, $bg_color, $titre_position);
+    $html_title = render_HTML_title($title_orig, $mise_en_page, $bg_color, $titre_position, $titre_style);
 
     // special case if no title
     $special_texte_no_title = '';//($title == '') ? "align-self-start notitle-text-left": '';
@@ -141,13 +145,15 @@ function render_HTML($categorie, $query, $compteur) {
     $text_column_classes = ($mise_en_page !== 'texte-centre' && $title_orig == '') ? 'col-sm-12 col-md-6': $text_column_classes;
 
 
+    // lien pour éditer l'article
+    $ifeditlink = (current_user_can('edit_posts')) ? '<a class="edit_post_link" href="'.get_edit_post_link(get_the_ID()).'">Éditer</a>' : '';
+
     // Add everything
     $html = '
         <section id="post__'.$slug.'" class="row section layout__'.$mise_en_page.' '.$flex_type.' bg-'.$bg_color.'" data-index="'.$compteur.'" '.$bg_img.'>
-            
-    ';
+    '.$ifeditlink;
     if (in_array($mise_en_page, array('texte-droite', 'texte-centre'))) $html .= $html_title;
-    $html .= '<div class="slide_text '.$text_column_classes.' '.$special_texte_no_title.$ifmbauto.'">' . do_shortcode(get_the_content()) . '</div>';
+    $html .= '<div class="slide_text '.$text_column_classes.' '.$special_texte_no_title.$ifmbauto.' mise_en_page__'.$mise_en_page.'">' . do_shortcode(get_the_content()) . '</div>';
     if ($mise_en_page == 'texte-gauche') $html .= $html_title;
     $html .= '
             </div>
@@ -164,17 +170,17 @@ function render_HTML_homepage($categorie, $query, $compteur) {
      * This renders the homepage HTML first slide (article avec la categorie )
      */
 
+    $query->the_post();
     $html = '
         <section class="row section bg-green" data-index="'.$compteur.'">
             <div class="col-lg-12 d-flex flex-col">
     ';
-    $query->the_post();
 
     // on parse le titre
     $title = get_the_title();
     $title_arr = explode(" ", $title);
 
-    $html .= '<h2 class="text-center title">
+    $html .= '<h2 class="text-center title mb-auto">
                 <span class="title_first_part">' . implode(' ', array_slice($title_arr, 0, count($title_arr)-1)) . '</span>
                 <span class="title_second_part">' . $title_arr[count($title_arr)-1] . '</h2>';
     $html .= '' . do_shortcode(get_the_content()) . '';
@@ -187,7 +193,7 @@ function render_HTML_homepage($categorie, $query, $compteur) {
 
 
 
-function render_HTML_title($title_orig, $mise_en_page, $bg_color, $titre_position) {
+function render_HTML_title($title_orig, $mise_en_page, $bg_color, $titre_position, $titre_style) {
     /**
      * Redners the HTML for the titles
      */
@@ -202,11 +208,12 @@ function render_HTML_title($title_orig, $mise_en_page, $bg_color, $titre_positio
             $arr = explode('§', $title_orig);
             if (count($arr) < 2) $arr = explode(' ', $title_orig);
             $title1 = implode(' ', array_slice($arr, 0, count($arr)-1)); $title2 = $arr[count($arr)-1];
-        } else {
+        } 
+        /* else {
             $n = round(strlen($title_orig) / 2, 0, PHP_ROUND_HALF_DOWN);
             $title1 = substr($title_orig, 0, $n);
             $title2 = substr($title_orig, $n);
-        }
+        } */
     }
 
     $title_black = ($bg_color == 'blanc') ? ' has-text-color has-noir-color' : '';
@@ -214,11 +221,12 @@ function render_HTML_title($title_orig, $mise_en_page, $bg_color, $titre_positio
     // render title
     $ifmtauto = ($mise_en_page == 'texte-centre') ? ' mt-auto' : 'col-md-4' ;
     $title_align = ($titre_position == 'titre-centre') ? 'text-center' : 'text-left';
+    $title_align = ($titre_position == 'titre-droite') ? 'text-right': $title_align;
     $html_title = '<div class="col-sm-12 double_title '.$ifmtauto.'">
                         <h2 class="w-100 '.$title_align.' point '.$title_black.'">' . $title1 . '</h2>
                         <h2 class="w-100 '.$title_align.' point hollow '.$title_black.'">' . $title2 . '</h2>
                     </div>';
-    if ($mise_en_page == "texte-centre" && strpos($title_orig, '§') !== false) $html_title = '<h2 class="w-100 col-lg-12 '.$title_align.' point mt-auto">' . $title_br . '</h2>';
+    if ($titre_style == 'titre-simple' || $mise_en_page == "texte-centre" && strpos($title_orig, '§') !== false) $html_title = '<h2 class="w-100 col-lg-12 '.$title_align.' mt-auto">' . $title_br . '</h2>';
     if ($title_orig == '') $html_title = "";
 
     return $html_title;

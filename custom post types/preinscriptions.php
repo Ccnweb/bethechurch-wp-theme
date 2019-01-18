@@ -56,6 +56,12 @@ function ccnbtc_custom_post_type_preinscriptions() {
             'description'  => "Telephone for custom post",
             'html_label' => 'Téléphone',
             'type' => "tel"
+        ),
+        array( // Paroisse
+            'id' => $prefix.'_key_paroisse', // le nom de la meta key
+            'description'  => "Paroisse for custom post",
+            'html_label' => 'Paroisse',
+            'type' => "text"
         )
     );
 

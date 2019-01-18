@@ -80,10 +80,14 @@ function render_HTML_carre($categorie, $query, $compteur) {
     // Featured image
     $img_html = buildBgImg(get_the_post_thumbnail_url());
 
+    // lien pour éditer l'article
+    $ifeditlink = (current_user_can('edit_posts')) ? '<a class="edit_post_link hover" href="'.get_edit_post_link(get_the_ID()).'">Éditer</a>' : '';
+
 
     // Render HTML
     $html = '
         <div class="d-flex align-items-end carre" '.$img_html.'>
+            '.$ifeditlink.'
             <div class="d-flex justify-content-center align-items-center gradient">
                 <h4 class="text-center">'.$title.'</h4>
             </div>

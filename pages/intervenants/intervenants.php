@@ -4,7 +4,7 @@ get_header();
 ?>
 
     <!-- Page Content -->
-    <div class="container-fluid h-100" id="fullpage">
+    <div class="container-fluid h-100 page_intervenants" id="fullpage">
       <!-- <div class="row">
         <div class="col-lg-12 text-center"> -->
           
