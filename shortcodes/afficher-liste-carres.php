@@ -21,9 +21,11 @@ function ccnbtc_shortcode_afficher_liste_carres() {
         // == 3. == on récupère les articles de la catégorie
         $query_args = array(
             'category_name' => $atts['categorie'],
-            'meta_key' => 'ccnbtc_post_order',
-            'orderby' => 'meta_value_num', // nécessaire lorsque la meta_key est numérique
-            'order' => 'ASC'
+            'post_status'   => 'publish',
+            'lang'          =>  pll_current_language(),
+            'meta_key'      => 'ccnbtc_post_order',
+            'orderby'       => 'meta_value_num', // nécessaire lorsque la meta_key est numérique
+            'order'         => 'ASC'
         );
         $query = new WP_Query( $query_args );
         
