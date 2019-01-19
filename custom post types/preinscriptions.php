@@ -75,13 +75,24 @@ function ccnbtc_custom_post_type_preinscriptions() {
     $backend_options = array(
         'send_email' => array(
             array(
-                'addresses' => array('web@chemin-neuf.org', 'contact@bethechurch.fr', $prefix.'_key_email'),
+                'addresses' => array('web@chemin-neuf.org', 'contact@bethechurch.fr'),
+                'subject' => 'Nouvelle Préinscription',
+                'model' => 'simple_contact.html',
+                'model_args' => array(
+                    'title' => 'Que le Seigneur te donne sa paix !',
+                    'subtitle' => 'Pré-inscription au festival paroisses "Be The Church" ',
+                    'body' => 'Bonjour {{'.$prefix.'_key_firstname}},<br>Votre pré-inscription est bien validée ! Lorsque vous souhaiterez vous inscrire définitivement, n’hésitez pas à revenir sur le site pour nous donner toutes les informations nécessaires.<br><br>Dans la joie de vous accueillir cet été !<br><br>L’équipe du Festival des paroisses'
+                ),
+            ),
+            array(
+                'addresses' => array($prefix.'_key_email'),
                 'subject' => 'Votre pré-inscription est confirmée !',
                 'model' => 'simple_contact.html',
                 'model_args' => array(
-                    'title' => 'Que le Seigneur vous donne sa paix !',
-                    'subtitle' => 'Pré-inscription au festival paroisses "Be The Church" ',
-                    'body' => 'Bonjour {{'.$prefix.'_key_firstname}},<br>Votre pré-inscription est bien validée ! Lorsque vous souhaiterez vous inscrire définitivement, n’hésitez pas à revenir sur le site pour nous donner toutes les informations nécessaires.<br><br>Dans la joie de vous accueillir cet été !<br><br>L’équipe du Festival des paroisses'
+                    'title' => 'Festival des Paroisses',
+                    'subtitle' => 'Pré-inscription au Festival des Paroisses Be The Church',
+                    'body' => 'Bonjour,<br>Votre pré-inscription est bien validée. Nous vous enverrons un mail dès que les inscriptions seront
+                    ouvertes en ligne pour que vous puissiez finaliser votre inscription.<br><br>Dans la joie de vous accueillir cet été !<br><br>L’équipe du Festival des paroisses'
                 ),
             )
         ),
