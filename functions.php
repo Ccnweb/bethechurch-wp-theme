@@ -183,11 +183,30 @@ require_once_all_regex(get_template_directory() . '/custom post types/', "");
 /* ========================================================= */
 
 require_once_all_regex(get_template_directory() . '/shortcodes/', "");
+
 // load contact form shortcode
 ccnlib_register_contact_form(array(
         'title' => '',
         'submit_btn_text' => 'Envoyer',
         'required' => array('@ALL'),
+        'send_email' => array(
+            array(
+                'addresses' => array('web@chemin-neuf.org', 'contact@bethechurch.fr'),
+                'subject' => 'Nouvelle demande de contact de {{'.$prefix.'_key_firstname}} {{'.$prefix.'_key_name}}',
+                'model' => 'simple_contact.html',
+                'model_args' => array(
+                    'title' => 'Que le Seigneur te donne sa paix !',
+                ),
+            ),
+            array(
+                'addresses' => array('ccnlib_key_email'),
+                'subject' => 'Votre demande de contact pour le festival Be The Church a bien été prise en compte',
+                'model' => 'simple_contact.html',
+                'model_args' => array(
+                    'title' => 'Que le Seigneur vous donne sa paix !',
+                ),
+            ),
+        ),
     )
 );
 
