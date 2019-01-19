@@ -4,7 +4,7 @@
 * Author: Communauté du Chemin Neuf
 * Author URI: https://www.chemin-neuf.fr
 * Description: Le beau thème du festival Be The Church !
-* Version: 1.7.3
+* Version: 1.7.5
 * License: GNU General Public License v3
 * License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 * GitHub Theme URI: https://github.com/Ccnweb/bethechurch-wp-theme
@@ -369,6 +369,12 @@ h2.title {
     }
 }
 
+/* texte homepage dates du festival */
+h2.title + p {
+    font-size: 1.7rem;
+    line-height: 2rem;
+}
+
 /* .slide_text {
     margin: 4rem;
 } */
@@ -399,6 +405,12 @@ h2.title {
 .wp-block-button.reserver_place {
     margin-top: auto;
     margin-bottom: 2cm;
+}
+
+/* bouton je me pré inscris */
+#ccnbtc_preinscrire_submit {
+    background: var(--red);
+    border: 1px solid hsla(354, 77%, 58%, 1);
 }
 
 /* ==================================================== */
