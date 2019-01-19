@@ -171,10 +171,21 @@ function render_HTML_homepage($categorie, $query, $compteur) {
      */
 
     $query->the_post();
+
+    // Background image
+    $bg_img = buildBgImg(get_the_post_thumbnail_url());
+
     $html = '
-        <section class="row section bg-green" data-index="'.$compteur.'">
+        <section class="row section bg-green" data-index="'.$compteur.'" '.$bg_img.'>
             <div class="col-lg-12 d-flex flex-col">
     ';
+
+    // on ajoute les gouttes
+    $images_svg = '<img class="goutte goutte_rouge" src="'.get_template_directory_uri().'/img/goutte rouge.svg"/>';
+    $images_svg .= '<img class="goutte goutte_jaune" src="'.get_template_directory_uri().'/img/goutte jaune.svg"/>';
+    $images_svg .= '<img class="goutte goutte_bleu_clair" src="'.get_template_directory_uri().'/img/goutte bleu clair.svg"/>';
+    $images_svg .= '<img class="goutte goutte_rouge_petite" src="'.get_template_directory_uri().'/img/goutte rouge petite.svg"/>';
+    $images_svg .= '<img class="goutte goutte_bleu_fonce" src="'.get_template_directory_uri().'/img/goutte bleu fonce.svg"/>';
 
     // on parse le titre
     $title = get_the_title();
@@ -185,7 +196,7 @@ function render_HTML_homepage($categorie, $query, $compteur) {
                 <span class="title_second_part">' . $title_arr[count($title_arr)-1] . '</h2>';
     $html .= '' . do_shortcode(get_the_content()) . '';
     $html .= '
-            </div>
+            </div>'.$images_svg.'
         </section>';
 
     return $html;

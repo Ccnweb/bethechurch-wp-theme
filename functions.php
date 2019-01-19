@@ -192,7 +192,7 @@ ccnlib_register_contact_form(array(
         'send_email' => array(
             array(
                 'addresses' => array('web@chemin-neuf.org', 'contact@bethechurch.fr'),
-                'subject' => 'Nouvelle demande de contact de {{'.$prefix.'_key_firstname}} {{'.$prefix.'_key_name}}',
+                'subject' => 'Nouvelle demande de contact de {{ccnlib_key_firstname}} {{ccnlib_key_name}}',
                 'model' => 'simple_contact.html',
                 'model_args' => array(
                     'title' => 'Que le Seigneur te donne sa paix !',
