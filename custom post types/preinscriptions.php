@@ -72,7 +72,21 @@ function ccnbtc_custom_post_type_preinscriptions() {
     create_custom_post_fields($cp_name, $cp_slug, $metabox_options, $prefix, $fields);
 
     // == 4. == on crée le backend REST pour POSTer des nouvelles inscriptions ($action_name = 'ccnbtc_preinscrire')
-    create_POST_backend($cp_name, $prefix, 'preinscrire', $accepted_users = 'all', $fields); // the final action_name of the backend will be $prefix.'inscrire'
+    $backend_options = array(
+        'send_email' => array(
+            array(
+                'addresses' => array('web@chemin-neuf.org', 'contact@bethechurch.fr', $prefix.'_key_email'),
+                'subject' => 'Votre pré-inscription est confirmée !',
+                'model' => 'simple_contact.html',
+                'model_args' => array(
+                    'title' => 'Que le Seigneur vous donne sa paix !',
+                    'subtitle' => 'Pré-inscription au festival paroisses "Be The Church" ',
+                    'body' => 'Bonjour {{'.$prefix.'_key_firstname}},<br>Votre pré-inscription est bien validée ! Lorsque vous souhaiterez vous inscrire définitivement, n’hésitez pas à revenir sur le site pour nous donner toutes les informations nécessaires.<br><br>Dans la joie de vous accueillir cet été !<br><br>L’équipe du Festival des paroisses'
+                ),
+            )
+        ),
+    );
+    create_POST_backend($cp_name, $prefix, 'preinscrire', $accepted_users = 'all', $fields, $backend_options); // the final action_name of the backend will be $prefix.'inscrire'
     $html_form_options = array(
         'title' => '',
         'submit_btn_text' => 'Je me pré-inscris !',
