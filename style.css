@@ -4,7 +4,7 @@
 * Author: Communauté du Chemin Neuf
 * Author URI: https://www.chemin-neuf.fr
 * Description: Le beau thème du festival Be The Church !
-* Version: 1.7.2
+* Version: 1.7.3
 * License: GNU General Public License v3
 * License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 * GitHub Theme URI: https://github.com/Ccnweb/bethechurch-wp-theme
@@ -175,7 +175,7 @@ input {
 .bg-blue-klein, .bg-bleu-klein {background: var(--blue-klein)}
 .bg-blue-light, .bg-bleu-clair {background: var(--blue-light)}
 
-.has-text-color.has-blanc-color {color:white}
+.has-text-color.has-blanc-color, .has-text-color.has-blanc-color a {color:white}
 .has-text-color.has-noir-color {color:black}
 .has-text-color.has-vert-color {color:var(--green)}
 .has-text-color.has-rouge-color {color:var(--red)}
@@ -240,6 +240,7 @@ a.dropdown-toggle.nav-link::after {
 
 /* mettre le menu langues tout à droite */
 ul#menu-menu-principal > li:last-child {
+    display: none;
     justify-self: flex-end;
     margin-left: auto;
 }
@@ -542,7 +543,30 @@ h2.programme {
     top: 38vh;
     left: 7vw;
 }
+@media screen and (max-width: 768px) {
+    .goutte_rouge {
+        width: 10rem;
+    }
+    .goutte_jaune {
+        right: 1vw;
+        width: 4rem;
+        bottom: 41vh;
+    }
+    .goutte_bleu_fonce {
+        width: 10rem;
+    }
+    .goutte_bleu_clair {
+        width: 2rem;
+        right: 6vw;
+        top: 19vh;
+    }
+    .goutte_rouge_petite {
+        width: 5rem;
+        top: 46vh;
+        left: 9vw;
+    }
 
+}
 
 /* ==================================================== */
 /*      ADMIN ELEMENTS
