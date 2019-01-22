@@ -4,7 +4,7 @@
 * Author: Communauté du Chemin Neuf
 * Author URI: https://www.chemin-neuf.fr
 * Description: Le beau thème du festival Be The Church !
-* Version: 1.7.5
+* Version: 1.8.0
 * License: GNU General Public License v3
 * License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 * GitHub Theme URI: https://github.com/Ccnweb/bethechurch-wp-theme
@@ -413,13 +413,38 @@ h2.title + p {
     border: 1px solid hsla(354, 77%, 58%, 1);
 }
 
+/* Style du slide infos */
+#post__infos .double_title:nth-child(2) {display: none;}
+#post__infos .slide_text, #post__infos .has-3-columns {
+    width: 100%;
+    margin-top: auto;
+}
+#post__infos .wp-block-column {
+    display: flex; 
+    flex-direction:column; 
+    justify-content: center;
+}
+#post__infos textarea {
+    margin: 0.3rem;
+    padding: 4px;
+    border-radius: 0px;
+}
+#post__infos input {width: 100%;}
+#post__infos .submit-btn-container button {
+    margin: 0.3rem;
+    border-radius: 0px;
+    background: var(--blue-light);
+    border: none;
+}
+#post__infos p.little {
+    font-size: 0.7rem;
+    line-height: 0.8rem;
+    margin: 0.3rem;
+}
+
 /* ==================================================== */
 /*    TODO PASSER CETTE PARTIE DANS intervenants/intervenants.css
 /* ==================================================== */
-
-.intervenant_content {
-    /* margin: 2rem; */
-}
 
 .intervenant_content > h2 {
     color: black;
@@ -562,7 +587,7 @@ h2.programme {
     .goutte_jaune {
         right: 1vw;
         width: 4rem;
-        bottom: 41vh;
+        bottom: 52vh;
     }
     .goutte_bleu_fonce {
         width: 10rem;
@@ -570,11 +595,11 @@ h2.programme {
     .goutte_bleu_clair {
         width: 2rem;
         right: 6vw;
-        top: 19vh;
+        top: 11vh;
     }
     .goutte_rouge_petite {
         width: 5rem;
-        top: 46vh;
+        top: 70vh;
         left: 9vw;
     }
 
@@ -599,3 +624,34 @@ h2.programme {
 *:hover > .edit_post_link.hover {display:block;}
 
 
+/* ==================================================== */
+/*      POINTS D'ARIANE                                 */
+/* ==================================================== */
+
+ul.ariane_points {
+    position: fixed;
+    top: 50%;
+    right: 7px;
+    transform: translate(0,-50%);
+    list-style: none;
+    color: white;
+    z-index: 1000;
+}
+
+ul.ariane_points > li {
+    width: 1cm;
+    cursor: pointer;
+    text-align: center;
+    font-size: 0.2cm;
+    padding: 0.7rem 0.5rem;
+    transition: all 0.2s;
+}
+
+ul.ariane_points > li:hover {
+    font-size: 0.4cm;
+    transition: all 0.2s;
+}
+
+ul.ariane_points > li.active {
+    font-size: 0.4cm;
+}

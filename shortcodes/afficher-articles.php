@@ -101,6 +101,7 @@ function render_HTML($categorie, $query, $compteur) {
     $bg_color = 'green';
     $titre_position = 'titre-centre';
     $titre_style = 'titre-double'; // 'titre-simple' ou 'titre-double' avec hollow title (titre + son "ombre")
+    $titre_hidden = false;
 
     if ($posttags) {
         foreach($posttags as $tag) {
@@ -120,6 +121,10 @@ function render_HTML($categorie, $query, $compteur) {
             if(preg_match("/^titre\-(simple|double)$/i", $tag->name, $matches)) {
                 $titre_style = $matches[0];
             }
+            // hide title
+            if(preg_match("/^titre\-cach[ée]$/i", $tag->name, $matches)) {
+                $titre_hidden = true;
+            }
         }
     }
     
@@ -132,7 +137,7 @@ function render_HTML($categorie, $query, $compteur) {
     // Render HTML
 
     // the title
-    $html_title = render_HTML_title($title_orig, $mise_en_page, $bg_color, $titre_position, $titre_style);
+    $html_title = (!$titre_hidden) ? render_HTML_title($title_orig, $mise_en_page, $bg_color, $titre_position, $titre_style) : '';
 
     // special case if no title
     $special_texte_no_title = '';//($title == '') ? "align-self-start notitle-text-left": '';
@@ -150,7 +155,7 @@ function render_HTML($categorie, $query, $compteur) {
 
     // Add everything
     $html = '
-        <section id="post__'.$slug.'" class="row section layout__'.$mise_en_page.' '.$flex_type.' bg-'.$bg_color.'" data-index="'.$compteur.'" '.$bg_img.'>
+        <section id="post__'.$slug.'" data-title="'.str_replace('§', ' ', $title_orig).'" class="row section layout__'.$mise_en_page.' '.$flex_type.' bg-'.$bg_color.'" data-index="'.$compteur.'" '.$bg_img.'>
     '.$ifeditlink;
     if (in_array($mise_en_page, array('texte-droite', 'texte-centre'))) $html .= $html_title;
     $html .= '<div class="slide_text '.$text_column_classes.' '.$special_texte_no_title.$ifmbauto.' mise_en_page__'.$mise_en_page.'">' . do_shortcode(get_the_content()) . '</div>';
@@ -172,11 +177,15 @@ function render_HTML_homepage($categorie, $query, $compteur) {
 
     $query->the_post();
 
+    // on parse le titre
+    $title = get_the_title();
+    $title_arr = explode(" ", $title);
+
     // Background image
     $bg_img = buildBgImg(get_the_post_thumbnail_url());
 
     $html = '
-        <section class="row section bg-green" data-index="'.$compteur.'" '.$bg_img.'>
+        <section class="row section bg-green" data-title="'.$title.'" data-index="'.$compteur.'" '.$bg_img.'>
             <div class="col-lg-12 d-flex flex-col">
     ';
 
@@ -185,11 +194,7 @@ function render_HTML_homepage($categorie, $query, $compteur) {
     $images_svg .= '<img class="goutte goutte_jaune" src="'.get_template_directory_uri().'/img/goutte jaune.svg"/>';
     $images_svg .= '<img class="goutte goutte_bleu_clair" src="'.get_template_directory_uri().'/img/goutte bleu clair.svg"/>';
     $images_svg .= '<img class="goutte goutte_rouge_petite" src="'.get_template_directory_uri().'/img/goutte rouge petite.svg"/>';
-    $images_svg .= '<img class="goutte goutte_bleu_fonce" src="'.get_template_directory_uri().'/img/goutte bleu fonce.svg"/>';
-
-    // on parse le titre
-    $title = get_the_title();
-    $title_arr = explode(" ", $title);
+    $images_svg .= '<img class="goutte goutte_bleu_fonce" src="'.get_template_directory_uri().'/img/goutte bleu fonce.svg"/>';    
 
     $html .= '<h2 class="text-center title mb-auto">
                 <span class="title_first_part">' . implode(' ', array_slice($title_arr, 0, count($title_arr)-1)) . '</span>

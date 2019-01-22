@@ -76,7 +76,7 @@ function ccnbtc_custom_post_type_preinscriptions() {
         'send_email' => array(
             array(
                 'addresses' => array('web@chemin-neuf.org', 'contact@bethechurch.fr'),
-                'subject' => 'Nouvelle Préinscription',
+                'subject' => 'Nouvelle Préinscription de {{'.$prefix.'_key_firstname}}',
                 'model' => 'simple_contact.html',
                 'model_args' => array(
                     'title' => 'Que le Seigneur te donne sa paix !',
@@ -91,8 +91,12 @@ function ccnbtc_custom_post_type_preinscriptions() {
                 'model_args' => array(
                     'title' => 'Festival des Paroisses',
                     'subtitle' => 'Pré-inscription au Festival des Paroisses Be The Church',
-                    'body' => 'Bonjour,<br>Votre pré-inscription est bien validée. Nous vous enverrons un mail dès que les inscriptions seront
-                    ouvertes en ligne pour que vous puissiez finaliser votre inscription.<br><br>Dans la joie de vous accueillir cet été !<br><br>L’équipe du Festival des paroisses'
+                    'body' => 'Bonjour,<br>
+                            Votre pré-inscription est bien validée. Nous vous enverrons un mail dès que les inscriptions seront ouvertes en ligne pour que vous puissiez finaliser votre inscription.<br>
+                            <br>
+                            Dans la joie de vous accueillir cet été !<br>
+                            <br>
+                            L’équipe du Festival des paroisses'
                 ),
             )
         ),

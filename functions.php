@@ -105,14 +105,6 @@ function ccnbtc_scripts() {
     // FontAwesome pour les icônes
     wp_enqueue_style( 'ccnbtc-fa', 'https://use.fontawesome.com/releases/v5.5.0/css/all.css');
 
-    // OnePageScroll pour l'effet "slide" lorsqu'on scroll
-    //wp_enqueue_style('ccnbtc-onepage-style', 'https://cdnjs.cloudflare.com/ajax/libs/onepage-scroll/1.3.1/onepage-scroll.min.css', array(), '1.3.1', 'all');
-    //wp_enqueue_script( 'ccnbtc-onepage-script', 'https://cdnjs.cloudflare.com/ajax/libs/onepage-scroll/1.3.1/jquery.onepage-scroll.min.js', array('jquery'));
-    
-    // FullPage pour l'effet "slide" lorsqu'on scroll
-    //wp_enqueue_style('ccnbtc-fullapge-style', 'https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.4/fullpage.min.css', array(), '3.0.4', 'all');
-    //wp_enqueue_script( 'ccnbtc-fullpage-script', 'https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.4/fullpage.min.js', array(), '3.0.4');    
-
     // on load style.css ici pour qu'il soit chargé après le CSS de bootstrap
     wp_enqueue_style( 'ccnbtc-parent-style', get_template_directory_uri() . '/style.css' );
     // main script of the theme
@@ -191,19 +183,35 @@ ccnlib_register_contact_form(array(
         'required' => array('@ALL'),
         'send_email' => array(
             array(
-                'addresses' => array('web@chemin-neuf.org', 'contact@bethechurch.fr'),
-                'subject' => 'Nouvelle demande de contact de {{ccnlib_key_firstname}} {{ccnlib_key_name}}',
-                'model' => 'simple_contact.html',
-                'model_args' => array(
+                'addresses' => array('web@chemin-neuf.org', 'contact@bethechurch.fr'), // adresses email à qui envoyer le mail
+                'subject' => '[Contact BTC] Nouvelle demande de contact de {{ccnlib_key_firstname}} {{ccnlib_key_name}}', // sujet du mail
+                'model' => 'simple_contact.html', // le chemin vers le modèle/template HTML à utiliser
+                'model_args' => array( // les arguments qui permettent de populer le model/template HTML du message
                     'title' => 'Que le Seigneur te donne sa paix !',
+                    'subtitle' => 'Nouvelle demande de contact de {{ccnlib_key_firstname}} {{ccnlib_key_name}}',
+                    'body' => 'Coucou ! Une nouvelle demande de contact vient d\'arriver du site Be The Church, merci d\'y répondre avec amour :<br>
+                                Voici les détails de la demande :<br>
+                                <b>Prénom: </b>{{ccnlib_key_firstname}}<br>
+                                <b>Nom: </b>{{ccnlib_key_name}}<br>
+                                <b>Email: </b>{{ccnlib_key_email}}<br>
+                                <b>Corps du message:</b><br><br>
+                                {{message_HTML}}<br>',
                 ),
             ),
             array(
                 'addresses' => array('ccnlib_key_email'),
-                'subject' => 'Votre demande de contact pour le festival Be The Church a bien été prise en compte',
+                'subject' => 'Votre demande de contact pour le festival Be The Church',
                 'model' => 'simple_contact.html',
                 'model_args' => array(
-                    'title' => 'Que le Seigneur vous donne sa paix !',
+                    'title' => 'Accusé de réception',
+                    'subtitle' => 'Votre demande de contact pour le festival Be The Church a bien été prise en compte',
+                    'body' => 'Bonjour {{ccnlib_key_firstname}},<br>
+                                Votre demande de contact à propos du festival Be The Church a bien été prise en compte.<br>
+                                Nous vous répondrons dans les meilleurs délais. Pour rappel, vous trouverez une copie de votre message ci-dessous<br>
+                                <br>
+                                L’équipe du Festival des paroisses<br>
+                                <br><br>
+                                <b>Copie de votre message :</b><br>{{message_HTML}}',
                 ),
             ),
         ),
