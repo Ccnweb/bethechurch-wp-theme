@@ -47,7 +47,7 @@ function render_HTML_programme($categorie, $query, $compteur) {
 
     // Add everything
     $html = '
-        <section id="post__'.$slug.'" class="row section bg-'.$bg_color.'" data-index="'.$compteur.'" '.$bg_img.'>
+        <section id="post__'.$slug.'" data-title="'.str_replace('§', ' ', $title_orig).'" class="row section bg-'.$bg_color.'" data-index="'.$compteur.'" '.$bg_img.'>
             '.$ifeditlink.'
             <div class="col-lg-12 ">
     ';
@@ -125,7 +125,12 @@ function render_HTML_programme_homepage($categorie, $query, $compteur) {
 
     // Add everything
     $html = '
-        <section id="post__'.$slug.'" class="row section bg-'.$bg_color.'" data-index="'.$compteur.'" '.$bg_img.'>
+        <section    id="post__'.$slug.'" 
+                    class="row section bg-'.$bg_color.'" 
+                    data-title="'.str_replace('§', ' ', $title_orig).'" 
+                    data-index="'.$compteur.'" 
+                    '.$bg_img.'>
+                    
             '.$ifeditlink.'
             <div class="col-lg-12 '.$flex_type.'">
     ';

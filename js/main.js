@@ -36,7 +36,7 @@ jQuery(document).ready(function($) {
     });
 
     // ========================================
-    // Correction HTML à la volée
+    // Corrections HTML à la volée
     // ========================================
 
     // ici on customize un peu le design des horaires pour les journées type :
@@ -71,6 +71,12 @@ jQuery(document).ready(function($) {
         /**
          * @param string section_selector   Le sélecteur jquery pour sélectionner toutes les parties qui doivent avoir un point d'Ariane
          * 
+         * ## SOMMAIRE
+         * 0. Préparation des fonctions utiles pour la suite
+         * 1. On récupère tous les éléments HTML correspondants à des sections (1 section = 1 point d'ariane)
+         * 2. On ajoute les points d'ariane HTML au document
+         * 3. On initialise la librairie qui affiche les tooltips sur chaque point d'ariane
+         * 4. On contrôle le défilement pour changer de point d'ariane actif au bon moment
          */
 
         let default_options = {
@@ -154,6 +160,12 @@ jQuery(document).ready(function($) {
             }
         })
     }
-    initArianePoints('.section', {tooltips: 'data-title'});
+    initArianePoints('.section', {
+        tooltips: 'data-title',
+        on_section_change: function(ind) {
+            if ($('body').hasClass('page__infos-pratiques') && (ind == 1 || ind == 4 || ind == 7) ) $('ul.ariane_points').addClass('black');
+            else $('ul.ariane_points').removeClass('black');
+        }
+    });
 
 });

@@ -20,7 +20,7 @@ function render_HTML_intervenant($categorie, $query, $compteur) {
     $ifeditlink = (current_user_can('edit_posts')) ? '<a class="edit_post_link" href="'.get_edit_post_link(get_the_ID()).'">Éditer</a>' : '';
 
     $html = '
-        <section class="row section" data-index="'.$compteur.'">
+        <section class="row section" data-title="'.str_replace('§', ' ', $title_orig).'" data-index="'.$compteur.'">
     '.$ifeditlink;
 
     // on parse le titre
