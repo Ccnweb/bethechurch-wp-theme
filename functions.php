@@ -156,7 +156,7 @@ function ccnbtc_add_custom_fields_to_posts() {
     ];
     // on crée tous les : metakeys, metabox/champs html, save callbacks, ...
     $metabox_options = array(
-        'title' => "Ordre d'affichage de l'article"
+        array('title' => "Ordre d'affichage de l'article", 'fields' => 'ALL')
     );
     create_custom_post_fields('post', 'post', $metabox_options, $prefix, array($field_order));
 }

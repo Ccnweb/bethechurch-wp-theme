@@ -67,7 +67,7 @@ function ccnbtc_custom_post_type_preinscriptions() {
 
     // == 3. == on crée tous les : metakeys, metabox/champs html, save callbacks, ...
     $metabox_options = array(
-        'title' => 'Données de pré-inscription'
+        array('title' => 'Données de pré-inscription', 'fields' => 'ALL')
     );
     create_custom_post_fields($cp_name, $cp_slug, $metabox_options, $prefix, $fields);
 
@@ -76,12 +76,17 @@ function ccnbtc_custom_post_type_preinscriptions() {
         'send_email' => array(
             array(
                 'addresses' => array('web@chemin-neuf.org', 'contact@bethechurch.fr'),
-                'subject' => 'Nouvelle Préinscription de {{'.$prefix.'_key_firstname}}',
+                'subject' => 'Nouvelle pré-inscription de {{'.$prefix.'_key_firstname}}',
                 'model' => 'simple_contact.html',
                 'model_args' => array(
                     'title' => 'Que le Seigneur te donne sa paix !',
-                    'subtitle' => 'Pré-inscription au festival paroisses "Be The Church" ',
-                    'body' => 'Bonjour {{'.$prefix.'_key_firstname}},<br>Votre pré-inscription est bien validée ! Lorsque vous souhaiterez vous inscrire définitivement, n’hésitez pas à revenir sur le site pour nous donner toutes les informations nécessaires.<br><br>Dans la joie de vous accueillir cet été !<br><br>L’équipe du Festival des paroisses'
+                    'subtitle' => 'Nouvelle pré-inscription au festival paroisses "Be The Church" ',
+                    'body' => 'Coucou ! Une nouvelle pré-inscription est arrivée ! Voici les infos :<br><br>
+                            <b>Prénom: </b>{{'.$prefix.'_key_firstname}}<br>
+                            <b>Nom: </b>{{'.$prefix.'_key_name}}<br>
+                            <b>Email: </b>{{'.$prefix.'_key_email}}<br>
+                            <b>Téléphone: </b>{{'.$prefix.'_key_telephone}}<br>
+                            <b>Paroisse: </b>{{'.$prefix.'_key_paroisse}}<br>'
                 ),
             ),
             array(
