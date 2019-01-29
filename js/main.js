@@ -1,9 +1,5 @@
 jQuery(document).ready(function($) {
 
-    // on initialise les tooltips bootstrap
-    // source : https://getbootstrap.com/docs/4.1/components/tooltips/
-    $('[data-toggle="tooltip"]').tooltip()
-
     // ========================================
     // INITIALISE FLECHE POUR CHANGER DE SLIDE
     // ========================================

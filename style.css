@@ -158,11 +158,11 @@ a.wp-block-button__link.black:hover, a.wp-block-button__link.noir:hover, .is-sty
 /* Les formulaires */
 
 input {
-    margin: 0.3rem;
     padding: 4px;
     outline: none;
     border: 1px solid #d6d6d6;
     background: whitesmoke;
+    border-radius: 0;
 }
 
 /* ==================================================== */
@@ -291,6 +291,43 @@ a.custom-logo-link > img {
 /*                    FORMULAIRES                       */
 /* ==================================================== */
 
+.pum-content .row {
+    min-height: 70vh;
+}
+
+.form-group, .form-row {
+    margin: 1rem 0;
+}
+
+/* titre d'un step */
+h2.fs-title {
+    line-height: 1.2rem;
+}
+
+/* radio buttons */
+.form-radio-container {
+    color: #545454;
+    text-align: left;
+    margin-bottom: 1rem;
+}
+
+/* date picker */
+.datepickers-container {
+    z-index: 1000000;
+}
+
+/* labels/titres de fields */
+p.form-label {
+    color: #333;
+    margin-top: 1rem;
+    margin-bottom: 3px;
+    font-weight: bold;
+}
+
+/* form errors */
+input.invalid {
+    border: 2px solid var(--red);
+}
 
 .invalid-feedback.show {display: block;}
 

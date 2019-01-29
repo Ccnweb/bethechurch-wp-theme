@@ -76,17 +76,18 @@ function ccnbtc_custom_post_type_preinscriptions() {
         'send_email' => array(
             array(
                 'addresses' => array('web@chemin-neuf.org', 'contact@bethechurch.fr'),
-                'subject' => 'Nouvelle pré-inscription de {{'.$prefix.'_key_firstname}}',
+                'subject' => 'Pré-inscription - {{'.$prefix.'_key_firstname}} {{'.$prefix.'_key_name}}',
                 'model' => 'simple_contact.html',
                 'model_args' => array(
-                    'title' => 'Que le Seigneur te donne sa paix !',
-                    'subtitle' => 'Nouvelle pré-inscription au festival paroisses "Be The Church" ',
-                    'body' => 'Coucou ! Une nouvelle pré-inscription est arrivée ! Voici les infos :<br><br>
-                            <b>Prénom: </b>{{'.$prefix.'_key_firstname}}<br>
-                            <b>Nom: </b>{{'.$prefix.'_key_name}}<br>
-                            <b>Email: </b>{{'.$prefix.'_key_email}}<br>
-                            <b>Téléphone: </b>{{'.$prefix.'_key_telephone}}<br>
-                            <b>Paroisse: </b>{{'.$prefix.'_key_paroisse}}<br>'
+                    'title' => '',
+                    'subtitle' => '',
+                    'body' => '<table style="border-collapse:collapse;">
+                            <tr><td style="padding: 4px 12px;border:1px solid #447;background-color:#dedede;">Prénom </td><td style="padding: 4px 12px;border:1px solid #447;">{{'.$prefix.'_key_firstname}}</td></tr>
+                            <tr><td style="padding: 4px 12px;border:1px solid #447;background-color:#dedede;">Nom </td><td style="padding: 4px 12px;border:1px solid #447;">{{'.$prefix.'_key_name}}</td></tr>
+                            <tr><td style="padding: 4px 12px;border:1px solid #447;background-color:#dedede;">Email </td><td style="padding: 4px 12px;border:1px solid #447;">{{'.$prefix.'_key_email}}</td></tr>
+                            <tr><td style="padding: 4px 12px;border:1px solid #447;background-color:#dedede;">Téléphone </td><td style="padding: 4px 12px;border:1px solid #447;">{{'.$prefix.'_key_telephone}}</td></tr>
+                            <tr><td style="padding: 4px 12px;border:1px solid #447;background-color:#dedede;">Paroisse </td><td style="padding: 4px 12px;border:1px solid #447;">{{'.$prefix.'_key_paroisse}}</td></tr>
+                        </table>'
                 ),
             ),
             array(
