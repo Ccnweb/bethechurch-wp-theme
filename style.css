@@ -158,12 +158,14 @@ a.wp-block-button__link.black:hover, a.wp-block-button__link.noir:hover, .is-sty
 /* Les formulaires */
 
 input {
+    margin-top: .5rem;
     padding: 4px;
     outline: none;
     border: 1px solid #d6d6d6;
     background: whitesmoke;
     border-radius: 0;
 }
+label.input-group-text, select {margin-top: .5rem;}
 
 /* ==================================================== */
 /*                 HELPFUL CLASSES                      */
@@ -182,6 +184,8 @@ input {
 .has-text-color.has-jaune-color {color:var(--yellow)}
 .has-text-color.has-bleu-klein-color {color:var(--blue-klein)}
 .has-text-color.has-bleu-clair-color {color:var(--blue-ligth)}
+
+.btn-red {color:white; background: var(--red);border: 1px solid hsla(354, 77%, 58%, 1);}
 
 .font-cafe {font-family: 'Louis George Café'}
 
@@ -291,9 +295,16 @@ a.custom-logo-link > img {
 /*                    FORMULAIRES                       */
 /* ==================================================== */
 
+/* popups */
 .pum-content .row {
     min-height: 70vh;
 }
+
+.pum-container .popmake {
+    margin-top: 4rem;
+}
+
+
 
 .form-group, .form-row {
     margin: 1rem 0;
@@ -324,12 +335,45 @@ p.form-label {
     font-weight: bold;
 }
 
+/* + button to add new dynamic elements */
+.add_repeat_element {
+    background: var(--green);
+    border: none;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50px;
+    color: white;
+    box-shadow: #28a745 0px 1px 3px;
+    cursor: pointer;
+}
+
+.ccnlib_delete_repeat_element {
+    background: white;
+    color: #888;
+    border: none;
+    height: 2rem;
+    width: 2rem;
+    cursor: pointer;
+}
+
+/* final submit button */
+#ccnbtc_inscrire_submit {
+    width: 100%;
+}
+
 /* form errors */
 input.invalid {
     border: 2px solid var(--red);
 }
 
 .invalid-feedback.show {display: block;}
+
+
+/* PREINSCRIPTIONS */
+#ccnbtc_preinscrire_form input {
+    border-radius: 0px;
+    margin-bottom: 0.4rem;
+}
 
 
 
@@ -446,8 +490,9 @@ h2.title + p {
 
 /* bouton je me pré inscris */
 #ccnbtc_preinscrire_submit {
-    background: var(--red);
-    border: 1px solid hsla(354, 77%, 58%, 1);
+    background: transparent;
+    border: none;
+    text-decoration: underline;
 }
 
 /* Style du slide infos */
@@ -462,11 +507,16 @@ h2.title + p {
     justify-content: center;
 }
 #post__infos textarea {
-    margin: 0.3rem;
     padding: 4px;
+    margin-top: 1rem;
+    height: 10rem;
     border-radius: 0px;
 }
-#post__infos input {width: 100%;}
+#post__infos input {
+    width: 100%;
+    border-radius: 0px;
+    margin-bottom: 7px;
+}
 #post__infos .submit-btn-container button {
     margin: 0.3rem;
     border-radius: 0px;

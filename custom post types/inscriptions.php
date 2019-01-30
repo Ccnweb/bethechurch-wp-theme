@@ -58,7 +58,7 @@ function ccnbtc_custom_post_type_inscriptions() {
                 'communautaire' => "Membre de la Communauté ou de la Communion du Chemin Neuf",
                 'autre' => 'Autre à préciser :',
             ),
-            'options_preciser' => ['autre', 'paroisse'],
+            'options_preciser' => ['autre*', 'paroisse*'], // * veut dire que c'est requis
             'wrapper' => [
                 'start' => '<p class="form-label">Je suis</p>',
                 'end' => ''
@@ -86,7 +86,12 @@ function ccnbtc_custom_post_type_inscriptions() {
             ),
             'type' => "nom_prenom",
         ),
-        array('id' => $prefix.'_key_indiv_elle', 'copy' => $prefix.'_key_indiv', 'wrapper' => array('start' => '<p class="form-label">Elle</p>', 'end' => '')), // une copie de Nom prénom pour "Elle"
+        array( // Nom prénom - Elle
+            'id' => $prefix.'_key_indiv_elle', 
+            'copy' => $prefix.'_key_indiv', 
+            'required' => [true, false],
+            'html_label' => array('prenom' => 'Prénom', 'nom' => 'Nom si différent'), 
+            'wrapper' => array('start' => '<p class="form-label">Elle</p>', 'end' => '')), // une copie de Nom prénom pour "Elle"
         array('id' => $prefix.'_key_indiv_lui', 'copy' => $prefix.'_key_indiv', 'wrapper' => array('start' => '<p class="form-label">Lui</p>', 'end' => '')), // une copie de Nom prénom pour "Lui"
         array( // Homme/Femme
             'id' => $prefix.'_key_genre',
@@ -105,7 +110,7 @@ function ccnbtc_custom_post_type_inscriptions() {
             'html_label' => 'Date de naissance',
             'type' => "date", // TODO restreindre aux personnes majeures
             'label' => 'placeholder',
-            'style' => 'bootstrap',
+            'wrapper' => 'bootstrap',
         ),
         array('id' => $prefix.'_key_birthdate_elle', 'copy' => $prefix.'_key_birthdate'), // une copie de birth date pour "Elle"
         array('id' => $prefix.'_key_birthdate_lui', 'copy' => $prefix.'_key_birthdate'), // une copie de birth date pour "Lui"
@@ -151,6 +156,7 @@ function ccnbtc_custom_post_type_inscriptions() {
                     'html_label' => 'Date de naissance',
                     'type' => "date",
                     'label' => 'placeholder',
+                    'wrapper' => 'bootstrap',
                 ),
                 array( // Homme/Femme
                     'id' => $prefix.'_child_genre',
@@ -158,12 +164,13 @@ function ccnbtc_custom_post_type_inscriptions() {
                     'html_label' => 'Genre',
                     'type' => "dropdown",
                     'options' => array(
-                        'homme' => 'Homme',
-                        'femme' => 'Femme',
+                        'homme' => 'Garçon',
+                        'femme' => 'Fille',
                     ),
                     'layout' => 'row',
                 ),
             ),
+            'wrapper' => ['start' => '<p class="form-label">Enfants</p>', 'end' => ''],
         ),
         array( // Logement
             'id' => $prefix.'_key_logement',
@@ -177,7 +184,7 @@ function ccnbtc_custom_post_type_inscriptions() {
                 'tente_co' => 'Tente de la Communauté',
                 'autre' => 'Autre (Je me loge par mes propres moyens)'
             ),
-            'options_preciser' => array('autre'),
+            'options_preciser' => array('autre*'),
             'wrapper' => array('start' => '<p class="form-label">Logement</p>', 'end' => ''),
         ),
         array( // Logement remarques
@@ -189,7 +196,7 @@ function ccnbtc_custom_post_type_inscriptions() {
         ),
         array( // moyen de transport aller
             'id' => $prefix.'_key_moyen_transport_aller',
-            'description'  => "Le moyen de transprot à l'aller",
+            'description'  => "Le moyen de transport à l'aller",
             'html_label' => 'Moyen de transport',
             'type' => "dropdown",
             'options' => array(
@@ -198,11 +205,11 @@ function ccnbtc_custom_post_type_inscriptions() {
                 'voiture' => "Voiture",
                 'ne_sais_pas' => 'Ne sais pas encore',
             ),
-            'wrapper' => array('start' => '<p class="form-label">Aller</p>', 'end' => ''),
+            'wrapper' => array('start' => '<p class="form-label">Transport aller</p>', 'end' => ''),
         ),
         array( // moyen de transport retour
             'id' => $prefix.'_key_moyen_transport_retour',
-            'description'  => "Le moyen de transprot au retour",
+            'description'  => "Le moyen de transport au retour",
             'html_label' => 'Moyen de transport',
             'type' => "dropdown",
             'options' => array(
@@ -211,7 +218,7 @@ function ccnbtc_custom_post_type_inscriptions() {
                 'voiture' => "Voiture",
                 'ne_sais_pas' => 'Ne sais pas encore',
             ),
-            'wrapper' => array('start' => '<p class="form-label">Retour</p>', 'end' => ''),
+            'wrapper' => array('start' => '<p class="form-label">Transport retour</p>', 'end' => ''),
         ),
         array( // Date aller (si avion ou train)
             'id' => $prefix.'_date_aller',
@@ -219,6 +226,25 @@ function ccnbtc_custom_post_type_inscriptions() {
             'html_label' => "Date d'arrivée",
             'type' => "date",
             'required' => false, // TODO faire mieux que ça : required uniquement si transport = avion ou train !
+        ),
+        array( // Date retour (si avion ou train)
+            'id' => $prefix.'_date_retour',
+            'description'  => "Date de départ",
+            'html_label' => "Date de départ",
+            'type' => "date",
+            'required' => false, // TODO faire mieux que ça : required uniquement si transport = avion ou train !
+        ),
+        array( // Gare/aéroport aller
+            'id' => $prefix.'_gare_aller',
+            'html_label' => "Gare/aéroport d'arrivée",
+            'type' => 'text',
+            "required" => false,
+        ),
+        array( // Gare/aéroport retour
+            'id' => $prefix.'_gare_retour',
+            'html_label' => "Gare/aéroport de départ",
+            'type' => 'text',
+            "required" => false,
         ),
     );
 
@@ -263,9 +289,18 @@ function ccnbtc_custom_post_type_inscriptions() {
         ),
         array( // Transport ALLER
             'title' => 'Transport aller',
-            'fields' => array($prefix.'_key_moyen_transport_aller', $prefix.'_date_aller'),
+            'fields' => array($prefix.'_key_moyen_transport_aller', $prefix.'_date_aller', $prefix.'_gare_aller'),
             'field_conditions' => array(
                 $prefix.'_date_aller' => '{{'.$prefix.'_key_moyen_transport_aller}} == "avion" || {{'.$prefix.'_key_moyen_transport_aller}} == "train"',
+                $prefix.'_gare_aller' => '{{'.$prefix.'_key_moyen_transport_aller}} == "avion" || {{'.$prefix.'_key_moyen_transport_aller}} == "train"',
+            ),
+        ),
+        array( // Transport RETOUR
+            'title' => 'Transport retour',
+            'fields' => array($prefix.'_key_moyen_transport_retour', $prefix.'_date_retour', $prefix.'_gare_retour'),
+            'field_conditions' => array(
+                $prefix.'_date_retour' => '{{'.$prefix.'_key_moyen_transport_retour}} == "avion" || {{'.$prefix.'_key_moyen_transport_retour}} == "train"',
+                $prefix.'_gare_retour' => '{{'.$prefix.'_key_moyen_transport_retour}} == "avion" || {{'.$prefix.'_key_moyen_transport_retour}} == "train"'
             ),
         ),
     );
@@ -275,7 +310,24 @@ function ccnbtc_custom_post_type_inscriptions() {
     // =====================================================
     // == 4. == on crée le backend REST pour POSTer des nouvelles inscriptions ($action_name = 'ccnbtc_inscrire')
     // =====================================================
-    create_POST_backend($cp_name, $prefix, 'inscrire', $accepted_users = 'all', $fields); // the final action_name of the backend will be $prefix.'inscrire'
+    $backend_options = array(
+        'computed_fields' => array(
+            'post_title' => function($post_values) use ($prefix) { 
+                if (!isset($post_values[$prefix.'_key_persontype'])) return 'unknown';
+                if (in_array($post_values[$prefix.'_key_persontype'], array('individuel', 'parent_seul'))) return $post_values[$prefix.'_key_indiv_firstname'] . ' ' . $post_values[$prefix.'_key_indiv_name'];
+                if (in_array($post_values[$prefix.'_key_persontype'], array('couple_sans_enfants', 'famille'))) return $post_values[$prefix.'_key_indiv_lui_firstname'] . ' & ' . $post_values[$prefix.'_key_indiv_elle_firstname'] . ' ' . $post_values[$prefix.'_key_indiv_lui_name'];
+                return 'inconnu';
+            },
+        ),
+        'on_before_save_post' => array(
+            function($new, $old) {
+                $res = array('success' => 'true');
+
+                return $res;
+            }
+        ),
+    );
+    create_POST_backend($cp_name, $prefix, 'inscrire', $accepted_users = 'all', $fields, $backend_options); // the final action_name of the backend will be $prefix.'inscrire'
     
 
     // =====================================================
@@ -285,9 +337,6 @@ function ccnbtc_custom_post_type_inscriptions() {
         'title' => 'INSCRIPTIONS',
         'submit_btn_text' => 'Je m\'inscris !',
         'required' => array('@ALL'),
-        'computed_fields' => array(
-            'post_title' => "() => getVal('{$prefix}_key_name_field')",
-        ),
         //'custom_logic_path' => get_template_directory() . '/custom post types/inscriptions_logic.js', // la logique complexe du formulaire
     );
     $steps = array(
@@ -307,13 +356,17 @@ function ccnbtc_custom_post_type_inscriptions() {
                     'id' => 'infos-personnelles-individuel',
                     'condition' => '{{'.$prefix.'_key_persontype}} == "individuel" || {{'.$prefix.'_key_persontype}} == "parent_seul"',
                     'title' => 'Informations personnelles',
-                    'fields' => array($prefix.'_key_indiv', $prefix.'_key_genre', $prefix.'_key_birthdate', $prefix.'_key_email', $prefix.'_key_address'),
+                    'fields' => array($prefix.'_key_indiv', $prefix.'_key_genre', $prefix.'_key_birthdate', $prefix.'_key_email'),
+                ),
+                array(
+                    'id' => 'infos-personnelles-adresse',
+                    'fields' => array($prefix.'_key_address'),
                 ),
                 array(
                     'id' => 'infos-personnelles-couple',
                     'condition' => '{{'.$prefix.'_key_persontype}} == "famille" || {{'.$prefix.'_key_persontype}} == "couple_sans_enfants"',
                     'title' => 'Informations du couple',
-                    'fields' => array($prefix.'_key_address', 
+                    'fields' => array(
                                 $prefix.'_key_indiv_lui', $prefix.'_key_birthdate_lui', $prefix.'_key_email_lui',
                                 $prefix.'_key_indiv_elle', $prefix.'_key_birthdate_elle', $prefix.'_key_email_elle'
                     ),
@@ -330,11 +383,14 @@ function ccnbtc_custom_post_type_inscriptions() {
             'title' => 'Logement & transport',
             'fields' => array(
                 $prefix.'_key_logement', $prefix.'_key_logement_remarques',
-                $prefix.'_key_moyen_transport_aller', $prefix.'_date_aller',
-                $prefix.'_key_moyen_transport_retour', $prefix.'_date_retour',
+                $prefix.'_key_moyen_transport_aller', $prefix.'_date_aller', $prefix.'_gare_aller',
+                $prefix.'_key_moyen_transport_retour', $prefix.'_date_retour', $prefix.'_gare_retour'
             ),
             'field_conditions' => array(
                 $prefix.'_date_aller' => '{{'.$prefix.'_key_moyen_transport_aller}} == "avion" || {{'.$prefix.'_key_moyen_transport_aller}} == "train"',
+                $prefix.'_gare_aller' => '{{'.$prefix.'_key_moyen_transport_aller}} == "avion" || {{'.$prefix.'_key_moyen_transport_aller}} == "train"',
+                $prefix.'_date_retour' => '{{'.$prefix.'_key_moyen_transport_retour}} == "avion" || {{'.$prefix.'_key_moyen_transport_retour}} == "train"',
+                $prefix.'_gare_retour' => '{{'.$prefix.'_key_moyen_transport_retour}} == "avion" || {{'.$prefix.'_key_moyen_transport_retour}} == "train"',
             ),
         ),
     );

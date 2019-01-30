@@ -9,8 +9,9 @@
     <meta name="author" content="Communauté du Chemin Neuf">
 
     <link rel="profile" href="http://gmpg.org/xfn/11"> <!-- source: http://xmlns.com/foaf/spec/ -->
+    <link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/img/favicon.ico">
 
-    <title></title>
+    <title><?php bloginfo('name'); ?></title>
 
     <?php wp_head(); ?>
   </head>

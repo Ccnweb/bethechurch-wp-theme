@@ -6,6 +6,8 @@ if (!defined('CCN_LIBRARY_PLUGIN_DIR')) {
     die('global var CCN_LIBRARY_PLUGIN_DIR is not defined');
 }
 
+require_once(CCN_LIBRARY_PLUGIN_DIR . '/log.php'); use \ccn\lib\log as log;
+
 // we load here some high-level functions to create custom post types
 require_once(CCN_LIBRARY_PLUGIN_DIR . 'create-custom-post-type.php');
 // on charge la librairie pour créer des REST POST backend
@@ -73,9 +75,15 @@ function ccnbtc_custom_post_type_preinscriptions() {
 
     // == 4. == on crée le backend REST pour POSTer des nouvelles inscriptions ($action_name = 'ccnbtc_preinscrire')
     $backend_options = array(
+        'computed_fields' => array(
+            'post_title' => function($pv) use ($prefix) {
+                log\info('POST TITLE', $pv[$prefix.'_key_firstname'] . ' ' . $pv[$prefix.'_key_name']);
+                return $pv[$prefix.'_key_firstname'] . ' ' . $pv[$prefix.'_key_name'];
+            },
+        ),
         'send_email' => array(
             array(
-                'addresses' => array('web@chemin-neuf.org', 'contact@bethechurch.fr'),
+                'addresses' => array('web@chemin-neuf.org', 'contact@bethechurch.fr'), 
                 'subject' => 'Pré-inscription - {{'.$prefix.'_key_firstname}} {{'.$prefix.'_key_name}}',
                 'model' => 'simple_contact.html',
                 'model_args' => array(
@@ -112,9 +120,9 @@ function ccnbtc_custom_post_type_preinscriptions() {
         'title' => '',
         'submit_btn_text' => 'Je me pré-inscris !',
         'required' => array('@ALL'),
-        'computed_fields' => array(
+        /* 'computed_fields' => array(
             'post_title' => "() => getVal('{$prefix}_key_firstname_field') + ' ' + getVal('{$prefix}_key_name_field')",
-        ),
+        ), */
     );
     // ... et le formulaire HTML que l'on enregistre comme un shortcode
     create_HTML_form_shortcode($cp_name, $prefix.'_preinscrire', $html_form_options, $fields); // shortcode will be $action_name.'-show-form' = "ccnbtc_preinscrire-show-form"
