@@ -6,12 +6,14 @@ if (!defined('CCN_LIBRARY_PLUGIN_DIR')) {
     die('global var CCN_LIBRARY_PLUGIN_DIR is not defined');
 }
 
+require_once(CCN_LIBRARY_PLUGIN_DIR . '/log.php'); use \ccn\lib\log as log;
 // we load here some high-level functions to create custom post types
 require_once(CCN_LIBRARY_PLUGIN_DIR . 'create-custom-post-type.php');
 // on charge la librairie pour créer des REST POST backend
 require_once(CCN_LIBRARY_PLUGIN_DIR . 'create-cp-rest-backend.php');
 // on charge la libraire pour créer des formulaires HTML
 require_once(CCN_LIBRARY_PLUGIN_DIR . 'create-cp-html-forms.php');
+require_once(CCN_LIBRARY_PLUGIN_DIR . '/forms/lib.forms.php'); use \ccn\lib\html_fields as fields;
 
 
 function ccnbtc_custom_post_type_inscriptions() {
@@ -56,13 +58,17 @@ function ccnbtc_custom_post_type_inscriptions() {
                 'paroisse' => "Membre d'une paroisse (préciser)",
                 'frat_paroissiale' => "Membre des Fraternités Paroissiales Missionnaires du Chemin-Neuf",
                 'communautaire' => "Membre de la Communauté ou de la Communion du Chemin Neuf",
-                'autre' => 'Autre à préciser :',
             ),
-            'options_preciser' => ['autre*', 'paroisse*'], // * veut dire que c'est requis
+            //'options_preciser' => ['autre*', 'paroisse*'], // * veut dire que c'est requis
             'wrapper' => [
                 'start' => '<p class="form-label">Je suis</p>',
                 'end' => ''
             ],
+        ),
+        array(
+            'id' => $prefix.'key_ma_paroisse',
+            'html_label' => 'Ma paroisse',
+            'type' => 'text',
         ),
         array( // Je viens comme (couple, famille, ...)
             'id' => $prefix.'_key_persontype',
@@ -246,6 +252,39 @@ function ccnbtc_custom_post_type_inscriptions() {
             'type' => 'text',
             "required" => false,
         ),
+        array(
+            'id' => $prefix.'_paiement_modalite',
+            'html_label' => 'Je paye',
+            "type" => 'dropdown',
+            "options" => array(
+                "now_all" => "maintenant la totalité",
+                "now_partial" => "maintenant une partie",
+                "on_site" => "sur place",
+            ),
+            "wrapper" => array('start' => '<p class="form-label">Je paye</p>', 'end' => ''),
+        ),
+        array(
+            'id' => $prefix.'_paiement_moyen',
+            'type' => 'radio',
+            'html_label' => 'Moyen de paiement',
+            'options' => array(
+                'cb' => 'Carte Bleue (disponible prochainement)',
+                'cheque' => 'Chèque',
+            ),
+            "wrapper" => array('start' => '<p class="form-label">Moyen de paiement</p>', 'end' => ''),
+        ),
+        array(
+            'id' => $prefix.'_html_paiement_description',
+            'type' => 'html',
+            'html' => '<p class="form-description">
+                Chèque à l\'ordre de la <u>Communauté du Chemin Neuf</u>.
+                </p>
+                <p class="form-description">
+                    <p class="form-description">À envoyer à l\'adresse suivante :</p>
+                    <p class="form-description bg-green p-2 txt-white rounded"><b>Secrétariat Festival Be The Church</b><br>
+                    Abbaye d\'Hautecombe<br>3700 route de l\'Abbaye<br>73310 ST PIERRE DE CURTILLE</p>
+                </p>',
+        ),
     );
 
 
@@ -306,32 +345,8 @@ function ccnbtc_custom_post_type_inscriptions() {
     );
     create_custom_post_fields($cp_name, $cp_slug, $metabox_options, $prefix, $fields);
 
-
     // =====================================================
-    // == 4. == on crée le backend REST pour POSTer des nouvelles inscriptions ($action_name = 'ccnbtc_inscrire')
-    // =====================================================
-    $backend_options = array(
-        'computed_fields' => array(
-            'post_title' => function($post_values) use ($prefix) { 
-                if (!isset($post_values[$prefix.'_key_persontype'])) return 'unknown';
-                if (in_array($post_values[$prefix.'_key_persontype'], array('individuel', 'parent_seul'))) return $post_values[$prefix.'_key_indiv_firstname'] . ' ' . $post_values[$prefix.'_key_indiv_name'];
-                if (in_array($post_values[$prefix.'_key_persontype'], array('couple_sans_enfants', 'famille'))) return $post_values[$prefix.'_key_indiv_lui_firstname'] . ' & ' . $post_values[$prefix.'_key_indiv_elle_firstname'] . ' ' . $post_values[$prefix.'_key_indiv_lui_name'];
-                return 'inconnu';
-            },
-        ),
-        'on_before_save_post' => array(
-            function($new, $old) {
-                $res = array('success' => 'true');
-
-                return $res;
-            }
-        ),
-    );
-    create_POST_backend($cp_name, $prefix, 'inscrire', $accepted_users = 'all', $fields, $backend_options); // the final action_name of the backend will be $prefix.'inscrire'
-    
-
-    // =====================================================
-    // == 5. ==... et le formulaire HTML que l'on enregistre comme un shortcode
+    // == 4. ==... et le formulaire HTML que l'on enregistre comme un shortcode
     // =====================================================
     $html_form_options = array(
         'title' => 'INSCRIPTIONS',
@@ -345,6 +360,7 @@ function ccnbtc_custom_post_type_inscriptions() {
             'title' => 'Présentation',
             'fields' => array(
                 $prefix.'_key_jesuis', 
+                $prefix.'key_ma_paroisse',
                 $prefix.'_key_persontype'
             ),
         ),
@@ -393,8 +409,77 @@ function ccnbtc_custom_post_type_inscriptions() {
                 $prefix.'_gare_retour' => '{{'.$prefix.'_key_moyen_transport_retour}} == "avion" || {{'.$prefix.'_key_moyen_transport_retour}} == "train"',
             ),
         ),
+        array(
+            'id' => 'paiement',
+            'title' => 'Confirmation',
+            'fields' => array($prefix.'_paiement_modalite', $prefix.'_paiement_moyen', $prefix.'_html_paiement_description'),
+            'field_conditions' => array(
+                $prefix.'_paiement_moyen' => '{{'.$prefix.'_paiement_modalite}} == "now_all" || {{'.$prefix.'_paiement_modalite}} == "now_partial"',
+                $prefix.'_html_paiement_description' => '{{'.$prefix.'_paiement_moyen}} == "cheque"',
+            ),
+        ),
     );
     create_HTML_form_shortcode($cp_name, $prefix.'_inscrire', $html_form_options, $fields, $steps); // shortcode will be $action_name.'-show-form' = "ccnbtc_inscrire-show-form"
+
+    // =====================================================
+    // == 5. == on crée le backend REST pour POSTer des nouvelles inscriptions ($action_name = 'ccnbtc_inscrire')
+    // =====================================================
+    $backend_options = array(
+        'computed_fields' => array(
+            'post_title' => function($post_values) use ($prefix) { 
+                if (!isset($post_values[$prefix.'_key_persontype'])) return 'unknown';
+                if (in_array($post_values[$prefix.'_key_persontype'], array('individuel', 'parent_seul'))) return $post_values[$prefix.'_key_indiv_firstname'] . ' ' . $post_values[$prefix.'_key_indiv_name'];
+                if (in_array($post_values[$prefix.'_key_persontype'], array('couple_sans_enfants', 'famille'))) return $post_values[$prefix.'_key_indiv_lui_firstname'] . ' & ' . $post_values[$prefix.'_key_indiv_elle_firstname'] . ' ' . $post_values[$prefix.'_key_indiv_lui_name'];
+                return 'inconnu';
+            },
+            'email_contact' => function($post_values) use ($prefix) {
+                if (!isset($post_values[$prefix.'_key_persontype'])) return '';
+                if (in_array($post_values[$prefix.'_key_persontype'], array('individuel', 'parent_seul'))) return $post_values[$prefix.'_key_email'];
+                if (in_array($post_values[$prefix.'_key_persontype'], array('couple_sans_enfants', 'famille'))) return $post_values[$prefix.'_key_email_lui'];
+            },
+        ),
+        'on_before_save_post' => array(
+            function($new, $old) {
+                $res = array('success' => 'true');
+
+                return $res;
+            }
+        ),
+        'send_email' => array(
+            array(
+                'addresses' => array('web@chemin-neuf.org'), // 'contact@bethechurch.fr'
+                'subject' => 'Inscription - {{post_title}}',
+                'model' => get_template_directory() . '/custom post types/inscription_email.html',
+                'model_args' => array(
+                    'title' => '',
+                    'subtitle' => '',
+                    'body' => 'Bonjour,<br>
+                            Votre inscription est bien validée selon les informations ci-dessous.<br>
+                            Pour toute question, n’hésitez pas à nous contacter.<br><br>
+                            Dans la joie de vous accueillir cet été&nbsp;!<br>
+                            <br><br>
+                            L’équipe du Festival des paroisses<br><br><br>',
+                ),
+            ),
+            array(
+                'addresses' => array('email_contact'),
+                'subject' => 'Félicitations ! Votre inscription au Festival Be The Church est confirmée !',
+                'model' => get_template_directory() . '/custom post types/inscription_email.html',
+                'model_args' => array(
+                    'title' => 'Festival des Paroisses',
+                    'subtitle' => 'Inscription au Festival des Paroisses Be The Church',
+                    'welcome_msg' => 'Bonjour,<br>
+                            Votre inscription est bien validée selon les informations ci-dessous.<br>
+                            Pour toute question, n’hésitez pas à nous contacter.<br><br>
+                            Dans la joie de vous accueillir cet été&nbsp;!<br>
+                            <br><br>
+                            L’équipe du Festival des paroisses<br><br><br>',
+                ),
+            )
+        ),
+    );
+    create_POST_backend($cp_name, $prefix, 'inscrire', $accepted_users = 'all', $fields, $backend_options); // the final action_name of the backend will be $prefix.'inscrire'
+    
 }
 
 add_action( 'init', 'ccnbtc_custom_post_type_inscriptions', 0 );

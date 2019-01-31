@@ -177,15 +177,26 @@ label.input-group-text, select {margin-top: .5rem;}
 .bg-blue-klein, .bg-bleu-klein {background: var(--blue-klein)}
 .bg-blue-light, .bg-bleu-clair {background: var(--blue-light)}
 
-.has-text-color.has-blanc-color, .has-text-color.has-blanc-color a {color:white}
-.has-text-color.has-noir-color {color:black}
-.has-text-color.has-vert-color {color:var(--green)}
-.has-text-color.has-rouge-color {color:var(--red)}
-.has-text-color.has-jaune-color {color:var(--yellow)}
-.has-text-color.has-bleu-klein-color {color:var(--blue-klein)}
-.has-text-color.has-bleu-clair-color {color:var(--blue-ligth)}
+.has-text-color.has-blanc-color, .has-text-color.has-blanc-color a, .txt-white, .txt-blanc {color:white}
+.has-text-color.has-noir-color, .txt-black, .txt-noir {color:black}
+.has-text-color.has-vert-color, .txt-green, .txt-vert {color:var(--green)}
+.has-text-color.has-rouge-color, .txt-red, .txt-rouge {color:var(--red)}
+.has-text-color.has-jaune-color, .txt-yellow, .txt-jaune {color:var(--yellow)}
+.has-text-color.has-bleu-klein-color, .txt-blue-klein, .txt-bleu-klein {color:var(--blue-klein)}
+.has-text-color.has-bleu-clair-color, .txt-blue-light, .txt-bleu-clair {color:var(--blue-ligth)}
 
-.btn-red {color:white; background: var(--red);border: 1px solid hsla(354, 77%, 58%, 1);}
+.btn-red {
+    color:white; 
+    background: var(--red);
+    border: 1px solid hsla(354, 77%, 44%, 1);
+    box-shadow: hsla(354, 77%, 44%, 1) 0 3px 0;
+    transition: all 0.2s;
+}
+.btn-red:hover {    
+    transform: translateY(2px);
+    box-shadow: hsla(354, 77%, 44%, 1) 0 1px 0;
+    transition: all 0.1s;
+}
 
 .font-cafe {font-family: 'Louis George Café'}
 
@@ -333,6 +344,12 @@ p.form-label {
     margin-top: 1rem;
     margin-bottom: 3px;
     font-weight: bold;
+}
+
+/* texte descriptif */
+p.form-description, p.form-description p {
+    letter-spacing: 0px;
+    margin-bottom: 0.2rem;
 }
 
 /* + button to add new dynamic elements */
