@@ -261,7 +261,7 @@ function ccnbtc_custom_post_type_inscriptions() {
                 "now_partial" => "maintenant une partie",
                 "on_site" => "sur place",
             ),
-            "wrapper" => array('start' => '<p class="form-label">Je paye</p>', 'end' => ''),
+            "wrapper" => array('start' => '<p class="form-label">Je paye (<a href="/infos-pratiques/#post__tarifs-2">Détails des prix</a>)</p>', 'end' => ''),
         ),
         array(
             'id' => $prefix.'_paiement_moyen',
@@ -425,6 +425,7 @@ function ccnbtc_custom_post_type_inscriptions() {
     // == 5. == on crée le backend REST pour POSTer des nouvelles inscriptions ($action_name = 'ccnbtc_inscrire')
     // =====================================================
     $backend_options = array(
+        'post_status' => 'private', // 'private' because inscriptions should be private and therefore not available through the rest api without authentication !
         'computed_fields' => array(
             'post_title' => function($post_values) use ($prefix) { 
                 if (!isset($post_values[$prefix.'_key_persontype'])) return 'unknown';
@@ -433,9 +434,14 @@ function ccnbtc_custom_post_type_inscriptions() {
                 return 'inconnu';
             },
             'email_contact' => function($post_values) use ($prefix) {
-                if (!isset($post_values[$prefix.'_key_persontype'])) return '';
+                if (!isset($post_values[$prefix.'_key_persontype'])) return '__IGNORE__';
                 if (in_array($post_values[$prefix.'_key_persontype'], array('individuel', 'parent_seul'))) return $post_values[$prefix.'_key_email'];
                 if (in_array($post_values[$prefix.'_key_persontype'], array('couple_sans_enfants', 'famille'))) return $post_values[$prefix.'_key_email_lui'];
+            },
+            'email_contact2' => function($post_values) use ($prefix) {
+                if (!isset($post_values[$prefix.'_key_persontype'])) return '__IGNORE__';
+                if (in_array($post_values[$prefix.'_key_persontype'], array('individuel', 'parent_seul'))) return '__IGNORE__';
+                if (in_array($post_values[$prefix.'_key_persontype'], array('couple_sans_enfants', 'famille'))) return $post_values[$prefix.'_key_email_elle'];
             },
         ),
         'on_before_save_post' => array(
@@ -462,7 +468,7 @@ function ccnbtc_custom_post_type_inscriptions() {
                 ),
             ),
             array(
-                'addresses' => array('email_contact'),
+                'addresses' => array('email_contact', 'email_contact2'),
                 'subject' => 'Félicitations ! Votre inscription au Festival Be The Church est confirmée !',
                 'model' => get_template_directory() . '/custom post types/inscription_email.html',
                 'model_args' => array(
