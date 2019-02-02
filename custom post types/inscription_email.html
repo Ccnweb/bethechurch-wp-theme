@@ -348,10 +348,11 @@
                                                                                         <tbody>
                                                                                     <tr><td style="background: #9bc1f5;color: black;font-size: 16px;">
                                                                                         <div style="padding: 27px;text-align: center;color: white;">
-                                                                                            Vous avez choisi de payer 
+																							Vous avez choisi de payer 
+																								{{IF $ccnbtc_paiement_modalite == "on_site"}}sur place{{/IF}}
                                                                                                 {{IF $ccnbtc_paiement_modalite == "now_all"}}la totalité{{/IF}}
                                                                                                 {{IF $ccnbtc_paiement_modalite == "now_partial"}}une partie{{/IF}}
-                                                                                                par {{ccnbtc_paiement_moyen__pretty}}.<br>
+                                                                                                {{IF $ccnbtc_paiement_modalite != "on_site"}}par {{/IF}}{{ccnbtc_paiement_moyen__pretty}}.<br>
                                                                                             {{IF $ccnbtc_paiement_moyen == "cheque"}}
                                                                                                 Pour rappel voici les informations pour l'ordre et l'adresse d'envoi du chèque :
                                                                                             {{/IF}}
