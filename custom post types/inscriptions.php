@@ -7,6 +7,8 @@ if (!defined('CCN_LIBRARY_PLUGIN_DIR')) {
 }
 
 require_once(CCN_LIBRARY_PLUGIN_DIR . '/log.php'); use \ccn\lib\log as log;
+require_once(CCN_LIBRARY_PLUGIN_DIR . '/lib.php'); use \ccn\lib as lib;
+
 // we load here some high-level functions to create custom post types
 require_once(CCN_LIBRARY_PLUGIN_DIR . 'create-custom-post-type.php');
 // on charge la librairie pour créer des REST POST backend
@@ -350,7 +352,8 @@ function ccnbtc_custom_post_type_inscriptions() {
     // =====================================================
     $html_form_options = array(
         'title' => 'INSCRIPTIONS',
-        'submit_btn_text' => 'Je m\'inscris !',
+        'text_btn_submit' => 'Je m\'inscris !',
+        'custom_classes' => ['step' => 'w-100'], // adds custom css classes to form elements
         'required' => array('@ALL'),
         //'custom_logic_path' => get_template_directory() . '/custom post types/inscriptions_logic.js', // la logique complexe du formulaire
     );
@@ -422,7 +425,7 @@ function ccnbtc_custom_post_type_inscriptions() {
     create_HTML_form_shortcode($cp_name, $prefix.'_inscrire', $html_form_options, $fields, $steps); // shortcode will be $action_name.'-show-form' = "ccnbtc_inscrire-show-form"
 
     // =====================================================
-    // == 5. == on crée le backend REST pour POSTer des nouvelles inscriptions ($action_name = 'ccnbtc_inscrire')
+    // == 5. == on crée le backend REST pour POSTer de nouvelles inscriptions ($action_name = 'ccnbtc_inscrire')
     // =====================================================
     $backend_options = array(
         'post_status' => 'private', // 'private' because inscriptions should be private and therefore not available through the rest api without authentication !
@@ -442,6 +445,24 @@ function ccnbtc_custom_post_type_inscriptions() {
                 if (!isset($post_values[$prefix.'_key_persontype'])) return '__IGNORE__';
                 if (in_array($post_values[$prefix.'_key_persontype'], array('individuel', 'parent_seul'))) return '__IGNORE__';
                 if (in_array($post_values[$prefix.'_key_persontype'], array('couple_sans_enfants', 'famille'))) return $post_values[$prefix.'_key_email_elle'];
+            },
+        ),
+        'custom_validations' => array(
+            'all_emails_unique' => function($fields, $sanitized, $existing_posts) use ($prefix) {
+                $old_emails = lib\array_flatten(lib\array_map_attr($existing_posts, $prefix.'_key_email'));
+                $old_emails = array_merge($old_emails, lib\array_flatten(lib\array_map_attr($existing_posts, $prefix.'_key_email_elle')));
+                $old_emails = array_merge($old_emails, lib\array_flatten(lib\array_map_attr($existing_posts, $prefix.'_key_email_lui')));
+
+                if (in_array($sanitized[$prefix.'_key_persontype'], array('individuel', 'parent_seul'))) {
+                    if (in_array($sanitized[$prefix.'_key_email'], $old_emails)) 
+                        return array('success' => false, 'errno' => 'DUPLICATE_EMAIL_ADDRESS', 'descr' => 'L\'adresse email '.$sanitized[$prefix.'_key_email'].' est déjà utilisée dans une inscription existante');
+                } else if (in_array($sanitized[$prefix.'_key_persontype'], array('couple_sans_enfants', 'famille'))) {
+                    $emails = [$sanitized[$prefix.'_key_email_elle'], $sanitized[$prefix.'_key_email_lui']];
+                    foreach ($emails as $email)
+                        if (in_array($email, $old_emails)) 
+                            return array('success' => false, 'errno' => 'DUPLICATE_EMAIL_ADDRESS', 'descr' => 'L\'adresse email '.$email.' est déjà utilisée dans une inscription existante');
+                }
+                return true;
             },
         ),
         'on_before_save_post' => array(

@@ -119,7 +119,7 @@ function ccnbtc_custom_post_type_preinscriptions() {
     create_POST_backend($cp_name, $prefix, 'preinscrire', $accepted_users = 'all', $fields, $backend_options); // the final action_name of the backend will be $prefix.'inscrire'
     $html_form_options = array(
         'title' => '',
-        'submit_btn_text' => 'Je me pré-inscris !',
+        'text_btn_submit' => 'Je me pré-inscris !',
         'required' => array('@ALL'),
         /* 'computed_fields' => array(
             'post_title' => "() => getVal('{$prefix}_key_firstname_field') + ' ' + getVal('{$prefix}_key_name_field')",

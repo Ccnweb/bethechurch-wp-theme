@@ -179,7 +179,7 @@ require_once_all_regex(get_template_directory() . '/shortcodes/', "");
 // load contact form shortcode
 ccnlib_register_contact_form(array(
         'title' => '',
-        'submit_btn_text' => 'Envoyer',
+        'text_btn_submit' => 'Envoyer',
         'required' => array('@ALL'),
         'send_email' => array(
             array(
