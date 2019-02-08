@@ -474,7 +474,7 @@ function ccnbtc_custom_post_type_inscriptions() {
         ),
         'send_email' => array(
             array(
-                'addresses' => array('web@chemin-neuf.org'), // 'contact@bethechurch.fr'
+                'addresses' => array('web@chemin-neuf.org', 'contact@bethechurch.fr'),
                 'subject' => 'Inscription - {{post_title}}',
                 'model' => get_template_directory() . '/custom post types/inscription_email.html',
                 'model_args' => array(

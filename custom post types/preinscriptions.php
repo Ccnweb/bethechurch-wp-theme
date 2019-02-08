@@ -84,7 +84,7 @@ function ccnbtc_custom_post_type_preinscriptions() {
         ),
         'send_email' => array(
             array(
-                'addresses' => array('web@chemin-neuf.org'), // 'contact@bethechurch.fr'
+                'addresses' => array('web@chemin-neuf.org', 'contact@bethechurch.fr'),
                 'subject' => 'Pré-inscription - {{'.$prefix.'_key_firstname}} {{'.$prefix.'_key_name}}',
                 'model' => 'simple_contact.html',
                 'model_args' => array(
