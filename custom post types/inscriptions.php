@@ -57,7 +57,7 @@ function ccnbtc_custom_post_type_inscriptions() {
             'html_label' => 'Je suis',
             'type' => "radio",
             'options' => array(
-                'paroisse' => "Membre d'une paroisse (préciser)",
+                'paroisse' => "Membre d'une paroisse",
                 'frat_paroissiale' => "Membre des Fraternités Paroissiales Missionnaires du Chemin-Neuf",
                 'communautaire' => "Membre de la Communauté ou de la Communion du Chemin Neuf",
             ),
@@ -296,7 +296,7 @@ function ccnbtc_custom_post_type_inscriptions() {
     $metabox_options = array(
         array(
             'title' => 'Informations préliminaires',
-            'fields' => array($prefix.'_key_jesuis', $prefix.'_key_persontype'),
+            'fields' => array($prefix.'_reference', $prefix.'_key_jesuis', $prefix.'_key_persontype'),
         ),
         array(
             // condition permet de dire quand afficher cette metabox

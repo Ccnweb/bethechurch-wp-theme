@@ -121,9 +121,6 @@ function ccnbtc_custom_post_type_preinscriptions() {
         'title' => '',
         'text_btn_submit' => 'Je me pré-inscris !',
         'required' => array('@ALL'),
-        /* 'computed_fields' => array(
-            'post_title' => "() => getVal('{$prefix}_key_firstname_field') + ' ' + getVal('{$prefix}_key_name_field')",
-        ), */
     );
     // ... et le formulaire HTML que l'on enregistre comme un shortcode
     create_HTML_form_shortcode($cp_name, $prefix.'_preinscrire', $html_form_options, $fields); // shortcode will be $action_name.'-show-form' = "ccnbtc_preinscrire-show-form"
