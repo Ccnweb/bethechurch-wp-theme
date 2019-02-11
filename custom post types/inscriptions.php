@@ -263,7 +263,7 @@ function ccnbtc_custom_post_type_inscriptions() {
                 "now_partial" => "maintenant une partie",
                 "on_site" => "sur place",
             ),
-            "wrapper" => array('start' => '<p class="form-label">Je paye (<a href="/infos-pratiques/#post__tarifs-2">Détails des prix</a>)</p>', 'end' => ''),
+            "wrapper" => array('start' => '<p class="form-label">Je paye (<a href="/infos-pratiques/#post__tarifs-2">Détail des prix</a>)</p>', 'end' => ''),
         ),
         array(
             'id' => $prefix.'_paiement_moyen',
@@ -482,10 +482,14 @@ function ccnbtc_custom_post_type_inscriptions() {
                     'subtitle' => '',
                     'body' => 'Bonjour,<br>
                             Votre inscription est bien validée selon les informations ci-dessous.<br>
-                            Pour toute question, n’hésitez pas à nous contacter.<br><br>
+                            Pour toute question, n’hésitez pas à nous contacter.<br>
+                            Pour les membres des fraternités paroissiales et pour les frères et sœurs de la Communauté, merci de bien noter que nous nous retrouvons dès le samedi 27 juillet (accueil à partir de 16h).<br>
+                            <br>
                             Dans la joie de vous accueillir cet été&nbsp;!<br>
                             <br><br>
-                            L’équipe du Festival des paroisses<br><br><br>',
+                            Pour l’équipe du Festival des paroisses<br>
+                            Orlane Bonard<br>
+                            <a href="mailto:contact@bethechurch.fr">contact@bethechurch.fr</a><br><br><br>',
                 ),
             ),
             array(
@@ -497,10 +501,14 @@ function ccnbtc_custom_post_type_inscriptions() {
                     'subtitle' => 'Inscription au Festival des Paroisses Be The Church',
                     'welcome_msg' => 'Bonjour,<br>
                             Votre inscription est bien validée selon les informations ci-dessous.<br>
-                            Pour toute question, n’hésitez pas à nous contacter.<br><br>
+                            Pour toute question, n’hésitez pas à nous contacter.<br>
+                            Pour les membres des fraternités paroissiales et pour les frères et sœurs de la Communauté, merci de bien noter que nous nous retrouvons dès le samedi 27 juillet (accueil à partir de 16h).<br>
+                            <br>
                             Dans la joie de vous accueillir cet été&nbsp;!<br>
                             <br><br>
-                            L’équipe du Festival des paroisses<br><br><br>',
+                            Pour l’équipe du Festival des paroisses<br>
+                            Orlane Bonard<br>
+                            <a href="mailto:contact@bethechurch.fr">contact@bethechurch.fr</a><br><br><br>',
                 ),
             )
         ),

@@ -84,7 +84,7 @@ function ccnbtc_custom_post_type_preinscriptions() {
         ),
         'send_email' => array(
             array(
-                'addresses' => array('web@chemin-neuf.org', 'contact@bethechurch.fr'),
+                'addresses' => array('web@chemin-neuf.org', 'contact@bethechurch.fr'), 
                 'subject' => 'Pré-inscription - {{'.$prefix.'_key_firstname}} {{'.$prefix.'_key_name}}',
                 'model' => 'simple_contact.html',
                 'model_args' => array(
@@ -111,7 +111,9 @@ function ccnbtc_custom_post_type_preinscriptions() {
                             <br>
                             Dans la joie de vous accueillir cet été !<br>
                             <br>
-                            L’équipe du Festival des paroisses'
+                            L’équipe du Festival des paroisses<br>
+                            Orlane Bonard<br>
+                            <a href="mailto:contact@bethechurch.fr">contact@bethechurch.fr</a>'
                 ),
             )
         ),
