@@ -180,6 +180,11 @@ require_once_all_regex(get_template_directory() . '/shortcodes/', "");
 ccnlib_register_contact_form(array(
         'title' => '',
         'text_btn_submit' => 'Envoyer',
+        'fields' => array('nom', 'prenom', 'email', array(
+            'id' => 'ccnbtc_paroisse',
+            'type' => 'text',
+            'html_label' => 'Ma paroisse',
+        ), 'message'),
         'required' => array('@ALL'),
         'send_email' => array(
             array(
@@ -194,6 +199,7 @@ ccnlib_register_contact_form(array(
                                 <b>Prénom: </b>{{ccnlib_key_firstname}}<br>
                                 <b>Nom: </b>{{ccnlib_key_name}}<br>
                                 <b>Email: </b>{{ccnlib_key_email}}<br>
+                                <b>Paroisse: </b>{{ccnbtc_paroisse}}<br>
                                 <b>Corps du message:</b><br><br>
                                 {{message_HTML}}<br>',
                 ),

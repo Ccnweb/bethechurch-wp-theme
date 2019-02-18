@@ -57,7 +57,7 @@ function ccnbtc_custom_post_type_inscriptions() {
             'html_label' => 'Je suis',
             'type' => "radio",
             'options' => array(
-                'paroisse' => "Membre d'une paroisse",
+                'paroisse' => "Membre d'une paroisse animée par la Communauté du Chemin Neuf",
                 'frat_paroissiale' => "Membre des Fraternités Paroissiales Missionnaires du Chemin-Neuf",
                 'communautaire' => "Membre de la Communauté ou de la Communion du Chemin Neuf",
             ),
@@ -232,14 +232,14 @@ function ccnbtc_custom_post_type_inscriptions() {
             'id' => $prefix.'_date_aller',
             'description'  => "Date d'arrivée à l'aller",
             'html_label' => "Date d'arrivée",
-            'type' => "date",
+            'type' => "datetime",
             'required' => false, // TODO faire mieux que ça : required uniquement si transport = avion ou train !
         ),
         array( // Date retour (si avion ou train)
             'id' => $prefix.'_date_retour',
             'description'  => "Date de départ",
             'html_label' => "Date de départ",
-            'type' => "date",
+            'type' => "datetime",
             'required' => false, // TODO faire mieux que ça : required uniquement si transport = avion ou train !
         ),
         array( // Gare/aéroport aller
@@ -263,7 +263,7 @@ function ccnbtc_custom_post_type_inscriptions() {
                 "now_partial" => "maintenant une partie",
                 "on_site" => "sur place",
             ),
-            "wrapper" => array('start' => '<p class="form-label">Je paye (<a href="/infos-pratiques/#post__tarifs-2">Détail des prix</a>)</p>', 'end' => ''),
+            "wrapper" => array('start' => '<p class="form-label">Je paye (<a href="/infos-pratiques/#post__tarifs-2" target="_blank">Détail des prix</a>)</p>', 'end' => ''),
         ),
         array(
             'id' => $prefix.'_paiement_moyen',
@@ -332,7 +332,7 @@ function ccnbtc_custom_post_type_inscriptions() {
             'title' => 'Transport aller',
             'fields' => array($prefix.'_key_moyen_transport_aller', $prefix.'_date_aller', $prefix.'_gare_aller'),
             'field_conditions' => array(
-                $prefix.'_date_aller' => '{{'.$prefix.'_key_moyen_transport_aller}} == "avion" || {{'.$prefix.'_key_moyen_transport_aller}} == "train"',
+                $prefix.'_date_aller' => '{{'.$prefix.'_key_moyen_transport_aller}} != "ne_sais_pas"',
                 $prefix.'_gare_aller' => '{{'.$prefix.'_key_moyen_transport_aller}} == "avion" || {{'.$prefix.'_key_moyen_transport_aller}} == "train"',
             ),
         ),
@@ -340,8 +340,8 @@ function ccnbtc_custom_post_type_inscriptions() {
             'title' => 'Transport retour',
             'fields' => array($prefix.'_key_moyen_transport_retour', $prefix.'_date_retour', $prefix.'_gare_retour'),
             'field_conditions' => array(
-                $prefix.'_date_retour' => '{{'.$prefix.'_key_moyen_transport_retour}} == "avion" || {{'.$prefix.'_key_moyen_transport_retour}} == "train"',
-                $prefix.'_gare_retour' => '{{'.$prefix.'_key_moyen_transport_retour}} == "avion" || {{'.$prefix.'_key_moyen_transport_retour}} == "train"'
+                $prefix.'_date_retour' => '{{'.$prefix.'_key_moyen_transport_retour}} != "ne_sais_pas"',
+                $prefix.'_gare_retour' => '{{'.$prefix.'_key_moyen_transport_retour}} == "avion" || {{'.$prefix.'_key_moyen_transport_retour}} == "train"',
             ),
         ),
     );
@@ -406,9 +406,9 @@ function ccnbtc_custom_post_type_inscriptions() {
                 $prefix.'_key_moyen_transport_retour', $prefix.'_date_retour', $prefix.'_gare_retour'
             ),
             'field_conditions' => array(
-                $prefix.'_date_aller' => '{{'.$prefix.'_key_moyen_transport_aller}} == "avion" || {{'.$prefix.'_key_moyen_transport_aller}} == "train"',
+                $prefix.'_date_aller' => '{{'.$prefix.'_key_moyen_transport_aller}} != "ne_sais_pas"',
                 $prefix.'_gare_aller' => '{{'.$prefix.'_key_moyen_transport_aller}} == "avion" || {{'.$prefix.'_key_moyen_transport_aller}} == "train"',
-                $prefix.'_date_retour' => '{{'.$prefix.'_key_moyen_transport_retour}} == "avion" || {{'.$prefix.'_key_moyen_transport_retour}} == "train"',
+                $prefix.'_date_retour' => '{{'.$prefix.'_key_moyen_transport_retour}} != "ne_sais_pas"',
                 $prefix.'_gare_retour' => '{{'.$prefix.'_key_moyen_transport_retour}} == "avion" || {{'.$prefix.'_key_moyen_transport_retour}} == "train"',
             ),
         ),
