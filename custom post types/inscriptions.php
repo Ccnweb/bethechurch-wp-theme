@@ -429,6 +429,7 @@ function ccnbtc_custom_post_type_inscriptions() {
     // =====================================================
     $backend_options = array(
         'post_status' => 'private', // 'private' because inscriptions should be private and therefore not available through the rest api without authentication !
+        'steps' => $steps,
         'computed_fields' => array(
             'post_title' => function($post_values) use ($prefix) { 
                 if (!isset($post_values[$prefix.'_key_persontype'])) return 'unknown';
@@ -474,7 +475,7 @@ function ccnbtc_custom_post_type_inscriptions() {
         ),
         'send_email' => array(
             array(
-                'addresses' => array('web@chemin-neuf.org', 'contact@bethechurch.fr'),
+                'addresses' => array('web@chemin-neuf.org'), // 'contact@bethechurch.fr'
                 'subject' => 'Inscription - {{post_title}}',
                 'model' => get_template_directory() . '/custom post types/inscription_email.html',
                 'model_args' => array(

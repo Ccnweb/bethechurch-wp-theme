@@ -78,7 +78,7 @@ function ccnbtc_custom_post_type_preinscriptions() {
         'post_status' => 'private', // 'private' because inscriptions should be private and therefore not available through the rest api without authentication !
         'computed_fields' => array(
             'post_title' => function($pv) use ($prefix) {
-                log\info('POST TITLE', $pv[$prefix.'_key_firstname'] . ' ' . $pv[$prefix.'_key_name']);
+                //log\info('POST TITLE', $pv[$prefix.'_key_firstname'] . ' ' . $pv[$prefix.'_key_name']);
                 return $pv[$prefix.'_key_firstname'] . ' ' . $pv[$prefix.'_key_name'];
             },
         ),
