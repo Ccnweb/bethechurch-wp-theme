@@ -113,7 +113,8 @@ function ccnbtc_custom_post_type_preinscriptions() {
                             <br>
                             L’équipe du Festival des paroisses<br>
                             Orlane Bonard<br>
-                            <a href="mailto:contact@bethechurch.fr">contact@bethechurch.fr</a>'
+                            <a href="mailto:contact@bethechurch.fr">contact@bethechurch.fr</a><br>
+                            <a href="tel:+33651331307">+33/6 51 33 13 07</a>'
                 ),
             )
         ),

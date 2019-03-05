@@ -475,7 +475,7 @@ function ccnbtc_custom_post_type_inscriptions() {
         ),
         'send_email' => array(
             array(
-                'addresses' => array('web@chemin-neuf.org'), // 'contact@bethechurch.fr'
+                'addresses' => array('web@chemin-neuf.org', 'contact@bethechurch.fr'),
                 'subject' => 'Inscription - {{post_title}}',
                 'model' => get_template_directory() . '/custom post types/inscription_email.html',
                 'model_args' => array(
@@ -490,7 +490,8 @@ function ccnbtc_custom_post_type_inscriptions() {
                             <br><br>
                             Pour l’équipe du Festival des paroisses<br>
                             Orlane Bonard<br>
-                            <a href="mailto:contact@bethechurch.fr">contact@bethechurch.fr</a><br><br><br>',
+                            <a href="mailto:contact@bethechurch.fr">contact@bethechurch.fr</a><br>
+                            <a href="tel:+33651331307">+33/6 51 33 13 07</a><br><br><br>',
                 ),
             ),
             array(
@@ -509,7 +510,8 @@ function ccnbtc_custom_post_type_inscriptions() {
                             <br><br>
                             Pour l’équipe du Festival des paroisses<br>
                             Orlane Bonard<br>
-                            <a href="mailto:contact@bethechurch.fr">contact@bethechurch.fr</a><br><br><br>',
+                            <a href="mailto:contact@bethechurch.fr">contact@bethechurch.fr</a><br>
+                            <a href="tel:+33651331307">+33/6 51 33 13 07</a><br><br><br>',
                 ),
             )
         ),
