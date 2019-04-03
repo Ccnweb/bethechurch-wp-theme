@@ -25,7 +25,7 @@ function ccnbtc_shortcode_afficher_articles() {
 
         // == 3. == on récupère les articles de la catégorie
         $query_args = array(
-            'category_name' => $atts['categorie'],
+            'category_name' => $atts['categorie']."-".pll_current_language(),
             'post_status'   => 'publish',
             'lang'          =>  pll_current_language(),
             'meta_key'      => 'ccnbtc_post_order',
@@ -34,6 +34,7 @@ function ccnbtc_shortcode_afficher_articles() {
             'limit'         => 100,
         );
         $query = new WP_Query( $query_args );
+        //echo "CATEGORIE = ".$atts['categorie'].", REQUEST=".$query->request."\n<br>";
         
         // == 4. == on construit le HTML
         $html = '';
