@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html <?php language_attributes(); ?>>
 
   <head>
 
@@ -19,3 +19,4 @@
   <body <?php body_class(); ?>>
 
   <?php require "components/nav.php"; ?>
+  <?php require "components/translation_ui/translation.php"; ?>

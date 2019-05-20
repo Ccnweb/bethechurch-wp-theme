@@ -160,6 +160,7 @@ jQuery(document).ready(function($) {
         tooltips: 'data-title',
         on_section_change: function(ind) {
             if ($('body').hasClass('page__infos-pratiques') && (ind == 1 || ind == 4 || ind == 7) ) $('ul.ariane_points').addClass('black');
+            else if ($('.section').eq(ind).hasClass('bg-blanc')) $('ul.ariane_points').addClass('black');
             else $('ul.ariane_points').removeClass('black');
         }
     });

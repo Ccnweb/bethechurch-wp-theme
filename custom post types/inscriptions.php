@@ -54,34 +54,34 @@ function ccnbtc_custom_post_type_inscriptions() {
         array( // Je suis (paroissien, communautaire, ...)
             'id' => $prefix.'_key_jesuis',
             'description'  => "D'où vient la personne (paroisse, communautaire, ...)",
-            'html_label' => 'Je suis',
+            'html_label' => __('Je suis', 'ccnbtc'),
             'type' => "radio",
             'options' => array(
-                'paroisse' => "Membre d'une paroisse animée par la Communauté du Chemin Neuf",
+                'paroisse' => __("Membre d'une paroisse animée par la Communauté du Chemin Neuf", 'ccnbtc'),
                 'frat_paroissiale' => "Membre des Fraternités Paroissiales Missionnaires du Chemin-Neuf",
                 'communautaire' => "Membre de la Communauté ou de la Communion du Chemin Neuf",
             ),
             //'options_preciser' => ['autre*', 'paroisse*'], // * veut dire que c'est requis
             'wrapper' => [
-                'start' => '<p class="form-label">Je suis</p>',
+                'start' => '<p class="form-label">'.__('Je suis', 'ccnbtc').'</p>',
                 'end' => ''
             ],
         ),
         array(
             'id' => $prefix.'key_ma_paroisse',
-            'html_label' => 'Ma paroisse',
+            'html_label' => __('Ma paroisse', 'ccnbtc'),
             'type' => 'text',
         ),
         array( // Je viens comme (couple, famille, ...)
             'id' => $prefix.'_key_persontype',
             'description'  => "Le type de personne (individuel, couple, famille, ...)",
-            'html_label' => 'Je viens comme',
+            'html_label' => __('Je viens comme', 'ccnbtc'),
             'type' => "dropdown",
             'options' => array(
-                'individuel' => "Individuel",
-                'couple_sans_enfants' => "Couple sans enfants",
-                'famille' => "Famille",
-                'parent_seul' => 'Parent seul avec enfants',
+                'individuel' => __("Individuel", 'ccnbtc'),
+                'couple_sans_enfants' => __("Couple sans enfants", 'ccnbtc'),
+                /* 'famille' => __("Famille", 'ccnbtc'),
+                'parent_seul' => __('Parent seul avec enfants', 'ccnbtc'), */
             ),
         ),
         // SPECIFIQUE CAS 1 - individuel ou parent_seul
@@ -89,8 +89,8 @@ function ccnbtc_custom_post_type_inscriptions() {
             'id' => $prefix.'_key_indiv', // le nom de la meta key (sera complété par _firstname et _name)
             'description'  => "Person first name and name for inscription",
             'html_label' => array(
-                'prenom' => 'Prénom',
-                'nom' => 'Nom'
+                'prenom' => __('Prénom', 'ccnbtc'),
+                'nom' => __('Nom', 'ccnbtc')
             ),
             'type' => "nom_prenom",
         ),
@@ -98,24 +98,24 @@ function ccnbtc_custom_post_type_inscriptions() {
             'id' => $prefix.'_key_indiv_elle', 
             'copy' => $prefix.'_key_indiv', 
             'required' => [true, false],
-            'html_label' => array('prenom' => 'Prénom', 'nom' => 'Nom si différent'), 
+            'html_label' => array('prenom' => __('Prénom', 'ccnbtc'), 'nom' => __('Nom si différent', 'ccnbtc')), 
             'wrapper' => array('start' => '<p class="form-label">Elle</p>', 'end' => '')), // une copie de Nom prénom pour "Elle"
-        array('id' => $prefix.'_key_indiv_lui', 'copy' => $prefix.'_key_indiv', 'wrapper' => array('start' => '<p class="form-label">Lui</p>', 'end' => '')), // une copie de Nom prénom pour "Lui"
+        array('id' => $prefix.'_key_indiv_lui', 'copy' => $prefix.'_key_indiv', 'wrapper' => array('start' => '<p class="form-label">'.__('Lui', 'ccnbtc').'</p>', 'end' => '')), // une copie de Nom prénom pour "Lui"
         array( // Homme/Femme
             'id' => $prefix.'_key_genre',
             'description'  => "Person gender for inscription",
-            'html_label' => 'Genre',
+            'html_label' => __('Genre', 'ccnbtc'),
             'type' => "radio",
             'options' => array(
-                'homme' => 'Homme',
-                'femme' => 'Femme',
+                'homme' => __('Homme', 'ccnbtc'),
+                'femme' => __('Femme', 'ccnbtc'),
             ),
             'layout' => 'row',
         ),
         array( // Date de naissance
             'id' => $prefix.'_key_birthdate',
             'description'  => "Person birth date",
-            'html_label' => 'Date de naissance',
+            'html_label' => __('Date de naissance', 'ccnbtc'),
             'type' => "date", // TODO restreindre aux personnes majeures
             'label' => 'placeholder',
             'wrapper' => 'bootstrap',
@@ -208,10 +208,10 @@ function ccnbtc_custom_post_type_inscriptions() {
             'html_label' => 'Moyen de transport',
             'type' => "dropdown",
             'options' => array(
-                'avion' => "Avion",
-                'train' => "Train",
-                'voiture' => "Voiture",
-                'ne_sais_pas' => 'Ne sais pas encore',
+                'avion' => __("Avion"),
+                'train' => __("Train"),
+                'voiture' => __("Voiture"),
+                'ne_sais_pas' => __('Ne sais pas encore'),
             ),
             'wrapper' => array('start' => '<p class="form-label">Transport aller</p>', 'end' => ''),
         ),
@@ -221,10 +221,10 @@ function ccnbtc_custom_post_type_inscriptions() {
             'html_label' => 'Moyen de transport',
             'type' => "dropdown",
             'options' => array(
-                'avion' => "Avion",
-                'train' => "Train",
-                'voiture' => "Voiture",
-                'ne_sais_pas' => 'Ne sais pas encore',
+                'avion' => __("Avion"),
+                'train' => __("Train"),
+                'voiture' => __("Voiture"),
+                'ne_sais_pas' => __('Ne sais pas encore'),
             ),
             'wrapper' => array('start' => '<p class="form-label">Transport retour</p>', 'end' => ''),
         ),
@@ -295,41 +295,41 @@ function ccnbtc_custom_post_type_inscriptions() {
     // =====================================================
     $metabox_options = array(
         array(
-            'title' => 'Informations préliminaires',
+            'title' => __('Informations préliminaires'),
             'fields' => array($prefix.'_reference', $prefix.'_key_jesuis', $prefix.'_key_persontype'),
         ),
         array(
             // condition permet de dire quand afficher cette metabox
             'condition' => '{{'.$prefix.'_key_persontype}} == "individuel" || {{'.$prefix.'_key_persontype}} == "parent_seul"', // condition qui doit être compréhensible par PHP et JS !
-            'title' => 'Informations personnelles',
+            'title' => __('Informations personnelles'),
             'fields' => array($prefix.'_key_indiv', $prefix.'_key_genre', $prefix.'_key_birthdate', $prefix.'_key_email', $prefix.'_key_address'),
         ),
         array(
             'condition' => '{{'.$prefix.'_key_persontype}} == "famille" || {{'.$prefix.'_key_persontype}} == "couple_sans_enfants"',
-            'title' => 'Informations du couple',
+            'title' => __('Informations du couple'),
             'fields' => array($prefix.'_key_address'),
         ),
         array(
             'condition' => '{{'.$prefix.'_key_persontype}} == "famille" || {{'.$prefix.'_key_persontype}} == "couple_sans_enfants"',
-            'title' => 'Lui',
+            'title' => __('Lui'),
             'fields' => array($prefix.'_key_indiv_lui', $prefix.'_key_birthdate_lui', $prefix.'_key_email_lui'),
         ),
         array(
             'condition' => '{{'.$prefix.'_key_persontype}} == "famille" || {{'.$prefix.'_key_persontype}} == "couple_sans_enfants"',
-            'title' => 'Elle',
+            'title' => __('Elle'),
             'fields' => array($prefix.'_key_indiv_elle', $prefix.'_key_birthdate_elle', $prefix.'_key_email_elle'),
         ),
         array(
             'condition' => '{{'.$prefix.'_key_persontype}} == "famille" || {{'.$prefix.'_key_persontype}} == "parent_seul"',
-            'title' => 'Enfants',
+            'title' => __('Enfants'),
             'fields' => array($prefix.'_childrenGR'),
         ),
         array( // Logement
-            'title' => 'Logement',
+            'title' => __('Logement'),
             'fields' => array($prefix.'_key_logement', $prefix.'_key_logement_remarques'),
         ),
         array( // Transport ALLER
-            'title' => 'Transport aller',
+            'title' => __('Transport aller'),
             'fields' => array($prefix.'_key_moyen_transport_aller', $prefix.'_date_aller', $prefix.'_gare_aller'),
             'field_conditions' => array(
                 $prefix.'_date_aller' => '{{'.$prefix.'_key_moyen_transport_aller}} != "ne_sais_pas"',
@@ -337,7 +337,7 @@ function ccnbtc_custom_post_type_inscriptions() {
             ),
         ),
         array( // Transport RETOUR
-            'title' => 'Transport retour',
+            'title' => __('Transport retour'),
             'fields' => array($prefix.'_key_moyen_transport_retour', $prefix.'_date_retour', $prefix.'_gare_retour'),
             'field_conditions' => array(
                 $prefix.'_date_retour' => '{{'.$prefix.'_key_moyen_transport_retour}} != "ne_sais_pas"',
@@ -351,8 +351,8 @@ function ccnbtc_custom_post_type_inscriptions() {
     // == 4. ==... et le formulaire HTML que l'on enregistre comme un shortcode
     // =====================================================
     $html_form_options = array(
-        'title' => 'INSCRIPTIONS',
-        'text_btn_submit' => 'Je m\'inscris !',
+        'title' => __('INSCRIPTIONS'),
+        'text_btn_submit' => __("Je m'inscris !"),
         'custom_classes' => ['step' => 'w-100'], // adds custom css classes to form elements
         'required' => array('@ALL'),
         //'custom_logic_path' => get_template_directory() . '/custom post types/inscriptions_logic.js', // la logique complexe du formulaire
@@ -360,7 +360,7 @@ function ccnbtc_custom_post_type_inscriptions() {
     $steps = array(
         array(
             'id' => 'je-suis',
-            'title' => 'Présentation',
+            'title' => __('Présentation'),
             'fields' => array(
                 $prefix.'_key_jesuis', 
                 $prefix.'key_ma_paroisse',
@@ -369,12 +369,12 @@ function ccnbtc_custom_post_type_inscriptions() {
         ),
         array(
             'id' => 'infos-personnelles',
-            'title' => 'Informations personnelles',
+            'title' => __('Informations personnelles'),
             'switch' => array(
                 array(
                     'id' => 'infos-personnelles-individuel',
                     'condition' => '{{'.$prefix.'_key_persontype}} == "individuel" || {{'.$prefix.'_key_persontype}} == "parent_seul"',
-                    'title' => 'Informations personnelles',
+                    'title' => __('Informations personnelles'),
                     'fields' => array($prefix.'_key_indiv', $prefix.'_key_genre', $prefix.'_key_birthdate', $prefix.'_key_email'),
                 ),
                 array(
@@ -384,7 +384,7 @@ function ccnbtc_custom_post_type_inscriptions() {
                 array(
                     'id' => 'infos-personnelles-couple',
                     'condition' => '{{'.$prefix.'_key_persontype}} == "famille" || {{'.$prefix.'_key_persontype}} == "couple_sans_enfants"',
-                    'title' => 'Informations du couple',
+                    'title' => __('Informations du couple'),
                     'fields' => array(
                                 $prefix.'_key_indiv_lui', $prefix.'_key_birthdate_lui', $prefix.'_key_email_lui',
                                 $prefix.'_key_indiv_elle', $prefix.'_key_birthdate_elle', $prefix.'_key_email_elle'
@@ -399,7 +399,7 @@ function ccnbtc_custom_post_type_inscriptions() {
         ),
         array(
             'id' => 'logement-transport',
-            'title' => 'Logement & transport',
+            'title' => __('Logement & transport'),
             'fields' => array(
                 $prefix.'_key_logement', $prefix.'_key_logement_remarques',
                 $prefix.'_key_moyen_transport_aller', $prefix.'_date_aller', $prefix.'_gare_aller',
@@ -414,7 +414,7 @@ function ccnbtc_custom_post_type_inscriptions() {
         ),
         array(
             'id' => 'paiement',
-            'title' => 'Confirmation',
+            'title' => __('Confirmation'),
             'fields' => array($prefix.'_paiement_modalite', $prefix.'_paiement_moyen', $prefix.'_html_paiement_description'),
             'field_conditions' => array(
                 $prefix.'_paiement_moyen' => '{{'.$prefix.'_paiement_modalite}} == "now_all" || {{'.$prefix.'_paiement_modalite}} == "now_partial"',

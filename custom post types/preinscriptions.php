@@ -36,13 +36,13 @@ function ccnbtc_custom_post_type_preinscriptions() {
         array( // Prénom
             'id' => $prefix.'_key_firstname', // le nom de la meta key
             'description'  => "Person first name for custom post",
-            'html_label' => 'Prénom',
+            'html_label' => __('Prénom', 'ccnbtc'),
             'type' => "text"
         ),
         array( // Nom
             'id' => $prefix.'_key_name', // le nom de la meta key
             'description'  => "Person name for custom post",
-            'html_label' => 'Nom',
+            'html_label' => __('Nom', 'ccnbtc'),
             'type' => "text"
         ),
         array( // EMAIL
@@ -50,19 +50,19 @@ function ccnbtc_custom_post_type_preinscriptions() {
             'description'  => "Email address for custom post",
             'unique' => true,           // tells if this field must have unique values
             'show_as_column' => "Email", // shows this field as a column in the "list" view in admin panel
-            'html_label' => 'Email',
+            'html_label' => __('Email', 'ccnbtc'),
             'type' => "email"
         ),
         array( // Téléphone
             'id' => $prefix.'_key_telephone', // le nom de la meta key
             'description'  => "Telephone for custom post",
-            'html_label' => 'Téléphone',
+            'html_label' => __('Téléphone', 'ccnbtc'),
             'type' => "tel"
         ),
         array( // Paroisse
             'id' => $prefix.'_key_paroisse', // le nom de la meta key
             'description'  => "Paroisse for custom post",
-            'html_label' => 'Paroisse',
+            'html_label' => __('Paroisse', 'ccnbtc'),
             'type' => "text"
         )
     );

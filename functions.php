@@ -1,6 +1,8 @@
 <?php
 
 require_once(get_template_directory() . '/lib/php/lib.php');
+require_once(CCN_LIBRARY_PLUGIN_DIR . '/lib.php'); use \ccn\lib as lib;
+require_once(CCN_LIBRARY_PLUGIN_DIR . '/log.php'); use \ccn\lib\log as log;
 
 /* ========================================================= */
 /*                       THEME SETUP                         */
@@ -9,12 +11,20 @@ require_once(get_template_directory() . '/lib/php/lib.php');
 // import de la classe qui permet de gérer les navbar bootstrap de la bonne façon avec wordpress
 require_once get_template_directory() . '/class-wp-bootstrap-navwalker.php';
 
-function ccnbtc_setup() {
+// Load translations
+$b = load_theme_textdomain( 'ccnbtc', get_template_directory().'/languages' );
+/* if (!$b) {
+    lib\php_console_log('cannot load translations for BTC theme', 'err');
+    log\error('cannot load translations for BTC theme');
+} */
+
+function ccnbtc_setup() {    
+
     add_theme_support( 'title-tag' );       // laisse wordpress définir le titre du site
     add_theme_support( 'post-thumbnails' ); // image de mise en avant pour les articles
     add_theme_support( 'html5', array( // éléments html5
         'search-form',
-        'comment-form',
+        'comment-form', 
         'comment-list',
         'gallery',
         'caption',
@@ -106,14 +116,23 @@ function ccnbtc_scripts() {
     wp_enqueue_style( 'ccnbtc-fa', 'https://use.fontawesome.com/releases/v5.5.0/css/all.css');
 
     // on load style.css ici pour qu'il soit chargé après le CSS de bootstrap
-    wp_enqueue_style( 'ccnbtc-parent-style', get_template_directory_uri() . '/style.css' );
+    wp_enqueue_style( 'ccnbtc-parent-style', get_template_directory_uri() . '/style.css', [], '001' );
     // main script of the theme
-    wp_enqueue_script( 'ccnbtc-main-script', get_template_directory_uri() . '/js/main.js', array('jquery'));
+    wp_enqueue_script( 'ccnbtc-main-script', get_template_directory_uri() . '/js/main.js', array('jquery'), '001');
 
 
     // ## 2 ## For Specific Pages
     // Home Page Festival
     wp_register_style( 'ccnbtc-festival-style', get_template_directory_uri() . '/pages/festival/page.css', array(), '20190110', 'all');
+
+    // ## 3 ## For connected users
+    // Translation tools
+    wp_register_style( 'ccnbtc-translation-style', get_template_directory_uri() . '/components/translation_ui/translation.css', array(), '001', 'all');
+    wp_register_script('ccnbtc-translation-script', get_template_directory_uri() . '/components/translation_ui/translation.js', array());
+    wp_localize_script('ccnbtc-translation-script', 'translationAjaxData', array(
+        'root_url' => get_site_url(),
+        'nonce' => wp_create_nonce('wp_rest') //secret value created every time you log in and can be used for authentication to alter content 
+    ));
 
 }
 add_action( 'wp_enqueue_scripts', 'ccnbtc_scripts' );
@@ -129,6 +148,36 @@ function add_slug_body_class( $classes ) {
 }
 add_filter( 'body_class', 'add_slug_body_class' );
 
+
+/* ========================================================= */
+/*                   TRANSLATION                             */
+/* ========================================================= */
+
+// sources : 
+// https://premium.wpmudev.org/blog/how-to-localize-a-wordpress-theme-and-make-it-translation-ready/
+// https://github.com/fxbenard/Blank-WordPress-Pot
+
+//load_theme_textdomain( 'ccnbtc', get_template_directory().'/languages' );
+
+// source : https://polylang.pro/doc/function-reference/#pll_register_string
+
+add_action('init', function() {
+
+    // define strings to be translated
+    $strings = [
+      'forms' => ['Prénom', 'Nom', 'Date de naissance', 'Code postal'],
+    ];
+    
+    // actually register strings in polylang plugin
+    foreach ($strings as $cat => $vals) {
+      foreach ($vals as $val) {
+          // pll_register_string( $sorting_name, $string_to_be_translated, $group, $multiline );
+          if (is_array($val)) pll_register_string($val[0], $val[1], $cat, false);  
+          else pll_register_string($val, $val, $cat, false);  
+        }
+      }
+
+});
 
 /* ========================================================= */
 /*               ADD CUSTOM FIELDS TO POSTS                  */
@@ -179,21 +228,21 @@ require_once_all_regex(get_template_directory() . '/shortcodes/', "");
 // load contact form shortcode
 ccnlib_register_contact_form(array(
         'title' => '',
-        'text_btn_submit' => 'Envoyer',
+        'text_btn_submit' => __('Envoyer', 'ccnbtc'),
         'fields' => array('nom', 'prenom', 'email', array(
             'id' => 'ccnbtc_paroisse',
             'type' => 'text',
-            'html_label' => 'Ma paroisse',
+            'html_label' => __('Ma paroisse', 'ccnbtc'),
         ), 'message'),
         'required' => array('@ALL'),
         'send_email' => array(
             array(
                 'addresses' => array('web@chemin-neuf.org', 'contact@bethechurch.fr'), // adresses email à qui envoyer le mail
-                'subject' => '[Contact BTC] Nouvelle demande de contact de {{ccnlib_key_firstname}} {{ccnlib_key_name}}', // sujet du mail
+                'subject' => '['.__('Contact', 'ccnbtc').' BTC] '.sprintf(__('Nouvelle demande de contact de %s', 'ccnbtc'), '{ccnlib_key_firstname}} {{ccnlib_key_name}}'), // sujet du mail
                 'model' => 'simple_contact.html', // le chemin vers le modèle/template HTML à utiliser
                 'model_args' => array( // les arguments qui permettent de populer le model/template HTML du message
-                    'title' => 'Que le Seigneur te donne sa paix !',
-                    'subtitle' => 'Nouvelle demande de contact de {{ccnlib_key_firstname}} {{ccnlib_key_name}}',
+                    'title' => __('Que le Seigneur te donne sa paix', 'ccnbtc').' !',
+                    'subtitle' => sprintf(__('Nouvelle demande de contact de %s', 'ccnbtc'), '{ccnlib_key_firstname}} {{ccnlib_key_name}}'),
                     'body' => 'Coucou ! Une nouvelle demande de contact vient d\'arriver du site Be The Church, merci d\'y répondre avec amour :<br>
                                 Voici les détails de la demande :<br>
                                 <b>Prénom: </b>{{ccnlib_key_firstname}}<br>

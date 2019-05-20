@@ -19,8 +19,17 @@ function ccnbtc_shortcode_afficher_liste_carres() {
 
 
         // == 3. == on récupère les articles de la catégorie
+        $cat_in = [];
+        $cat_original = get_category_by_slug( $atts['categorie'] );
+        if ($cat_original) $cat_in[] = $cat_original->term_id;
+        $local_cat_slug = $atts['categorie']."-".pll_current_language();
+        $cat_local = get_category_by_slug( $local_cat_slug );
+        if ($cat_local) $cat_in[] = $cat_local->term_id;
+
+        if (empty($cat_in)) return 'no category found for '.$atts['categorie'];
         $query_args = array(
-            'category_name' => $atts['categorie'],
+            //'category_name' => $atts['categorie'],
+            'category__in'  =>  $cat_in,
             'post_status'   => 'publish',
             'lang'          =>  pll_current_language(),
             'meta_key'      => 'ccnbtc_post_order',

@@ -24,8 +24,16 @@ function ccnbtc_shortcode_afficher_articles() {
 
 
         // == 3. == on récupère les articles de la catégorie
+        $cat_in = [];
+        $cat_original = get_category_by_slug( $atts['categorie'] );
+        if ($cat_original) $cat_in[] = $cat_original->term_id;
+        $local_cat_slug = $atts['categorie']."-".pll_current_language();
+        $cat_local = get_category_by_slug( $local_cat_slug );
+        if ($cat_local) $cat_in[] = $cat_local->term_id;
+
+        if (empty($cat_in)) return 'no category found for '.$atts['categorie'];
         $query_args = array(
-            'category_name' => $atts['categorie']."-".pll_current_language(),
+            'category__in'  =>  $cat_in,
             'post_status'   => 'publish',
             'lang'          =>  pll_current_language(),
             'meta_key'      => 'ccnbtc_post_order',
@@ -35,6 +43,18 @@ function ccnbtc_shortcode_afficher_articles() {
         );
         $query = new WP_Query( $query_args );
         //echo "CATEGORIE = ".$atts['categorie'].", REQUEST=".$query->request."\n<br>";
+        /* global $wpdb;
+        echo "PREFIX=".$wpdb->prefix."\n<br>";
+        $slug = $atts['categorie'];
+        $p = $wpdb->prefix;
+        $sql_query = "SELECT ".$p."posts.ID, ".$p."posts.post_title, ".$p."posts.post_name 
+                    FROM `".$p."posts`, `".$p."term_relationships`, `".$p."terms` 
+                    WHERE ".$p."term_relationships.object_id = ".$p."posts.ID 
+                        AND ".$p."terms.term_id = ".$p."term_relationships.term_taxonomy_id AND ".$p."terms.slug = '$slug'";
+        $add_lang_condition = "AND ";
+        echo "QUERY=".$sql_query."\n<br>";
+        $results = $wpdb->get_results($sql_query, ARRAY_A);
+        echo "RESULTS=".json_encode($results)."\n<br>"; */
         
         // == 4. == on construit le HTML
         $html = '';
@@ -152,7 +172,7 @@ function render_HTML($categorie, $query, $compteur) {
 
 
     // lien pour éditer l'article
-    $ifeditlink = (current_user_can('edit_posts')) ? '<a class="edit_post_link" href="'.get_edit_post_link(get_the_ID()).'">Éditer</a>' : '';
+    $ifeditlink = (current_user_can('edit_posts')) ? '<a class="edit_post_link" href="'.get_edit_post_link(get_the_ID()).'">'.__('Éditer', 'ccnbtc').'</a>' : '';
 
     // Add everything
     $html = '
@@ -181,12 +201,17 @@ function render_HTML_homepage($categorie, $query, $compteur) {
     // on parse le titre
     $title = get_the_title();
     $title_arr = explode(" ", $title);
+    $slug = basename( get_permalink() );
 
     // Background image
     $bg_img = buildBgImg(get_the_post_thumbnail_url());
 
+    // lien pour éditer l'article
+    $ifeditlink = (current_user_can('edit_posts')) ? '<a class="edit_post_link" href="'.get_edit_post_link(get_the_ID()).'">'.__('Éditer', 'ccnbtc').'</a>' : '';
+
     $html = '
-        <section class="row section bg-green" data-title="'.$title.'" data-index="'.$compteur.'" '.$bg_img.'>
+        <section id="post__'.$slug.'" class="row section bg-green" data-title="'.$title.'" data-index="'.$compteur.'" '.$bg_img.'>
+        '.$ifeditlink.'
             <div class="col-lg-12 d-flex flex-col">
     ';
 
