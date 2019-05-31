@@ -333,6 +333,12 @@ h2.fs-title {
     margin-bottom: 1rem;
 }
 
+/* checkboxes */
+.form-check-label {
+    color: #545454;
+    text-align: left;
+}
+
 /* date picker */
 .datepickers-container {
     z-index: 1000000;

@@ -259,8 +259,8 @@ function ccnbtc_custom_post_type_inscriptions() {
             'html_label' => 'Je paye',
             "type" => 'dropdown',
             "options" => array(
-                "now_all" => "maintenant la totalité",
-                "now_partial" => "maintenant une partie",
+                /* "now_all" => "maintenant la totalité",
+                "now_partial" => "maintenant une partie", */
                 "on_site" => "sur place",
             ),
             "wrapper" => array('start' => '<p class="form-label">Je paye (<a href="/infos-pratiques/#post__tarifs-2" target="_blank">Détail des prix</a>)</p>', 'end' => ''),
@@ -273,7 +273,7 @@ function ccnbtc_custom_post_type_inscriptions() {
                 'cb' => 'Carte Bleue (disponible prochainement)',
                 'cheque' => 'Chèque',
             ),
-            "wrapper" => array('start' => '<p class="form-label">Moyen de paiement</p>', 'end' => ''),
+            /* "wrapper" => array('start' => '<p class="form-label">Moyen de paiement</p>', 'end' => ''), */
         ),
         array(
             'id' => $prefix.'_html_paiement_description',
@@ -287,6 +287,13 @@ function ccnbtc_custom_post_type_inscriptions() {
                     Abbaye d\'Hautecombe<br>3700 route de l\'Abbaye<br>73310 ST PIERRE DE CURTILLE</p>
                 </p>',
         ),
+        // checkbox I accept the privacy policy
+        [
+            'id' => $prefix.'_rgpd_check',
+            'type' => 'checkbox',
+            'label' => 'J\'accepte <a href="'.lib\get_image_url_by_title('Politique de confidentialité').'" target="_blank">la politique de confidentialité de la Communauté du Chemin Neuf</a>',
+            'value_true' => 'true',
+        ],
     );
 
 
@@ -344,6 +351,10 @@ function ccnbtc_custom_post_type_inscriptions() {
                 $prefix.'_gare_retour' => '{{'.$prefix.'_key_moyen_transport_retour}} == "avion" || {{'.$prefix.'_key_moyen_transport_retour}} == "train"',
             ),
         ),
+        [
+            'title' => __('RGPD'),
+            'fields' => [$prefix.'_rgpd_check'],
+        ],
     );
     create_custom_post_fields($cp_name, $cp_slug, $metabox_options, $prefix, $fields);
 
@@ -415,7 +426,7 @@ function ccnbtc_custom_post_type_inscriptions() {
         array(
             'id' => 'paiement',
             'title' => __('Confirmation'),
-            'fields' => array($prefix.'_paiement_modalite', $prefix.'_paiement_moyen', $prefix.'_html_paiement_description'),
+            'fields' => array($prefix.'_paiement_modalite', $prefix.'_paiement_moyen', $prefix.'_html_paiement_description', $prefix.'_rgpd_check'),
             'field_conditions' => array(
                 $prefix.'_paiement_moyen' => '{{'.$prefix.'_paiement_modalite}} == "now_all" || {{'.$prefix.'_paiement_modalite}} == "now_partial"',
                 $prefix.'_html_paiement_description' => '{{'.$prefix.'_paiement_moyen}} == "cheque"',
