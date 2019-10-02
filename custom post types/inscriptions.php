@@ -80,8 +80,8 @@ function ccnbtc_custom_post_type_inscriptions() {
             'options' => array(
                 'individuel' => __("Individuel", 'ccnbtc'),
                 'couple_sans_enfants' => __("Couple sans enfants", 'ccnbtc'),
-                /* 'famille' => __("Famille", 'ccnbtc'),
-                'parent_seul' => __('Parent seul avec enfants', 'ccnbtc'), */
+                'famille' => __("Famille", 'ccnbtc'),
+                'parent_seul' => __('Parent seul avec enfants', 'ccnbtc'),
             ),
         ),
         // SPECIFIQUE CAS 1 - individuel ou parent_seul
