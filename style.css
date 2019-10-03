@@ -393,9 +393,15 @@ input.invalid {
 
 
 /* PREINSCRIPTIONS */
-#ccnbtc_preinscrire_form input {
+#ccnbtc_preinscr_preinscrire_submit {
     border-radius: 0px;
-    margin-bottom: 0.4rem;
+    text-decoration: underline;
+    background: none;
+    outline: none;
+    border: none;
+    margin-top: 1rem;
+    cursor: pointer;
+    color: white;
 }
 
 

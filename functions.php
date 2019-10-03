@@ -116,7 +116,7 @@ function ccnbtc_scripts() {
     wp_enqueue_style( 'ccnbtc-fa', 'https://use.fontawesome.com/releases/v5.5.0/css/all.css');
 
     // on load style.css ici pour qu'il soit chargé après le CSS de bootstrap
-    wp_enqueue_style( 'ccnbtc-parent-style', get_template_directory_uri() . '/style.css', [], '001' );
+    wp_enqueue_style( 'ccnbtc-parent-style', get_template_directory_uri() . '/style.css', [], '002' );
     // main script of the theme
     wp_enqueue_script( 'ccnbtc-main-script', get_template_directory_uri() . '/js/main.js', array('jquery'), '001');
 

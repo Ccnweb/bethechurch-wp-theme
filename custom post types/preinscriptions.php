@@ -18,7 +18,7 @@ require_once(CCN_LIBRARY_PLUGIN_DIR . 'create-cp-html-forms.php');
 
 function ccnbtc_custom_post_type_preinscriptions() {
 
-    $prefix = "ccnbtc";
+    $prefix = "ccnbtc_preinscr";
     $cp_name = 'preinscription';
 
     // == 1. == on crée le custom post type 'inscription'

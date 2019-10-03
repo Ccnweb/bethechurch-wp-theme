@@ -130,8 +130,19 @@ function ccnbtc_custom_post_type_inscriptions() {
             'label' => 'placeholder',
             'wrapper' => 'bootstrap',
         ),
-        array('id' => $prefix.'_key_email_elle', 'copy' => $prefix.'_key_email'), // une copie de birth date pour "Elle"
-        array('id' => $prefix.'_key_email_lui', 'copy' => $prefix.'_key_email'), // une copie de birth date pour "Elle"
+        array('id' => $prefix.'_key_email_elle', 'copy' => $prefix.'_key_email'), // une copie de email pour "Elle"
+        array('id' => $prefix.'_key_email_lui', 'copy' => $prefix.'_key_email'), // une copie de email pour "Lui"
+        array( // Téléphone
+            'id' => $prefix.'_key_phone',
+            'description'  => "Person phone number",
+            'html_label' => 'Portable',
+            'type' => "tel",
+            'regex_pattern' => '^\+?[0-9\-\s\.]{6,}$',
+            'label' => 'placeholder',
+            'wrapper' => 'bootstrap',
+        ),
+        array('id' => $prefix.'_key_phone_elle', 'copy' => $prefix.'_key_phone'), // une copie de phone pour "Elle"
+        array('id' => $prefix.'_key_phone_lui', 'copy' => $prefix.'_key_phone'), // une copie de phone pour "Lui"
         array( // Adresse
             'id' => $prefix.'_key_address',
             'description'  => "Person postal address",
@@ -309,7 +320,7 @@ function ccnbtc_custom_post_type_inscriptions() {
             // condition permet de dire quand afficher cette metabox
             'condition' => '{{'.$prefix.'_key_persontype}} == "individuel" || {{'.$prefix.'_key_persontype}} == "parent_seul"', // condition qui doit être compréhensible par PHP et JS !
             'title' => __('Informations personnelles'),
-            'fields' => array($prefix.'_key_indiv', $prefix.'_key_genre', $prefix.'_key_birthdate', $prefix.'_key_email', $prefix.'_key_address'),
+            'fields' => array($prefix.'_key_indiv', $prefix.'_key_genre', $prefix.'_key_birthdate', $prefix.'_key_email', $prefix.'_key_phone', $prefix.'_key_address'),
         ),
         array(
             'condition' => '{{'.$prefix.'_key_persontype}} == "famille" || {{'.$prefix.'_key_persontype}} == "couple_sans_enfants"',
@@ -319,12 +330,12 @@ function ccnbtc_custom_post_type_inscriptions() {
         array(
             'condition' => '{{'.$prefix.'_key_persontype}} == "famille" || {{'.$prefix.'_key_persontype}} == "couple_sans_enfants"',
             'title' => __('Lui'),
-            'fields' => array($prefix.'_key_indiv_lui', $prefix.'_key_birthdate_lui', $prefix.'_key_email_lui'),
+            'fields' => array($prefix.'_key_indiv_lui', $prefix.'_key_birthdate_lui', $prefix.'_key_email_lui', $prefix.'_key_phone_lui'),
         ),
         array(
             'condition' => '{{'.$prefix.'_key_persontype}} == "famille" || {{'.$prefix.'_key_persontype}} == "couple_sans_enfants"',
             'title' => __('Elle'),
-            'fields' => array($prefix.'_key_indiv_elle', $prefix.'_key_birthdate_elle', $prefix.'_key_email_elle'),
+            'fields' => array($prefix.'_key_indiv_elle', $prefix.'_key_birthdate_elle', $prefix.'_key_email_elle', $prefix.'_key_phone_elle'),
         ),
         array(
             'condition' => '{{'.$prefix.'_key_persontype}} == "famille" || {{'.$prefix.'_key_persontype}} == "parent_seul"',
@@ -386,7 +397,7 @@ function ccnbtc_custom_post_type_inscriptions() {
                     'id' => 'infos-personnelles-individuel',
                     'condition' => '{{'.$prefix.'_key_persontype}} == "individuel" || {{'.$prefix.'_key_persontype}} == "parent_seul"',
                     'title' => __('Informations personnelles'),
-                    'fields' => array($prefix.'_key_indiv', $prefix.'_key_genre', $prefix.'_key_birthdate', $prefix.'_key_email'),
+                    'fields' => array($prefix.'_key_indiv', $prefix.'_key_genre', $prefix.'_key_birthdate', $prefix.'_key_email', $prefix.'_key_phone'),
                 ),
                 array(
                     'id' => 'infos-personnelles-adresse',
@@ -397,8 +408,8 @@ function ccnbtc_custom_post_type_inscriptions() {
                     'condition' => '{{'.$prefix.'_key_persontype}} == "famille" || {{'.$prefix.'_key_persontype}} == "couple_sans_enfants"',
                     'title' => __('Informations du couple'),
                     'fields' => array(
-                                $prefix.'_key_indiv_lui', $prefix.'_key_birthdate_lui', $prefix.'_key_email_lui',
-                                $prefix.'_key_indiv_elle', $prefix.'_key_birthdate_elle', $prefix.'_key_email_elle'
+                                $prefix.'_key_indiv_lui', $prefix.'_key_birthdate_lui', $prefix.'_key_email_lui', $prefix.'_key_phone_lui',
+                                $prefix.'_key_indiv_elle', $prefix.'_key_birthdate_elle', $prefix.'_key_email_elle', $prefix.'_key_phone_elle'
                     ),
                 ),
                 array(
