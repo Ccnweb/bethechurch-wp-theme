@@ -35,6 +35,14 @@ jQuery(document).ready(function($) {
     // Corrections HTML à la volée
     // ========================================
 
+    // ici on cache le bouton des inscriptions si les inscriptions sont fermées
+    btn_inscr = $(".reserver_place");
+    if (btn_inscr.length && btn_inscr.text() == "Fermées") {
+        btn_inscr.hide();
+    } else if (btn_inscr.length && btn_inscr.text() == 'PRÉ-INSCRIPTION') {
+        $('#inscription_btn').css({display: "none"})
+    }
+
     // ici on customize un peu le design des horaires pour les journées type :
     // quand on écrit "800 mon titre", l'horaire est transformé pour être plus joli
     $('h3,li').each(function() {

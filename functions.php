@@ -4,6 +4,8 @@ require_once(get_template_directory() . '/lib/php/lib.php');
 require_once(CCN_LIBRARY_PLUGIN_DIR . '/lib.php'); use \ccn\lib as lib;
 require_once(CCN_LIBRARY_PLUGIN_DIR . '/log.php'); use \ccn\lib\log as log;
 
+//define('BTC_CONFIG', yaml_parse(file_get_contents(__DIR__."/BTC_CONFIG.yml"))); 
+
 /* ========================================================= */
 /*                       THEME SETUP                         */
 /* ========================================================= */
@@ -116,9 +118,9 @@ function ccnbtc_scripts() {
     wp_enqueue_style( 'ccnbtc-fa', 'https://use.fontawesome.com/releases/v5.5.0/css/all.css');
 
     // on load style.css ici pour qu'il soit chargé après le CSS de bootstrap
-    wp_enqueue_style( 'ccnbtc-parent-style', get_template_directory_uri() . '/style.css', [], '002' );
+    wp_enqueue_style( 'ccnbtc-parent-style', get_template_directory_uri() . '/style.css', [], '007' );
     // main script of the theme
-    wp_enqueue_script( 'ccnbtc-main-script', get_template_directory_uri() . '/js/main.js', array('jquery'), '001');
+    wp_enqueue_script( 'ccnbtc-main-script', get_template_directory_uri() . '/js/main.js', array('jquery'), '006');
 
 
     // ## 2 ## For Specific Pages
@@ -212,6 +214,35 @@ function ccnbtc_add_custom_fields_to_posts() {
 
 ccnbtc_add_custom_fields_to_posts();
 
+/* ========================================================= */
+/*                  CUSTOM TEXT PARSER                       */
+/* ========================================================= */
+
+// source of WP_Block_Parser class : https://github.com/WordPress/gutenberg/blob/master/packages/block-serialization-default-parser/parser.php
+class CcnParser extends WP_Block_Parser {
+    public function parse( $post_content ) {
+        $options = get_option('btc-config');
+        if (!is_array($options) || empty($options)) return parent::parse($post_content);
+
+        foreach ($options as $k => $v) {
+            preg_match_all("/\{\s*".$k."\s*(\|[^\}]+)?\}/i", $post_content, $matches);
+            for ($i = 0; $i < count($matches[0]); $i++) {
+                if (!empty($matches[1][$i]) && preg_match("/^\d{4}\-\d{2}\-\d{2}$/", $v)) {
+                    $date_format = trim($matches[1][$i], " \t\n\r\0\x0B|");
+                    $d = strtotime($v);
+                    $v = ccn_date_format($date_format, $d, pll_current_language());
+                }
+                $post_content = str_replace($matches[0][$i], $v, $post_content);
+            }
+        }
+        return parent::parse($post_content);
+    }
+}
+function my_plugin_select_empty_parser( $prev_parser_class ) {
+    return 'CcnParser';
+}
+add_filter( 'block_parser_class', 'my_plugin_select_empty_parser', 10, 1 ); 
+
 
 /* ========================================================= */
 /*                  LOAD CUSTOM POST TYPES                   */
@@ -224,6 +255,12 @@ require_once_all_regex(get_template_directory() . '/custom post types/', "");
 /* ========================================================= */
 
 require_once_all_regex(get_template_directory() . '/shortcodes/', "");
+
+/* ========================================================= */
+/*                   LOAD ADMIN PAGES                        */
+/* ========================================================= */
+
+require_once_all_regex(get_template_directory() . '/admin-pages/', "");
 
 // load contact form shortcode
 ccnlib_register_contact_form(array(

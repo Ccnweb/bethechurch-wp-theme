@@ -4,7 +4,7 @@
 * Author: Communauté du Chemin Neuf
 * Author URI: https://www.chemin-neuf.fr
 * Description: Le beau thème du festival Be The Church !
-* Version: 2.2.0
+* Version: 3.0.0
 * Text Domain: ccnbtc
 * License: GNU General Public License v3
 * License URI: http://www.gnu.org/licenses/gpl-3.0.txt
@@ -155,6 +155,10 @@ a.wp-block-button__link.black:hover, a.wp-block-button__link.noir:hover, .is-sty
     transition: all 0.2s ease-in;
 }
 
+a.wp-block-button__link.has-bleu-klein-background-color:hover {
+    background: hsla(245, 37%, 57%, 1) !important;
+}
+
 /* Les formulaires */
 
 input {
@@ -171,11 +175,11 @@ label.input-group-text, select {margin-top: .5rem;}
 /*                 HELPFUL CLASSES                      */
 /* ==================================================== */
 
-.bg-green, .bg-vert {background: var(--green)}
-.bg-red, .bg-rouge {background: var(--red)}
-.bg-yellow, .bg-jaune {background: var(--yellow)}
-.bg-blue-klein, .bg-bleu-klein {background: var(--blue-klein)}
-.bg-blue-light, .bg-bleu-clair {background: var(--blue-light)}
+.bg-green, .bg-vert, .has-vert-background-color {background: var(--green)}
+.bg-red, .bg-rouge, .has-rouge-background-color {background: var(--red)}
+.bg-yellow, .bg-jaune, .has-jaune-background-color {background: var(--yellow)}
+.bg-blue-klein, .bg-bleu-klein, .has-bleu-klein-background-color {background: var(--blue-klein) !important}
+.bg-blue-light, .bg-bleu-clair, .has-bleu-clair-background-color {background: var(--blue-light)}
 
 .has-text-color.has-blanc-color, .has-text-color.has-blanc-color a, .txt-white, .txt-blanc {color:white}
 .has-text-color.has-noir-color, .txt-black, .txt-noir {color:black}
@@ -279,6 +283,12 @@ a.custom-logo-link {
 a.custom-logo-link > img {
     width: 3cm;
     height: 3cm;
+    transition: all 0.07s ease-out;
+}
+
+img.custom-logo:hover {
+    transform: rotate(45deg);
+    transition: all 0.07s ease-in;
 }
 
 @media screen and (max-width: 768px) {
@@ -298,7 +308,7 @@ a.custom-logo-link > img {
 /* ==================================================== */
 .reserver_place a {
     border-radius: 0;
-    background: var(--red);
+    /* background: var(--red); */
     border: none;
 }
 

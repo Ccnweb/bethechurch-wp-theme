@@ -174,12 +174,15 @@ function render_HTML($categorie, $query, $compteur) {
     // lien pour éditer l'article
     $ifeditlink = (current_user_can('edit_posts')) ? '<a class="edit_post_link" href="'.get_edit_post_link(get_the_ID()).'">'.__('Éditer', 'ccnbtc').'</a>' : '';
 
+    // content
+    $my_content = apply_filters('the_content', get_the_content());
+
     // Add everything
     $html = '
         <section id="post__'.$slug.'" data-title="'.str_replace('§', ' ', $title_orig).'" class="row section layout__'.$mise_en_page.' '.$flex_type.' bg-'.$bg_color.'" data-index="'.$compteur.'" '.$bg_img.'>
     '.$ifeditlink;
     if (in_array($mise_en_page, array('texte-droite', 'texte-centre'))) $html .= $html_title;
-    $html .= '<div class="slide_text '.$text_column_classes.' '.$special_texte_no_title.$ifmbauto.' mise_en_page__'.$mise_en_page.'">' . do_shortcode(get_the_content()) . '</div>';
+    $html .= '<div class="slide_text '.$text_column_classes.' '.$special_texte_no_title.$ifmbauto.' mise_en_page__'.$mise_en_page.'">' . do_shortcode($my_content) . '</div>';
     if ($mise_en_page == 'texte-gauche') $html .= $html_title;
     $html .= '
             </div>
@@ -210,14 +213,17 @@ function render_HTML_homepage($categorie, $query, $compteur) {
     $ifeditlink = (current_user_can('edit_posts')) ? '<a class="edit_post_link" href="'.get_edit_post_link(get_the_ID()).'">'.__('Éditer', 'ccnbtc').'</a>' : '';
 
     $html = '
-        <section id="post__'.$slug.'" class="row section bg-green" data-title="'.$title.'" data-index="'.$compteur.'" '.$bg_img.'>
+        <section id="post__'.$slug.'" class="row section bg-yellow" data-title="'.$title.'" data-index="'.$compteur.'" '.$bg_img.'>
         '.$ifeditlink.'
             <div class="col-lg-12 d-flex flex-col">
     ';
 
+    // content
+    $my_content = apply_filters('the_content', get_the_content());
+
     // on ajoute les gouttes
     $images_svg = '<img class="goutte goutte_rouge" src="'.get_template_directory_uri().'/img/goutte rouge.svg"/>';
-    $images_svg .= '<img class="goutte goutte_jaune" src="'.get_template_directory_uri().'/img/goutte jaune.svg"/>';
+    $images_svg .= '<img class="goutte goutte_jaune" src="'.get_template_directory_uri().'/img/goutte verte.svg"/>';
     $images_svg .= '<img class="goutte goutte_bleu_clair" src="'.get_template_directory_uri().'/img/goutte bleu clair.svg"/>';
     $images_svg .= '<img class="goutte goutte_rouge_petite" src="'.get_template_directory_uri().'/img/goutte rouge petite.svg"/>';
     $images_svg .= '<img class="goutte goutte_bleu_fonce" src="'.get_template_directory_uri().'/img/goutte bleu fonce.svg"/>';    
@@ -225,7 +231,7 @@ function render_HTML_homepage($categorie, $query, $compteur) {
     $html .= '<h2 class="text-center title mb-auto">
                 <span class="title_first_part">' . implode(' ', array_slice($title_arr, 0, count($title_arr)-1)) . '</span>
                 <span class="title_second_part">' . $title_arr[count($title_arr)-1] . '</h2>';
-    $html .= '' . do_shortcode(get_the_content()) . '';
+    $html .= '' . do_shortcode($my_content) . '';
     $html .= '
             </div>'.$images_svg.'
         </section>';

@@ -1,0 +1,206 @@
+# Be The Church
+# This file is distributed under the GNU General Public License v3 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Be The Church v1.0.0\n"
+"Report-Msgid-Bugs-To: Web CCN <web@chemin-neuf.org>\n"
+"POT-Creation-Date: 2019-04-09 16:08+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: Web CCN <web@chemin-neuf.org>\n"
+"Language: pl_PL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 "
+"|| n%100>14) ? 1 : 2);\n"
+"X-Textdomain-Support: yesX-Generator: Poedit 1.6.4\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;esc_html_e;esc_html_x:1,2c;esc_html__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;"
+"_x:1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;__ngettext_noop:1,2;_c,_nc:4c,1,2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Generator: Poedit 2.2.1\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: class-wp-bootstrap-navwalker.php:364
+msgid "Add a menu"
+msgstr "Dodaj menu"
+
+#: custom post types/inscriptions.php:57
+msgid "Je suis"
+msgstr "Jestem"
+
+#: custom post types/inscriptions.php:72 functions.php:211
+msgid "Ma paroisse"
+msgstr "Moja parafia"
+
+#: custom post types/inscriptions.php:78
+msgid "Je viens comme"
+msgstr "Przychodzę jak"
+
+#: custom post types/inscriptions.php:81
+msgid "Individuel"
+msgstr "Indywidualny"
+
+#: custom post types/inscriptions.php:82
+msgid "Couple sans enfants"
+msgstr "Para bez dzieci"
+
+#: custom post types/inscriptions.php:83
+msgid "Famille"
+msgstr "Rodzina"
+
+#: custom post types/inscriptions.php:84
+msgid "Parent seul avec enfants"
+msgstr "Samotny rodzic z dziećmi"
+
+#: custom post types/inscriptions.php:92 types/inscriptions.php:101
+msgid "Prénom"
+msgstr "Imię"
+
+#: custom post types/inscriptions.php:93
+msgid "Nom"
+msgstr "Nazwisko"
+
+#: custom post types/inscriptions.php:101
+msgid "Nom si différent"
+msgstr "Nazwa, jeśli inna"
+
+#: custom post types/inscriptions.php:103 types/inscriptions.php:314
+msgid "Lui"
+msgstr "To"
+
+#: custom post types/inscriptions.php:107
+msgid "Genre"
+msgstr "Płeć"
+
+#: custom post types/inscriptions.php:110
+msgid "Homme"
+msgstr "Mężczyzna"
+
+#: custom post types/inscriptions.php:111
+msgid "Femme"
+msgstr "Kobieta"
+
+#: custom post types/inscriptions.php:118
+msgid "Date de naissance"
+msgstr "Data urodzenia"
+
+#: custom post types/inscriptions.php:211 types/inscriptions.php:224
+msgid "Avion"
+msgstr "Samolot"
+
+#: custom post types/inscriptions.php:212 types/inscriptions.php:225
+msgid "Train"
+msgstr "Pociąg"
+
+#: custom post types/inscriptions.php:213 types/inscriptions.php:226
+msgid "Voiture"
+msgstr "Samochód"
+
+#: custom post types/inscriptions.php:214 types/inscriptions.php:227
+msgid "Ne sais pas encore"
+msgstr "Nie wiem jeszcze"
+
+#: custom post types/inscriptions.php:298
+msgid "Informations préliminaires"
+msgstr "Informacje wstępne"
+
+#: custom post types/inscriptions.php:304 types/inscriptions.php:372
+#: types/inscriptions.php:377
+msgid "Informations personnelles"
+msgstr "Dane osobowe"
+
+#: custom post types/inscriptions.php:309 types/inscriptions.php:387
+msgid "Informations du couple"
+msgstr "Informacje o dynamometrze"
+
+#: custom post types/inscriptions.php:319
+msgid "Elle"
+msgstr "Ona"
+
+#: custom post types/inscriptions.php:324
+msgid "Enfants"
+msgstr "Dzieci"
+
+#: custom post types/inscriptions.php:328
+msgid "Logement"
+msgstr "Obudowa"
+
+#: custom post types/inscriptions.php:332
+msgid "Transport aller"
+msgstr "Transport, aby iść"
+
+#: custom post types/inscriptions.php:340
+msgid "Transport retour"
+msgstr "Transport powrotny"
+
+#: custom post types/inscriptions.php:354
+msgid "INSCRIPTIONS"
+msgstr "REJESTRACJA"
+
+#: custom post types/inscriptions.php:355
+msgid "Je m'inscris !"
+msgstr "Rejestruję się!"
+
+#: custom post types/inscriptions.php:363
+msgid "Présentation"
+msgstr "Prezentacji"
+
+#: custom post types/inscriptions.php:402
+msgid "Logement & transport"
+msgstr "Obudowa & transport"
+
+#: custom post types/inscriptions.php:417
+msgid "Confirmation"
+msgstr "Potwierdzenie"
+
+#: functions.php:57
+msgid "Blanc"
+msgstr "Biały"
+
+#: functions.php:62
+msgid "Noir"
+msgstr "Czarny"
+
+#: functions.php:67
+msgid "Vert"
+msgstr "Zielony"
+
+#: functions.php:72
+msgid "Rouge"
+msgstr "Czerwony"
+
+#: functions.php:77
+msgid "Jaune"
+msgstr "żółty"
+
+#: functions.php:82
+msgid "Bleu Klein"
+msgstr "Klein Blue"
+
+#: functions.php:87
+msgid "Bleu clair pelorous"
+msgstr ""
+
+#: functions.php:207
+msgid "Envoyer"
+msgstr "Wyślij"
+
+#: functions.php:217
+msgid "Contact"
+msgstr "Kontakt"
+
+#: functions.php:217 functions.php:221
+#, php-format
+msgid "Nouvelle demande de contact de %s"
+msgstr "Nowa prośba %s o kontakt"
+
+#: functions.php:220
+msgid "Que le Seigneur te donne sa paix"
+msgstr "Niech Pan da ci pokój"
+
+#: shortcodes/afficher-articles.php:175 shortcodes/afficher-articles.php:210
+msgid "Éditer"
+msgstr "Edit"

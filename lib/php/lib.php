@@ -70,4 +70,51 @@ function assign_default($el1, $el2) {
 }
 endif;
 
+
+/*
+|-----------------------------------------------------------------------
+| Sky Date in French by Matt - www.skyminds.net
+|-----------------------------------------------------------------------
+|
+| Returns or echoes the date in French format (dd/mm/YYYY) for WordPress themes.
+|
+*/
+function ccn_date_format($format, $timestamp = null, $lang = 'fr', $echo = null) {
+    $lang = strtolower($lang);
+    if ($lang != 'fr') {
+        setlocale(LC_ALL, $lang);
+        return strftime($format, $timestamp);
+    }
+	$param_D = array('', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim');
+	$param_l = array('', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche');
+	$param_F = array('', 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre');
+	$param_M = array('', 'Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jun', 'Jul', 'Aoû', 'Sep', 'Oct', 'Nov', 'Déc');
+	$return = '';
+	if(is_null($timestamp)) { $timestamp = mktime(); }
+	for($i = 0, $len = strlen($format); $i < $len; $i++) {
+		switch($format[$i]) {
+			case '\\' : // fix.slashes
+				$i++;
+				$return .= isset($format[$i]) ? $format[$i] : '';
+				break;
+			case 'D' :
+				$return .= $param_D[date('N', $timestamp)];
+				break;
+			case 'l' :
+				$return .= $param_l[date('N', $timestamp)];
+				break;
+			case 'F' :
+				$return .= $param_F[date('n', $timestamp)];
+				break;
+			case 'M' :
+				$return .= $param_M[date('n', $timestamp)];
+				break;
+			default :
+				$return .= date($format[$i], $timestamp);
+				break;
+		}
+	}
+	if(is_null($echo)) { return $return;} else { echo $return;}
+}
+
 ?>

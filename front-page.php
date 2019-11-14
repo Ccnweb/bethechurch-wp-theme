@@ -1,4 +1,5 @@
 <?php 
+setlocale(LC_ALL, 'fr');
 wp_enqueue_style('ccnbtc-festival-style');
 get_header();
 ?>

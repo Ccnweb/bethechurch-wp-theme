@@ -1,0 +1,19 @@
+params:
+
+  # date de début du festival
+  date_festival_from: 
+    type: date
+
+  # date de fin du festival
+  date_festival_to: 
+    type: date
+
+  # état des inscriptions
+  subscription_status:
+    type: select
+    opt:
+      - closed: Fermées
+      - preinscr: Préinscriptions ouvertes
+      - inscr: Inscriptions ouvertes
+      - preinscr_inscr: Préinscriptions et inscriptions ouvertes
+  

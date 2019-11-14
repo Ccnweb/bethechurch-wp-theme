@@ -1,4 +1,5 @@
 <?php 
+setlocale(LC_ALL, 'fr');
 get_header();
 ?>
 

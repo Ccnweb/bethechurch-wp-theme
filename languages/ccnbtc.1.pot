@@ -1,0 +1,112 @@
+# Be The Church
+# This file is distributed under the GNU General Public License v3 or later.
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Be The Church v1.0.0\n"
+"POT-Creation-Date: 2019-04-09 15:22+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Web CCN <web@chemin-neuf.org>\n"
+"Language-Team: Web CCN <web@chemin-neuf.org>\n"
+"Report-Msgid-Bugs-To: Web CCN <web@chemin-neuf.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\nContent-Transfer-"
+"Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Textdomain-Support: "
+"yesX-Generator: Poedit 1.6.4\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;esc_html_e;esc_html_x:1,2c;esc_html__;esc_attr_e;esc_attr_x:1,2c;esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_x:1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;__ngettext_noop:1,2;_c,_nc:4c,1,2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Generator: Poedit 2.2.1\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: class-wp-bootstrap-navwalker.php:364
+msgid "Add a menu"
+msgstr ""
+
+#: custom post
+#: types/inscriptions.php:355
+msgid "Je m'inscris !"
+msgstr ""
+
+#: custom post
+#: types/inscriptions.php:363
+msgid "Présentation"
+msgstr ""
+
+#: custom post
+#: types/inscriptions.php:372
+#: types/inscriptions.php:377
+msgid "Informations personnelles"
+msgstr ""
+
+#: custom post
+#: types/inscriptions.php:387
+msgid "Informations du couple"
+msgstr ""
+
+#: custom post
+#: types/inscriptions.php:402
+msgid "Logement & transport"
+msgstr ""
+
+#: custom post
+#: types/inscriptions.php:417
+msgid "Confirmation"
+msgstr ""
+
+#: functions.php:51
+msgid "Blanc"
+msgstr ""
+
+#: functions.php:56
+msgid "Noir"
+msgstr ""
+
+#: functions.php:61
+msgid "Vert"
+msgstr ""
+
+#: functions.php:66
+msgid "Rouge"
+msgstr ""
+
+#: functions.php:71
+msgid "Jaune"
+msgstr ""
+
+#: functions.php:76
+msgid "Bleu Klein"
+msgstr ""
+
+#: functions.php:81
+msgid "Bleu clair pelorous"
+msgstr ""
+
+#: functions.php:201
+msgid "Envoyer"
+msgstr ""
+
+#: functions.php:205
+msgid "Ma paroisse"
+msgstr ""
+
+#: functions.php:211
+msgid "Contact"
+msgstr ""
+
+#: functions.php:211
+#: functions.php:215
+#, php-format
+msgid "Nouvelle demande de contact de %s"
+msgstr ""
+
+#: functions.php:214
+msgid "Que le Seigneur te donne sa paix"
+msgstr ""
+
+#: shortcodes/afficher-articles.php:175
+#: shortcodes/afficher-articles.php:210
+msgid "Éditer"
+msgstr ""
