@@ -283,7 +283,7 @@ a.custom-logo-link {
 a.custom-logo-link > img {
     width: 3cm;
     height: 3cm;
-    transition: all 0.07s ease-out;
+    transition: all 0.12s cubic-bezier(0.18, 0.89, 0.59, 1.67);
 }
 
 img.custom-logo:hover {
@@ -421,6 +421,7 @@ input.invalid {
 /* ==================================================== */
 
 .section {
+    position: relative;
     min-height: 100vh;
     padding: 2rem;
 }

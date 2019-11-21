@@ -36,11 +36,17 @@ jQuery(document).ready(function($) {
     // ========================================
 
     // ici on cache le bouton des inscriptions si les inscriptions sont fermées
-    btn_inscr = $(".reserver_place");
-    if (btn_inscr.length && btn_inscr.text() == "Fermées") {
+    let btn_inscr = $(".reserver_place");
+    let inscr_status = (btn_inscr.length) ? btn_inscr.find('a').attr('rel') : 'INSCRIPTIONS FERMÉES';
+    console.log("COCO3 ",btn_inscr, btn_inscr.find('a').attr('rel'));
+    if (inscr_status == "INSCRIPTIONS FERMÉES") {
         btn_inscr.hide();
-    } else if (btn_inscr.length && btn_inscr.text() == 'PRÉ-INSCRIPTION') {
+    } else if (inscr_status == 'PRÉ-INSCRIPTION') {
+        console.log("COCO ", btn_inscr.attr('rel'));
         $('#inscription_btn').css({display: "none"})
+    } else if (inscr_status == 'INSCRIPTION') {
+        console.log("COCO2 ", btn_inscr.attr('rel'));
+        $('#ccnbtc_preinscr_preinscrire_form').hide();
     }
 
     // ici on customize un peu le design des horaires pour les journées type :

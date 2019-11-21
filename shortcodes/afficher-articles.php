@@ -123,6 +123,7 @@ function render_HTML($categorie, $query, $compteur) {
     $titre_position = 'titre-centre';
     $titre_style = 'titre-double'; // 'titre-simple' ou 'titre-double' avec hollow title (titre + son "ombre")
     $titre_hidden = false;
+    $gouttes = false;
 
     if ($posttags) {
         foreach($posttags as $tag) {
@@ -145,6 +146,10 @@ function render_HTML($categorie, $query, $compteur) {
             // hide title
             if(preg_match("/^titre\-cach[ée]$/i", $tag->name, $matches)) {
                 $titre_hidden = true;
+            }
+            // gouttes
+            if(preg_match("/^gouttes?$/i", $tag->name, $matches)) {
+                $gouttes = true;
             }
         }
     }
@@ -177,6 +182,16 @@ function render_HTML($categorie, $query, $compteur) {
     // content
     $my_content = apply_filters('the_content', get_the_content());
 
+    // gouttes
+    $images_svg = '';
+    if ($gouttes) {
+        $images_svg = '<img class="goutte goutte_rouge" src="'.get_template_directory_uri().'/img/goutte rouge.svg"/>';
+        $images_svg .= '<img class="goutte goutte_jaune" src="'.get_template_directory_uri().'/img/goutte verte.svg"/>';
+        $images_svg .= '<img class="goutte goutte_bleu_clair" src="'.get_template_directory_uri().'/img/goutte bleu clair.svg"/>';
+        $images_svg .= '<img class="goutte goutte_rouge_petite" src="'.get_template_directory_uri().'/img/goutte rouge petite.svg"/>';
+        $images_svg .= '<img class="goutte goutte_bleu_fonce" src="'.get_template_directory_uri().'/img/goutte bleu fonce.svg"/>';  
+    }
+
     // Add everything
     $html = '
         <section id="post__'.$slug.'" data-title="'.str_replace('§', ' ', $title_orig).'" class="row section layout__'.$mise_en_page.' '.$flex_type.' bg-'.$bg_color.'" data-index="'.$compteur.'" '.$bg_img.'>
@@ -185,7 +200,7 @@ function render_HTML($categorie, $query, $compteur) {
     $html .= '<div class="slide_text '.$text_column_classes.' '.$special_texte_no_title.$ifmbauto.' mise_en_page__'.$mise_en_page.'">' . do_shortcode($my_content) . '</div>';
     if ($mise_en_page == 'texte-gauche') $html .= $html_title;
     $html .= '
-            </div>
+            </div>'.$images_svg.'
         </section>';
 
     return $html;

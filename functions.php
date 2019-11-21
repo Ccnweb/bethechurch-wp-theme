@@ -118,9 +118,9 @@ function ccnbtc_scripts() {
     wp_enqueue_style( 'ccnbtc-fa', 'https://use.fontawesome.com/releases/v5.5.0/css/all.css');
 
     // on load style.css ici pour qu'il soit chargé après le CSS de bootstrap
-    wp_enqueue_style( 'ccnbtc-parent-style', get_template_directory_uri() . '/style.css', [], '007' );
+    wp_enqueue_style( 'ccnbtc-parent-style', get_template_directory_uri() . '/style.css', [], '014' );
     // main script of the theme
-    wp_enqueue_script( 'ccnbtc-main-script', get_template_directory_uri() . '/js/main.js', array('jquery'), '006');
+    wp_enqueue_script( 'ccnbtc-main-script', get_template_directory_uri() . '/js/main.js', array('jquery'), '011');
 
 
     // ## 2 ## For Specific Pages
@@ -261,6 +261,7 @@ require_once_all_regex(get_template_directory() . '/shortcodes/', "");
 /* ========================================================= */
 
 require_once_all_regex(get_template_directory() . '/admin-pages/', "");
+
 
 // load contact form shortcode
 ccnlib_register_contact_form(array(

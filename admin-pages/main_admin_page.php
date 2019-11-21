@@ -41,14 +41,17 @@ function btc_config_widget_render() {
     </p>
     <p>
     État des inscriptions : <select id="etat_inscriptions">';
-        foreach (['Fermées', 'PRÉ-INSCRIPTION' ,'PRÉINSCRIS OU INSCRIS-TOI', 'RÉSERVE TA PLACE'] as $v) {
+        foreach (['INSCRIPTIONS FERMÉES', 'PRÉ-INSCRIPTION' ,'PRÉ-INSCRIPTION OU INSCRIPTION', 'INSCRIPTION'] as $v) {
             echo '<option value="'.$v.'" '.($options['etat_inscriptions'] == $v ? 'selected': '').'>'.$v.'</option>';
         }
     echo '</select> (code : {etat_inscriptions})
+
+    
     </p>';
 
     echo '<button id="submit_btc_config">Mettre à jour</button>';
 
+    // Here we add the AJAX logic to update site config
     echo '<script>
     jQuery( document ).ready( function( $ ){
 
