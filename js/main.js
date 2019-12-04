@@ -1,6 +1,47 @@
 jQuery(document).ready(function($) {
 
     // ========================================
+    // ANIMER LES GOUTTES
+    // ========================================
+
+    function anim_gouttes() {
+        // get gouttes positions
+        let section = jQuery('section');
+        if (section.length == 0) return;
+        let gouttes = section.eq(0).find('img.goutte');
+
+        let positions = gouttes.map(function() {
+            return jQuery(this).position();
+        }).toArray();
+        console.log('POS', positions);
+        // compute gouttes center
+        let bary = positions.reduce((a,b) => {return {top:a.top+b.top, left:a.left+b.left}}, {top:0,left:0});
+        bary.top /= positions.length;
+        bary.left /=positions.length;
+        console.log('BAR',bary);
+        // move gouttes
+        gouttes.each(function() {
+            let pos = jQuery(this).position();
+            let r_top = (pos.top - bary.top)*0.05;
+            let r_left = (pos.left - bary.left)*0.05;
+            jQuery(this).animate({
+                top: pos.top + r_top,
+                left: pos.left + r_left,
+            }, { 
+                duration: 400, 
+                easing: "swing", 
+            }).animate({
+                top: pos.top,
+                left: pos.left,
+            }, { 
+                duration: 200, 
+                easing: "swing", 
+            })
+        })
+    }
+    setTimeout(anim_gouttes, 500);
+
+    // ========================================
     // INITIALISE FLECHE POUR CHANGER DE SLIDE
     // ========================================
 
@@ -38,7 +79,6 @@ jQuery(document).ready(function($) {
     // ici on cache le bouton des inscriptions si les inscriptions sont fermées
     let btn_inscr = $(".reserver_place");
     let inscr_status = (btn_inscr.length) ? btn_inscr.find('a').attr('rel') : 'INSCRIPTIONS FERMÉES';
-    console.log("COCO3 ",btn_inscr, btn_inscr.find('a').attr('rel'));
     if (inscr_status == "INSCRIPTIONS FERMÉES") {
         btn_inscr.hide();
     } else if (inscr_status == 'PRÉ-INSCRIPTION') {

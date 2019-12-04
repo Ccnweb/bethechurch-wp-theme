@@ -120,7 +120,7 @@ function ccnbtc_scripts() {
     // on load style.css ici pour qu'il soit chargé après le CSS de bootstrap
     wp_enqueue_style( 'ccnbtc-parent-style', get_template_directory_uri() . '/style.css', [], '014' );
     // main script of the theme
-    wp_enqueue_script( 'ccnbtc-main-script', get_template_directory_uri() . '/js/main.js', array('jquery'), '011');
+    wp_enqueue_script( 'ccnbtc-main-script', get_template_directory_uri() . '/js/main.js', array('jquery'), '031');
 
 
     // ## 2 ## For Specific Pages

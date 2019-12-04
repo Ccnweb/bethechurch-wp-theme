@@ -434,7 +434,7 @@ function ccnbtc_custom_post_type_inscriptions() {
                 $prefix.'_gare_retour' => '{{'.$prefix.'_key_moyen_transport_retour}} == "avion" || {{'.$prefix.'_key_moyen_transport_retour}} == "train"',
             ),
         ),
-        array(
+        /* array(
             'id' => 'paiement',
             'title' => __('Confirmation'),
             'fields' => array($prefix.'_paiement_modalite', $prefix.'_paiement_moyen', $prefix.'_html_paiement_description', $prefix.'_rgpd_check'),
@@ -442,7 +442,7 @@ function ccnbtc_custom_post_type_inscriptions() {
                 $prefix.'_paiement_moyen' => '{{'.$prefix.'_paiement_modalite}} == "now_all" || {{'.$prefix.'_paiement_modalite}} == "now_partial"',
                 $prefix.'_html_paiement_description' => '{{'.$prefix.'_paiement_moyen}} == "cheque"',
             ),
-        ),
+        ), */
     );
     create_HTML_form_shortcode($cp_name, $prefix.'_inscrire', $html_form_options, $fields, $steps); // shortcode will be $action_name.'-show-form' = "ccnbtc_inscrire-show-form"
 
