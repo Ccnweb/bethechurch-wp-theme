@@ -34,6 +34,8 @@ function ccnbtc_custom_post_type_inscriptions() {
     $prefix = "ccnbtc";
     $cp_name = 'inscription';
 
+    $btc_options = get_option('btc-config');
+
     // =====================================================
     // == 1. == on crée le custom post type 'inscription'
     // =====================================================
@@ -511,9 +513,9 @@ function ccnbtc_custom_post_type_inscriptions() {
                             Dans la joie de vous accueillir cet été&nbsp;!<br>
                             <br><br>
                             Pour l’équipe du Festival des paroisses<br>
-                            Juliette Burguière<br>
-                            <a href="mailto:contact@bethechurch.fr">contact@bethechurch.fr</a><br>
-                            <a href="tel:+33651331307">+33/6 51 33 13 07</a><br><br><br>',
+                            '.$btc_options['contact_nom'].'<br>
+                            <a href="mailto:'.$btc_options['contact_email'].'">'.$btc_options['contact_email'].'</a><br>
+                            <a href="tel:'.preg_replace("/[^0-9\+]/", "", $btc_options['contact_tel']).'">'.$btc_options['contact_tel'].'</a>',
                 ),
             ),
             array(
@@ -531,9 +533,9 @@ function ccnbtc_custom_post_type_inscriptions() {
                             Dans la joie de vous accueillir cet été&nbsp;!<br>
                             <br><br>
                             Pour l’équipe du Festival des paroisses<br>
-                            Juliette Burguière<br>
-                            <a href="mailto:contact@bethechurch.fr">contact@bethechurch.fr</a><br>
-                            <a href="tel:+33651331307">+33/6 51 33 13 07</a><br><br><br>',
+                            '.$btc_options['contact_nom'].'<br>
+                            <a href="mailto:'.$btc_options['contact_email'].'">'.$btc_options['contact_email'].'</a><br>
+                            <a href="tel:'.preg_replace("/[^0-9\+]/", "", $btc_options['contact_tel']).'">'.$btc_options['contact_tel'].'</a>',
                 ),
             )
         ),

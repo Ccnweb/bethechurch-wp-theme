@@ -11,6 +11,15 @@
 * GitHub Theme URI: https://github.com/Ccnweb/bethechurch-wp-theme
 */
 
+/* Special classes : TODO include this in a more standard way */
+p.special_intervenant_intro {
+    width: 60%;
+    margin: auto;
+    font-size: 1.8rem;
+    line-height: 2rem;
+    padding: 5rem 1rem !important;
+}
+
 /* ==================================================== */
 /*                   LES POLICES                        */
 /* ==================================================== */
@@ -520,7 +529,13 @@ h2.title + p {
     font-size: 1.6vw;
 }
 .bg-blanc .slide_text ul {color:black;}
-.slide_text ul li {padding-right: 2rem;}
+.slide_text ul li {
+    padding-right: 2rem;
+    list-style-type: square;
+    font-size: 1rem;
+    font-family: "Louis George Café";
+    letter-spacing: 2px;
+}
 
 .notitle-text-left {
     width: 40vw;

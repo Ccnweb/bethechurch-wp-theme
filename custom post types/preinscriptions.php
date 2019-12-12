@@ -21,6 +21,8 @@ function ccnbtc_custom_post_type_preinscriptions() {
     $prefix = "ccnbtc_preinscr";
     $cp_name = 'preinscription';
 
+    $btc_options = get_option('btc-config');
+
     // == 1. == on crée le custom post type 'inscription'
 	$args = create_custom_post_info(
         $cp_name, 
@@ -107,14 +109,15 @@ function ccnbtc_custom_post_type_preinscriptions() {
                     'title' => 'Festival des Paroisses',
                     'subtitle' => 'Pré-inscription au Festival des Paroisses Be The Church',
                     'body' => 'Bonjour,<br>
-                            Votre pré-inscription est bien validée. Nous vous enverrons un mail dès que les inscriptions seront ouvertes en ligne pour que vous puissiez finaliser votre inscription.<br>
+                            Votre pré-inscription est bien validée. N\'hésitez pas à nous contacter pour toute question.<br>
+                            Pour finaliser votre inscription vous pouvez remplir le formulaire complet sur <a href="https://www.bethechurch.fr">le site</a>.<br>
                             <br>
                             Dans la joie de vous accueillir cet été !<br>
                             <br>
-                            L’équipe du Festival des paroisses<br>
-                            Orlane Bonard<br>
-                            <a href="mailto:contact@bethechurch.fr">contact@bethechurch.fr</a><br>
-                            <a href="tel:+33651331307">+33/6 51 33 13 07</a>'
+                            Pour l’équipe du Festival des paroisses<br>
+                            '.$btc_options['contact_nom'].'<br>
+                            <a href="mailto:'.$btc_options['contact_email'].'">'.$btc_options['contact_email'].'</a><br>
+                            <a href="tel:'.preg_replace("/[^0-9\+]/", "", $btc_options['contact_tel']).'">'.$btc_options['contact_tel'].'</a>'
                 ),
             )
         ),

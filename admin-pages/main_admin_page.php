@@ -45,9 +45,14 @@ function btc_config_widget_render() {
             echo '<option value="'.$v.'" '.($options['etat_inscriptions'] == $v ? 'selected': '').'>'.$v.'</option>';
         }
     echo '</select> (code : {etat_inscriptions})
-
     
     </p>';
+
+    // Contact secrétariat BeTheChurch
+    echo "<h3><b>Contact secréatriat BeTheChurch</b></h3>";
+    echo '<div><label for="contact_nom">Nom </label><input id="contact_nom" type="text" value="'. $options['contact_nom'] .'"> (code: <span class="config_code">{contact_nom}</span>)</div>';
+    echo '<div><label for="contact_email">Email </label><input id="contact_email" type="email" value="'. $options['contact_email'] .'"> (code: <span class="config_code">{contact_email}</span>)</div>';
+    echo '<div><label for="contact_tel">Tel </label><input id="contact_tel" type="text" value="'. $options['contact_tel'] .'"> (code: <span class="config_code">{contact_tel}</span>)</div>';
 
     echo '<button id="submit_btc_config">Mettre à jour</button>';
 
@@ -63,6 +68,9 @@ function btc_config_widget_render() {
                     date_festival_from: $("#date_festival_from").val(),
                     date_festival_to: $("#date_festival_to").val(),
                     etat_inscriptions: $("#etat_inscriptions").val(),
+                    contact_nom: $("#contact_nom").val(),
+                    contact_email: $("#contact_email").val(),
+                    contact_tel: $("#contact_tel").val(),
                 },
             } )
             .done( function( response ) {

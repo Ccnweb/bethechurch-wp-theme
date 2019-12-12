@@ -126,7 +126,7 @@ function ccnbtc_scripts() {
     wp_enqueue_style( 'ccnbtc-fa', 'https://use.fontawesome.com/releases/v5.5.0/css/all.css');
 
     // on load style.css ici pour qu'il soit chargé après le CSS de bootstrap
-    wp_enqueue_style( 'ccnbtc-parent-style', get_template_directory_uri() . '/style.css', [], '001');
+    wp_enqueue_style( 'ccnbtc-parent-style', get_template_directory_uri() . '/style.css', [], '654');
     // main script of the theme
     wp_enqueue_script( 'ccnbtc-main-script', get_template_directory_uri() . '/js/main.js', array('jquery'), '031');
 
@@ -235,6 +235,7 @@ class CcnParser extends WP_Block_Parser {
         foreach ($options as $k => $v) {
             preg_match_all("/\{\s*".$k."\s*(\|[^\}]+)?\}/i", $post_content, $matches);
             for ($i = 0; $i < count($matches[0]); $i++) {
+                // special case for dates
                 if (!empty($matches[1][$i]) && preg_match("/^\d{4}\-\d{2}\-\d{2}$/", $v)) {
                     $date_format = trim($matches[1][$i], " \t\n\r\0\x0B|");
                     $d = strtotime($v);
