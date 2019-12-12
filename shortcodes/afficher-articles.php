@@ -124,6 +124,7 @@ function render_HTML($categorie, $query, $compteur) {
     $titre_style = 'titre-double'; // 'titre-simple' ou 'titre-double' avec hollow title (titre + son "ombre")
     $titre_hidden = false;
     $gouttes = false;
+    $degrade_noir = '';
 
     if ($posttags) {
         foreach($posttags as $tag) {
@@ -151,6 +152,10 @@ function render_HTML($categorie, $query, $compteur) {
             if(preg_match("/^gouttes?$/i", $tag->name, $matches)) {
                 $gouttes = true;
             }
+            // dégradé noir
+            if(preg_match("/^degrade\-noir?$/i", $tag->name, $matches)) {
+                $degrade_noir = ' degrade-noir';
+            }
         }
     }
     
@@ -169,7 +174,7 @@ function render_HTML($categorie, $query, $compteur) {
     $special_texte_no_title = '';//($title == '') ? "align-self-start notitle-text-left": '';
 
     // mb-auto
-    $ifmbauto = ($mise_en_page == 'texte-centre') ? ' mb-auto' : '';
+    $ifmbauto = ($mise_en_page == 'texte-centre' && !$degrade_noir) ? ' mb-auto' : '';
 
     // taille de la colonne du texte du slide
     $text_column_classes = ($mise_en_page !== 'texte-centre') ? 'col-sm-12 col-md-8 d-flex flex-column align-items-start': 'col-md-12';
@@ -194,10 +199,14 @@ function render_HTML($categorie, $query, $compteur) {
 
     // Add everything
     $html = '
-        <section id="post__'.$slug.'" data-title="'.str_replace('§', ' ', $title_orig).'" class="row section layout__'.$mise_en_page.' '.$flex_type.' bg-'.$bg_color.'" data-index="'.$compteur.'" '.$bg_img.'>
+        <section 
+            id="post__'.$slug.'" 
+            data-title="'.str_replace('§', ' ', $title_orig).'" 
+            class="row section layout__'.$mise_en_page.' '.$flex_type.' bg-'.$bg_color.' '.($degrade_noir ? 'p-0' : '').'" 
+            data-index="'.$compteur.'" '.$bg_img.'>
     '.$ifeditlink;
     if (in_array($mise_en_page, array('texte-droite', 'texte-centre'))) $html .= $html_title;
-    $html .= '<div class="slide_text '.$text_column_classes.' '.$special_texte_no_title.$ifmbauto.' mise_en_page__'.$mise_en_page.'">' . do_shortcode($my_content) . '</div>';
+    $html .= '<div class="slide_text '.$text_column_classes.' '.$special_texte_no_title.$ifmbauto.$degrade_noir.' mise_en_page__'.$mise_en_page.'">' . do_shortcode($my_content) . '</div>';
     if ($mise_en_page == 'texte-gauche') $html .= $html_title;
     $html .= '
             </div>'.$images_svg.'

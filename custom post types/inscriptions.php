@@ -34,7 +34,14 @@ function ccnbtc_custom_post_type_inscriptions() {
     $prefix = "ccnbtc";
     $cp_name = 'inscription';
 
-    $btc_options = get_option('btc-config');
+    $btc_options = array_merge(array(
+        'date_festival_from' => '',
+        'date_festival_to' => '',
+        'etat_inscriptions' => '',
+        'contact_nom' => '',
+        'contact_email' => '',
+        'contact_tel' => '',
+    ), get_option('btc-config'));
 
     // =====================================================
     // == 1. == on crée le custom post type 'inscription'

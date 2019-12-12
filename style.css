@@ -82,8 +82,16 @@ h2.point::after {
 }
 
 .double_title > h2 {
-    font-size: calc(3rem + 0.5vw);
-    line-height: calc(2.4rem + 0.5vw);
+    /* font-size: calc(3rem + 0.5vw);
+    line-height: calc(2.4rem + 0.5vw); */
+    font-size: calc(5rem + 0.5vw);
+    line-height: calc(4.4rem + 0.5vw);
+}
+@media screen and (max-width: 576px) {
+    .double_title > h2 {
+        font-size: calc(3rem + 0.5vw);
+        line-height: calc(2.4rem + 0.5vw);
+    }
 }
 
 a {text-decoration: none !important}
@@ -111,7 +119,7 @@ p {
         justify-content: center;
         padding-bottom: 0rem;
         padding-top: 1rem;
-        width: 61vw;
+        /* width: 61vw; */
         margin-left: auto;
         margin-right: auto;
     }
@@ -243,8 +251,8 @@ li.menu-item {
 
 a.nav-link {
     font-family: 'Louis George Café';
+    color: rgb(0, 0, 0) !important;
 }
-
 
 /* modifie le style par défaut pour faire un dropdown on hover */
 ul.navbar-nav > li:hover > ul.dropdown-menu {
@@ -468,6 +476,16 @@ input.invalid {
     margin-left: 50%;
     cursor: pointer;
     text-shadow: white 0px 1px 2px;
+}
+
+section.section .degrade-noir {
+    padding: 5rem 3rem 2rem 3rem !important;
+    background: linear-gradient(0deg,black 10%, transparent 100%);
+    width: 100vw !important;
+    margin-left: 15px;
+}
+section.section .degrade-noir > p {
+    max-width: 27cm;
 }
 
 
