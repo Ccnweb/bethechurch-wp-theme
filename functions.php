@@ -105,6 +105,14 @@ add_action( 'after_setup_theme', 'ccnbtc_setup' );
 /* ========================================================= */
 
 function ccnbtc_scripts() {
+
+    /* $ccn_enqueue = function($name, $path, $dependencies, $displays = 'all') {
+        if (!file_exists($path)) $path = get_template_directory_uri() . '/' . $path;
+        $vers = date("ymd-Gis", filemtime( $path ));
+        if (preg_match("/.+\.js$/", $path)) wp_enqueue_script($name, $path, $dependencies, $vers, $displays);
+        if (preg_match("/.+\.css$/", $path)) wp_enqueue_style($name, $path, $dependencies, $vers, $displays);
+    } */
+
     // ## 1 ## For all pages
     //wp_enqueue_style( 'ccnbtc-style', get_stylesheet_uri() );
     wp_enqueue_script('jquery');
@@ -118,7 +126,7 @@ function ccnbtc_scripts() {
     wp_enqueue_style( 'ccnbtc-fa', 'https://use.fontawesome.com/releases/v5.5.0/css/all.css');
 
     // on load style.css ici pour qu'il soit chargé après le CSS de bootstrap
-    wp_enqueue_style( 'ccnbtc-parent-style', get_template_directory_uri() . '/style.css', [], '014' );
+    wp_enqueue_style( 'ccnbtc-parent-style', get_template_directory_uri() . '/style.css', [], '001');
     // main script of the theme
     wp_enqueue_script( 'ccnbtc-main-script', get_template_directory_uri() . '/js/main.js', array('jquery'), '031');
 

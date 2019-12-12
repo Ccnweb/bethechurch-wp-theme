@@ -111,6 +111,9 @@ p {
 .bg-red p, .bg-rouge p, .bg-vert p, .bg-green p, .bg-bleu-klein p, .bg-blue-klein p {color: white;}
 .bg-red h3, .bg-rouge h3, .bg-vert h3, .bg-green h3, .bg-bleu-klein h3, .bg-blue-klein h3 {color: white;}
 
+.text-shadow-black {text-shadow: black 1px 1px 3px;}
+.translucent-box {color: #333; background: hsla(0, 0%, 100%, 0.33)}
+
 td {
     padding: 0.6rem;
     border: 1px solid black;
@@ -323,6 +326,11 @@ img.custom-logo:hover {
 
 .pum-container .popmake {
     margin-top: 4rem;
+}
+
+#popmake-879 p {
+    display: flex;
+    justify-content: center;
 }
 
 

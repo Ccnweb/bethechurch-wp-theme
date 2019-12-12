@@ -258,7 +258,7 @@ function render_HTML_homepage($categorie, $query, $compteur) {
 
 function render_HTML_title($title_orig, $mise_en_page, $bg_color, $titre_position, $titre_style) {
     /**
-     * Redners the HTML for the titles
+     * Renders the HTML for the titles
      */
 
     
@@ -272,11 +272,6 @@ function render_HTML_title($title_orig, $mise_en_page, $bg_color, $titre_positio
             if (count($arr) < 2) $arr = explode(' ', $title_orig);
             $title1 = implode(' ', array_slice($arr, 0, count($arr)-1)); $title2 = $arr[count($arr)-1];
         } 
-        /* else {
-            $n = round(strlen($title_orig) / 2, 0, PHP_ROUND_HALF_DOWN);
-            $title1 = substr($title_orig, 0, $n);
-            $title2 = substr($title_orig, $n);
-        } */
     }
 
     $title_black = ($bg_color == 'blanc') ? ' has-text-color has-noir-color' : '';
