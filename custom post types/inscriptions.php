@@ -458,6 +458,7 @@ function ccnbtc_custom_post_type_inscriptions() {
     // =====================================================
     // == 5. == on crée le backend REST pour POSTer de nouvelles inscriptions ($action_name = 'ccnbtc_inscrire')
     // =====================================================
+
     $backend_options = array(
         'post_status' => 'private', // 'private' because inscriptions should be private and therefore not available through the rest api without authentication !
         'steps' => $steps,
@@ -515,7 +516,7 @@ function ccnbtc_custom_post_type_inscriptions() {
                     'body' => 'Bonjour,<br>
                             Votre inscription est bien validée selon les informations ci-dessous.<br>
                             Pour toute question, n’hésitez pas à nous contacter.<br>
-                            Pour les membres des fraternités paroissiales et pour les frères et sœurs de la Communauté, merci de bien noter que nous nous retrouvons dès le dimanche 28 juillet (accueil à partir de 16h).<br>
+                            Pour les membres des fraternités paroissiales et pour les frères et sœurs de la Communauté, merci de bien noter que nous nous retrouvons dès le dimanche 26 juillet (accueil à partir de 16h).<br>
                             <br>
                             Dans la joie de vous accueillir cet été&nbsp;!<br>
                             <br><br>
@@ -535,7 +536,7 @@ function ccnbtc_custom_post_type_inscriptions() {
                     'welcome_msg' => 'Bonjour,<br>
                             Votre inscription est bien validée selon les informations ci-dessous.<br>
                             Pour toute question, n’hésitez pas à nous contacter.<br>
-                            Pour les membres des fraternités paroissiales et pour les frères et sœurs de la Communauté, merci de bien noter que nous nous retrouvons dès le dimanche 28 juillet (accueil à partir de 16h).<br>
+                            Pour les membres des fraternités paroissiales et pour les frères et sœurs de la Communauté, merci de bien noter que nous nous retrouvons dès le dimanche 26 juillet (accueil à partir de 16h).<br>
                             <br>
                             Dans la joie de vous accueillir cet été&nbsp;!<br>
                             <br><br>
