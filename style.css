@@ -105,6 +105,12 @@ p {
     text-align: justify;
 }
 
+p.has-medium-font-size {
+    font-size: 2.2rem;
+    line-height: 2rem;
+    max-width: 800px;
+}
+
 @media screen and (min-width: 768px) {
     .layout__texte-centre p {
         font-size: 1.5rem;
@@ -125,7 +131,7 @@ p {
     }
 }
 
-.bg-red p, .bg-rouge p, .bg-vert p, .bg-green p, .bg-bleu-klein p, .bg-blue-klein p {color: white;}
+.bg-red p, .bg-rose p, .bg-rouge p, .bg-vert p, .bg-green p, .bg-bleu-klein p, .bg-blue-klein p {color: white;}
 .bg-red h3, .bg-rouge h3, .bg-vert h3, .bg-green h3, .bg-bleu-klein h3, .bg-blue-klein h3 {color: white;}
 
 .text-shadow-black {text-shadow: black 1px 1px 3px;}
@@ -179,6 +185,10 @@ a.wp-block-button__link.has-bleu-klein-background-color:hover {
     background: hsla(245, 37%, 57%, 1) !important;
 }
 
+.wp-block-button__link.has-background {
+    border: none;
+}
+
 /* Les formulaires */
 
 input {
@@ -191,12 +201,26 @@ input {
 }
 label.input-group-text, select {margin-top: .5rem;}
 
+.wp-block-column.gouttes {
+    margin-top: -4rem;
+}
+.wp-block-column.gouttes:before {
+    display: block;
+    content: url("/wp-content/themes/bethechurch-wp-theme/img/goutte verte.svg");
+    width: 67px;
+    position: relative;
+    top: 25px;
+    left: -47px;
+}
+
 /* ==================================================== */
 /*                 HELPFUL CLASSES                      */
 /* ==================================================== */
 
+.cacher, .hide {display: none !important;}
+
 .bg-green, .bg-vert, .has-vert-background-color {background: var(--green)}
-.bg-red, .bg-rouge, .has-rouge-background-color {background: var(--red)}
+.bg-red, .bg-rouge, .has-rouge-background-color, .bg-rose {background: var(--red)}
 .bg-yellow, .bg-jaune, .has-jaune-background-color {background: var(--yellow)}
 .bg-blue-klein, .bg-bleu-klein, .has-bleu-klein-background-color {background: var(--blue-klein) !important}
 .bg-blue-light, .bg-bleu-clair, .has-bleu-clair-background-color {background: var(--blue-light)}
@@ -204,9 +228,9 @@ label.input-group-text, select {margin-top: .5rem;}
 .has-text-color.has-blanc-color, .has-text-color.has-blanc-color a, .txt-white, .txt-blanc {color:white}
 .has-text-color.has-noir-color, .txt-black, .txt-noir {color:black}
 .has-text-color.has-vert-color, .txt-green, .txt-vert {color:var(--green)}
-.has-text-color.has-rouge-color, .txt-red, .txt-rouge {color:var(--red)}
+.has-text-color.has-rouge-color, .txt-red, .txt-rouge, .rose {color:var(--red)}
 .has-text-color.has-jaune-color, .txt-yellow, .txt-jaune {color:var(--yellow)}
-.has-text-color.has-bleu-klein-color, .txt-blue-klein, .txt-bleu-klein {color:var(--blue-klein)}
+.has-text-color.has-bleu-klein-color, .txt-blue-klein, .txt-bleu-klein, .bleu-klein, .bleu-fonce {color:var(--blue-klein)}
 .has-text-color.has-bleu-clair-color, .txt-blue-light, .txt-bleu-clair {color:var(--blue-ligth)}
 
 .btn-red {
@@ -224,6 +248,8 @@ label.input-group-text, select {margin-top: .5rem;}
 
 .font-cafe {font-family: 'Louis George Café'}
 
+.ombre {box-shadow: #1d1d1d9e 2px 2px 8px 1px;}
+
 .hollow {
     -webkit-text-stroke: 1px white;
     -webkit-text-fill-color: transparent;
@@ -231,6 +257,26 @@ label.input-group-text, select {margin-top: .5rem;}
 .hollow.has-text-color.has-noir-color {
     -webkit-text-stroke: 1px black;
 }
+
+ul.calendar {
+    list-style: none;
+    font-size: 1.3rem;
+}
+ul.calendar li::before {
+    content: "\f133";
+    font-family: "Font Awesome 5 Free";
+    margin-right: 1rem;
+}
+
+.warning_covid {
+    background: var(--red);
+    color: white;
+    padding: 1rem;
+    font-size: 1rem;
+    line-height: 1.2rem;
+}
+
+.alignright {text-align:right;}
 
 /* ==================================================== */
 /*                 MENU NAVIGATION                      */
@@ -478,6 +524,7 @@ input.invalid {
     text-shadow: white 0px 1px 2px;
 }
 
+
 section.section .degrade-noir {
     padding: 5rem 3rem 2rem 3rem !important;
     background: linear-gradient(0deg,black 10%, transparent 100%);
@@ -506,7 +553,7 @@ h2.title {
 
 .title_second_part {
     display: block;
-    font-size: 8.55vw;
+    font-size: 6.35vw; /* 8.55vw; */
     -webkit-text-stroke: 1px white;
     -webkit-text-fill-color: transparent;
 }
@@ -823,4 +870,115 @@ ul.ariane_points > li:hover {
 
 ul.ariane_points > li.active {
     font-size: 0.4cm;
+}
+
+
+
+
+/* ========================================================= */
+/*                  PROGRAMME COVID                          */
+/* ========================================================= */
+
+.COVID {
+    font-size: 1.1rem;
+    position: absolute;
+    top: 5rem;
+    right: -1rem;
+    text-align: left;
+    background: hsla(9, 70%, 50%, 1);
+    padding: 2rem !important;
+    max-width: 300px;
+    color: white;
+    z-index: 1;
+    box-shadow: hsla(0, 100%, 40%, 0.83) 5px 5px 20px;
+}
+
+.COVID.has-blanc-color * {
+    color: white;
+    font-family: Montserrat;
+}
+
+.wp-block-column.programme2 {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 5rem;
+}
+.wp-block-column.programme2 .wp-block-cover {
+    min-height: unset;
+}
+
+.wp-block-columns.programme {
+    width: 100%;
+    justify-content: space-around;
+}
+
+.wp-block-columns.programme > .wp-block-column {
+    margin: 0 1.5rem;
+    box-shadow: hsla(0, 0%, 0%, 0.58) 2px 2px 11px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: Montserrat;
+    max-width: 400px;
+}
+
+.wp-block-columns.programme .wp-block-cover {
+    min-height: unset;
+    height: 300px;
+    flex-direction: column-reverse;
+    justify-content: flex-start;
+}
+
+.wp-block-columns.programme .wp-block-cover__inner-container {
+    width: 100%;
+}
+
+/* .wp-block-columns .wp-block-image {
+    display: flex;
+    justify-content: center;
+} */
+
+#post__programme h2 {
+    font-size: 4rem;
+}
+
+.wp-block-columns.programme h3 {
+    font-size: 1.55rem;
+    margin-bottom: 0;
+    padding-top: 2rem;
+    padding-bottom: 4px;
+    background: linear-gradient(0deg, black, transparent);
+}
+
+.wp-block-columns.programme ul {
+    margin: 1rem 1.2rem 0;
+    flex-direction: row;
+}
+
+.wp-block-columns.programme li {
+    font-size: 1rem;
+    line-height: 1.2rem;
+    margin-top: 0.3rem;
+}
+
+.wp-block-buttons {
+    margin-top: 1rem;
+}
+
+.no-border > a.wp-block-button__link {
+    border: none;
+}
+
+@media screen and (max-width: 1300px) {
+    .wp-block-columns.programme li {
+        font-size: 1.4rem;
+        line-height: 1.3rem;
+        margin-top: 0.3rem;
+    }
+    .wp-block-columns.programme > .wp-block-column {
+        padding: 1rem 1.6rem 1rem;
+        border-radius: 14px;
+        margin: 0 0.5rem;
+        box-shadow: #00000070 2px 2px 11px;
+    }
 }

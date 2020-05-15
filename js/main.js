@@ -47,7 +47,7 @@ jQuery(document).ready(function($) {
 
     // on détecte où sont toutes les sections
     let sections_top = [];
-    jQuery('.section').each(function() {sections_top.push($(this).offset().top)});
+    jQuery('.section, main > .wp-block-group').each(function() {sections_top.push($(this).offset().top)});
 
     // quand on clique sur la flèche, elle va au prochain slide
     $('.fleche_slide_suivant > i').click(function() {
@@ -163,6 +163,7 @@ jQuery(document).ready(function($) {
         $(section_selector).each(function() {
             my_sections.push({
                 id: $(this).attr('id'),
+                obj: $(this),
                 top: $(this).offset().top,
                 height: $(this).height(),
             })
@@ -210,13 +211,25 @@ jQuery(document).ready(function($) {
             }
         })
     }
-    initArianePoints('.section', {
-        tooltips: 'data-title',
-        on_section_change: function(ind) {
-            if ($('body').hasClass('page__infos-pratiques') && (ind == 1 || ind == 4 || ind == 7) ) $('ul.ariane_points').addClass('black');
-            else if ($('.section').eq(ind).hasClass('bg-blanc')) $('ul.ariane_points').addClass('black');
-            else $('ul.ariane_points').removeClass('black');
-        }
-    });
+    
+    if ($('body').hasClass('page__programme2')) {
+        console.log('init ariane 4 programme2')
+        initArianePoints('main > .wp-block-group:visible', {
+            tooltips: function(section, n) {
+                let res = section.obj.find('h3');
+                if (res.length) return res.eq(0).text();
+                else return "";
+            },
+        });
+    } else {
+        initArianePoints('.section', {
+            tooltips: 'data-title',
+            on_section_change: function(ind) {
+                if ($('body').hasClass('page__infos-pratiques') && (ind == 1 || ind == 4 || ind == 7) ) $('ul.ariane_points').addClass('black');
+                else if ($('.section').eq(ind).hasClass('bg-blanc')) $('ul.ariane_points').addClass('black');
+                else $('ul.ariane_points').removeClass('black');
+            }
+        });
+    }
 
 });

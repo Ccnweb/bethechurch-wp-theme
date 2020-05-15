@@ -60,6 +60,86 @@ function ccnbtc_custom_post_type_inscriptions() {
     // == 2.a == on définit les fields
     // =====================================================
     $fields = array(
+        array( // Je choisis ma semaine pour #vacances s1
+            'id' => $prefix.'_key_mysemaine_vacances_s1',
+            'required' => false,
+            'description'  => "Choisir la semaine pour le hashtag #vacances",
+            'label' => __('BTC #VACANCES du 1er au 5 août à Tigery', 'ccnbtc'),
+            'type' => "checkbox",
+            'value_true' => 'true',
+            'wrapper' => ['start' => '','end' => ''],
+        ),
+        array('id' => $prefix.'_key_semaine_v1_chartres', 'copy' => $prefix.'_key_mysemaine_vacances_s1'),
+        array('id' => $prefix.'_key_semaine_v1_reims', 'copy' => $prefix.'_key_mysemaine_vacances_s1'),
+        array('id' => $prefix.'_key_semaine_v1_denys', 'copy' => $prefix.'_key_mysemaine_vacances_s1'),
+        array('id' => $prefix.'_key_semaine_v1_vincennes', 'copy' => $prefix.'_key_mysemaine_vacances_s1'),
+        array( // Je choisis ma semaine pour #vacances s2
+            'id' => $prefix.'_key_mysemaine_vacances_s2',
+            'required' => false,
+            'description'  => "Choisir la semaine pour le hashtag #vacances",
+            'label' => __('BTC #VACANCES du 5 au 9 août à Dombes', 'ccnbtc'),
+            'type' => "checkbox",
+            'value_true' => 'true',
+            'wrapper' => ['start' => '','end' => ''],
+        ),
+        array('id' => $prefix.'_key_semaine_v2_chambery', 'copy' => $prefix.'_key_mysemaine_vacances_s2'),
+        array('id' => $prefix.'_key_semaine_v2_marseille', 'copy' => $prefix.'_key_mysemaine_vacances_s2'),
+        array('id' => $prefix.'_key_semaine_v2_sophia', 'copy' => $prefix.'_key_mysemaine_vacances_s2'),
+        array('id' => $prefix.'_key_semaine_v2_stpaul', 'copy' => $prefix.'_key_mysemaine_vacances_s2'),
+
+        // array( // Je choisis ma semaine pour #vacances s3
+        //     'id' => $prefix.'_key_mysemaine_vacances_s3',
+        //     'required' => false,
+        //     'description'  => "Choisir la semaine pour le hashtag #vacances",
+        //     'label' => __('du 5 au 9 août aux Dombes', 'ccnbtc'),
+        //     'type' => "checkbox",
+        //     'value_true' => 'true',
+        // ),
+        array( // Je choisis ma semaine pour #reinventonsnous s1
+            'id' => $prefix.'_key_mysemaine_reinventonsnous_s1',
+            'required' => false,
+            'label' => __('BTC #RÉINVENTONS-NOUS du 27 au 31 juillet aux Dombes', 'ccnbtc'),
+            'description'  => "Choisir la semaine pour le hashtag #reinventonsnous",
+            'type' => "checkbox",
+            'value_true' => 'true',
+            'wrapper' => ['start' => '','end' => ''],
+        ),
+        array('id' => $prefix.'_key_semaine_r1_bordeaux', 'copy' => $prefix.'_key_mysemaine_reinventonsnous_s1'),
+        array('id' => $prefix.'_key_semaine_r1_charpennes', 'copy' => $prefix.'_key_mysemaine_reinventonsnous_s1'),
+        array('id' => $prefix.'_key_semaine_r1_levallois', 'copy' => $prefix.'_key_mysemaine_reinventonsnous_s1'),
+        array('id' => $prefix.'_key_semaine_r1_reims', 'copy' => $prefix.'_key_mysemaine_reinventonsnous_s1'),
+        array('id' => $prefix.'_key_semaine_r1_sophia', 'copy' => $prefix.'_key_mysemaine_reinventonsnous_s1'),
+        array('id' => $prefix.'_key_semaine_r1_vincennes', 'copy' => $prefix.'_key_mysemaine_reinventonsnous_s1'),
+        array('id' => $prefix.'_key_semaine_r1_stpaul', 'copy' => $prefix.'_key_mysemaine_reinventonsnous_s1'),
+
+        array( // Je choisis ma semaine pour #reinventonsnous s2
+            'id' => $prefix.'_key_mysemaine_reinventonsnous_s2',
+            'required' => false,
+            'label' => __('BTC #RÉINVENTONS-NOUS du 1er au 5 août aux Dombes', 'ccnbtc'),
+            'description'  => "Choisir la semaine pour le hashtag #reinventonsnous",
+            'type' => "checkbox",
+            'value_true' => 'true',
+            'wrapper' => ['start' => '','end' => ''],
+        ),
+        array('id' => $prefix.'_key_semaine_r2_bordeaux', 'copy' => $prefix.'_key_mysemaine_reinventonsnous_s2'),
+        array('id' => $prefix.'_key_semaine_r2_charp', 'copy' => $prefix.'_key_mysemaine_reinventonsnous_s2'),
+        array('id' => $prefix.'_key_semaine_r2_marseille', 'copy' => $prefix.'_key_mysemaine_reinventonsnous_s2'),
+        array('id' => $prefix.'_key_semaine_r2_reims', 'copy' => $prefix.'_key_mysemaine_reinventonsnous_s2'),
+        array('id' => $prefix.'_key_semaine_r2_sophia', 'copy' => $prefix.'_key_mysemaine_reinventonsnous_s2'),
+        array( // Je choisis ma semaine pour #reinventonsnous s3
+            'id' => $prefix.'_key_mysemaine_reinventonsnous_s3',
+            'required' => false,
+            'label' => __('BTC #RÉINVENTONS-NOUS du 5 au 9 août à Tigery', 'ccnbtc'),
+            'description'  => "Choisir la semaine pour le hashtag #reinventonsnous",
+            'type' => "checkbox",
+            'value_true' => 'true',
+            'wrapper' => ['start' => '','end' => ''],
+        ),
+        array('id' => $prefix.'_key_semaine_r3_angers', 'copy' => $prefix.'_key_mysemaine_reinventonsnous_s3'),
+        array('id' => $prefix.'_key_semaine_r3_chartres', 'copy' => $prefix.'_key_mysemaine_reinventonsnous_s3'),
+        array('id' => $prefix.'_key_semaine_r3_levallois', 'copy' => $prefix.'_key_mysemaine_reinventonsnous_s3'),
+        array('id' => $prefix.'_key_semaine_r3_vincennes', 'copy' => $prefix.'_key_mysemaine_reinventonsnous_s3'),
+
         array( // Je suis (paroissien, communautaire, ...)
             'id' => $prefix.'_key_jesuis',
             'description'  => "D'où vient la personne (paroisse, communautaire, ...)",
@@ -72,14 +152,35 @@ function ccnbtc_custom_post_type_inscriptions() {
             ),
             //'options_preciser' => ['autre*', 'paroisse*'], // * veut dire que c'est requis
             'wrapper' => [
-                'start' => '<p class="form-label">'.__('Je suis', 'ccnbtc').'</p>',
+                'start' => '<p class="warning_covid">Cette programmation sera confirmée en fonction des mesures du gouvernement pour l\'été. Une prochaine mise à jour aura lieu fin mai.<br>Les inscriptions restent ouvertes sous réserve de ces mesures.</p><p class="form-label">'.__('Je suis', 'ccnbtc').'</p>',
                 'end' => ''
             ],
         ),
         array(
-            'id' => $prefix.'key_ma_paroisse',
+            'id' => $prefix.'key_ma_paroisse_old',
             'html_label' => __('Ma paroisse', 'ccnbtc'),
             'type' => 'text',
+        ),
+        array(
+            'id' => $prefix.'key_ma_paroisse',
+            'html_label' => __('Ma paroisse', 'ccnbtc'),
+            'type' => 'dropdown',
+            'options' => [
+                'angers' => 'Angers',
+                'bordeaux' => 'Bordeaux',
+                'chambery' => 'Chambéry',
+                'charpennes' => 'Charpennes',
+                'chartres-luce' => 'Chartres Lucé',
+                'levallois' => 'Levallois',
+                'marseille-mazargues' => 'Marseille Mazargues',
+                'reims' => 'Reims',
+                // 'saujon' => 'Saujon',
+                'sophia-antipolis' => 'Sophia Antipolis',
+                'st-denys-la-chapelle' => 'St Denys la Chapelle',
+                'vincennes-st-mande' => 'Vincennes - St Mandé',
+                'st-paul-4-vents' => 'St Paul des 4 vents',
+                // 'vincennes' => 'Vincennes',
+            ],
         ),
         array( // Je viens comme (couple, famille, ...)
             'id' => $prefix.'_key_persontype',
@@ -322,8 +423,42 @@ function ccnbtc_custom_post_type_inscriptions() {
     // =====================================================
     $metabox_options = array(
         array(
+            'title' => __('Choix de la semaine festival'),
+            'fields' => array(
+                $prefix.'_key_mysemaine_vacances_s1', 
+                $prefix.'_key_semaine_v1_chartres',
+                $prefix.'_key_semaine_v1_reims',
+                $prefix.'_key_semaine_v1_denys',
+                $prefix.'_key_semaine_v1_vincennes',
+                $prefix.'_key_mysemaine_vacances_s2',  
+                $prefix.'_key_semaine_v2_chambery',
+                $prefix.'_key_semaine_v2_marseille',
+                $prefix.'_key_semaine_v2_sophia',
+                $prefix.'_key_semaine_v2_stpaul',
+                $prefix.'_key_mysemaine_reinventonsnous_s1',
+                $prefix.'_key_semaine_r1_bordeaux',
+                $prefix.'_key_semaine_r1_charpennes', 
+                $prefix.'_key_semaine_r1_levallois',
+                $prefix.'_key_semaine_r1_reims',
+                $prefix.'_key_semaine_r1_sophia',
+                $prefix.'_key_semaine_r1_vincennes',
+                $prefix.'_key_semaine_r1_stpaul',
+                $prefix.'_key_mysemaine_reinventonsnous_s2', 
+                $prefix.'_key_semaine_r2_bordeaux',
+                $prefix.'_key_semaine_r2_charp',
+                $prefix.'_key_semaine_r2_marseille',
+                $prefix.'_key_semaine_r2_reims',
+                $prefix.'_key_semaine_r2_sophia',
+                $prefix.'_key_mysemaine_reinventonsnous_s3',
+                $prefix.'_key_semaine_r3_angers',
+                $prefix.'_key_semaine_r3_chartres',
+                $prefix.'_key_semaine_r3_levallois',
+                $prefix.'_key_semaine_r3_vincennes',
+            ),
+        ),
+        array(
             'title' => __('Informations préliminaires'),
-            'fields' => array($prefix.'_reference', $prefix.'_key_jesuis', $prefix.'_key_persontype'),
+            'fields' => array($prefix.'_reference', $prefix.'_key_jesuis', $prefix.'_key_persontype', $prefix.'key_ma_paroisse'),
         ),
         array(
             // condition permet de dire quand afficher cette metabox
@@ -391,12 +526,138 @@ function ccnbtc_custom_post_type_inscriptions() {
     $steps = array(
         array(
             'id' => 'je-suis',
-            'title' => __('Présentation'),
+            'title' => __('Présentation'), 
             'fields' => array(
                 $prefix.'_key_jesuis', 
                 $prefix.'key_ma_paroisse',
                 $prefix.'_key_persontype'
             ),
+        ),
+        array(
+            'id' => 'choix-festival',
+            'title' => __('Choix du festival'),
+            'switch' => [
+                [
+                    'id' => 'paroisse-angers',
+                    'title' => __('Choix de la semaine pour Angers', 'ccnbbtc'),
+                    'condition' => '{{'.$prefix.'key_ma_paroisse}} == "angers"',
+                    'fields' => [
+                        $prefix.'_key_semaine_r3_angers',
+                    ],
+                ],
+                [
+                    'id' => 'paroisse-bordeaux',
+                    'title' => __('Choix de la semaine pour Bordeaux', 'ccnbbtc'),
+                    'condition' => '{{'.$prefix.'key_ma_paroisse}} == "bordeaux"',
+                    'fields' => [
+                        $prefix.'_key_semaine_r1_bordeaux',
+                        $prefix.'_key_semaine_r2_bordeaux',
+                    ],
+                ],
+                [
+                    'id' => 'paroisse-chambery',
+                    'title' => __('Choix de la semaine pour Chambéry', 'ccnbbtc'),
+                    'condition' => '{{'.$prefix.'key_ma_paroisse}} == "chambery"',
+                    'fields' => [
+                        $prefix.'_key_semaine_v2_chambery',
+                    ],
+                ],
+                [
+                    'id' => 'paroisse-charpennes',
+                    'title' => __('Choix de la semaine pour Charpennes', 'ccnbbtc'),
+                    'condition' => '{{'.$prefix.'key_ma_paroisse}} == "charpennes"',
+                    'fields' => [
+                        $prefix.'_key_semaine_r1_charpennes',
+                        $prefix.'_key_semaine_r2_charp',
+                    ],
+                ],
+                [
+                    'id' => 'paroisse-chartres-luce',
+                    'title' => __('Choix de la semaine pour Chartres Lucé', 'ccnbbtc'),
+                    'condition' => '{{'.$prefix.'key_ma_paroisse}} == "chartres-luce"',
+                    'fields' => [
+                        $prefix.'_key_semaine_v1_chartres',
+                        $prefix.'_key_semaine_r3_chartres',
+                    ],
+                ],
+                [
+                    'id' => 'paroisse-levallois',
+                    'title' => __('Choix de la semaine pour Levallois', 'ccnbbtc'),
+                    'condition' => '{{'.$prefix.'key_ma_paroisse}} == "levallois"',
+                    'fields' => [
+                        $prefix.'_key_semaine_r1_levallois',
+                        $prefix.'_key_semaine_r3_levallois',
+                    ],
+                ],
+                [
+                    'id' => 'paroisse-marseille-mazargues',
+                    'title' => __('Choix de la semaine pour Marseille Mazargues', 'ccnbbtc'),
+                    'condition' => '{{'.$prefix.'key_ma_paroisse}} == "marseille-mazargues"',
+                    'fields' => [
+                        $prefix.'_key_semaine_r2_marseille',
+                        $prefix.'_key_semaine_v2_marseille',
+                    ],
+                ],
+                [
+                    'id' => 'paroisse-reims',
+                    'title' => __('Choix de la semaine pour Reims', 'ccnbbtc'),
+                    'condition' => '{{'.$prefix.'key_ma_paroisse}} == "reims"',
+                    'fields' => [
+                        $prefix.'_key_semaine_r1_reims',
+                        $prefix.'_key_semaine_r2_reims',
+                        $prefix.'_key_semaine_v1_reims',
+                    ],
+                ],
+                [
+                    'id' => 'paroisse-sophia-antipolis',
+                    'title' => __('Choix de la semaine pour Sophia Antipolis', 'ccnbbtc'),
+                    'condition' => '{{'.$prefix.'key_ma_paroisse}} == "sophia-antipolis"',
+                    'fields' => [
+                        $prefix.'_key_semaine_r1_sophia',
+                        $prefix.'_key_semaine_r2_sophia',
+                        $prefix.'_key_semaine_v2_sophia',
+                    ],
+                ],
+                [
+                    'id' => 'paroisse-st-denys-la-chapelle',
+                    'title' => __('Choix de la semaine pour St Deny la Chapelle', 'ccnbbtc'),
+                    'condition' => '{{'.$prefix.'key_ma_paroisse}} == "st-denys-la-chapelle"',
+                    'fields' => [
+                        $prefix.'_key_semaine_v1_denys',
+                    ],
+                ],
+                [
+                    'id' => 'paroisse-vincennes-st-mande',
+                    'title' => __('Choix de la semaine pour Vincennes St Mandé', 'ccnbbtc'),
+                    'condition' => '{{'.$prefix.'key_ma_paroisse}} == "vincennes-st-mande"',
+                    'fields' => [
+                        $prefix.'_key_semaine_r1_vincennes',
+                        $prefix.'_key_semaine_r3_vincennes',
+                        $prefix.'_key_semaine_v1_vincennes',
+                    ],
+                ],
+                [
+                    'id' => 'paroisse-st-paul-4-vents',
+                    'title' => __('Choix de la semaine pour St Paul des 4 vents', 'ccnbbtc'),
+                    'condition' => '{{'.$prefix.'key_ma_paroisse}} == "st-paul-4-vents"',
+                    'fields' => [
+                        $prefix.'_key_semaine_r1_stpaul',
+                        $prefix.'_key_semaine_v2_stpaul',
+                    ],
+                ],
+                // [
+                //     'id' => 'paroisse-autres',
+                //     'title' => __('Choix de la semaine', 'ccnbbtc'),
+                //     'condition' => '{{'.$prefix.'key_ma_paroisse}} != "charpennes"',
+                //     'fields' => [
+                //         $prefix.'_key_mysemaine_vacances_s1',
+                //         $prefix.'_key_mysemaine_vacances_s2',
+                //         $prefix.'_key_mysemaine_vacances_s3',
+                //         $prefix.'_key_mysemaine_reinventonsnous_s1', 
+                //         $prefix.'_key_mysemaine_reinventonsnous_s2'
+                //     ],
+                // ],
+            ],
         ),
         array(
             'id' => 'infos-personnelles',
@@ -514,9 +775,8 @@ function ccnbtc_custom_post_type_inscriptions() {
                     'title' => '',
                     'subtitle' => '',
                     'body' => 'Bonjour,<br>
-                            Votre inscription est bien validée selon les informations ci-dessous.<br>
+                            Votre inscription est bien validée selon les informations ci-dessous. Elle est bien sûre prise en compte sous réserve de prochaines mesures sanitaires.<br>
                             Pour toute question, n’hésitez pas à nous contacter.<br>
-                            Pour les membres des fraternités paroissiales et pour les frères et sœurs de la Communauté, merci de bien noter que nous nous retrouvons dès le dimanche 26 juillet (accueil à partir de 14h30), la première rencontre aura lieu à 16h.<br>
                             <br>
                             Dans la joie de vous accueillir cet été&nbsp;!<br>
                             <br><br>
@@ -534,9 +794,8 @@ function ccnbtc_custom_post_type_inscriptions() {
                     'title' => 'Festival des Paroisses',
                     'subtitle' => 'Inscription au Festival des Paroisses Be The Church',
                     'welcome_msg' => 'Bonjour,<br>
-                            Votre inscription est bien validée selon les informations ci-dessous.<br>
+                            Votre inscription est bien validée selon les informations ci-dessous. Elle est bien sûre prise en compte sous réserve de prochaines mesures sanitaires.<br>
                             Pour toute question, n’hésitez pas à nous contacter.<br>
-                            Pour les membres des fraternités paroissiales et pour les frères et sœurs de la Communauté, merci de bien noter que nous nous retrouvons dès le dimanche 26 juillet (accueil à partir de 14h30), la première rencontre aura lieu à 16h.<br>
                             <br>
                             Dans la joie de vous accueillir cet été&nbsp;!<br>
                             <br><br>
@@ -545,7 +804,7 @@ function ccnbtc_custom_post_type_inscriptions() {
                             <a href="mailto:'.$btc_options['contact_email'].'">'.$btc_options['contact_email'].'</a><br>
                             <a href="tel:'.preg_replace("/[^0-9\+]/", "", $btc_options['contact_tel']).'">'.$btc_options['contact_tel'].'</a>',
                 ),
-            )
+            ),
         ),
     );
     create_POST_backend($cp_name, $prefix, 'inscrire', $accepted_users = 'all', $fields, $backend_options); // the final action_name of the backend will be $prefix.'inscrire'

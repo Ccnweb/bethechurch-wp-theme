@@ -347,22 +347,21 @@
                                                                                     <table border="0" cellpadding="0" cellspacing="0" width="500" class="flexibleContainer">
                                                                                         <tbody>
                                                                                     <tr><td style="background: #9bc1f5;color: black;font-size: 16px;">
-																						<div style="padding: 27px;text-align: center;color: white;">
-																							Festival BeThechurch du lundi 27 juillet à 15h au samedi 1er août à 14h<br>
-																							
-                                                                                            {{IF $ccnbtc_paiement_moyen == "cheque"}}
+																						<!-- <div style="padding: 27px;text-align: center;color: white;">
+																																														
+                                                                                            {{IF $ccnbtc_paiement_moyen == "cheque "}}
                                                                                                 Pour rappel voici les informations pour l'ordre et l'adresse d'envoi du chèque :
                                                                                             {{/IF}}
-                                                                                            {{IF $ccnbtc_paiement_moyen == "cb" && $ccnbtc_paiement_modalite != "on_site"}}
+                                                                                            {{IF $ccnbtc_paiement_moyen == "cb " && $ccnbtc_paiement_modalite != "on_site "}}
                                                                                                 Nous vous enverrons un nouvel email lorsque le paiement en ligne par carte bancaire sera disponible.
-                                                                                            {{/IF}}</div>
-                                                                                    <div style="margin-left: 101px;margin-bottom: 27px;color: #454374;">
-                                                                                        {{IF $ccnbtc_paiement_moyen == "cheque"}}
+                                                                                            {{/IF}}</div> -->
+                                                                                    <!-- <div style="margin-left: 101px;margin-bottom: 27px;color: #454374;">
+                                                                                        {{IF $ccnbtc_paiement_moyen == "cheque "}}
                                                                                             À l'ordre de la <b>Communauté du Chemin Neuf</b><br><br>
                                                                                             <b>Secrétariat Festival Be The Church</b><br>
                                                                                             Abbaye d'Hautecombe<br>3700 route de l'Abbaye<br>73310 ST PIERRE DE CURTILLE
                                                                                         {{/IF}}
-                                                                                    </div>
+                                                                                    </div> -->
                                                                                     </td></tr>
                                                                                     </tbody></table>
                                                                                 </td>
@@ -372,6 +371,25 @@
                                                                                         &nbsp;</div>
 																				</td>
 																			</tr><tr>
+																				<td valign="top" class="textContent" colspan="2">
+                                                                                    <div mc:edit="body" style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;padding: 4px;margin-bottom:0;color:#FFFFFF;line-height:135%;background:#EA5E6B;">
+                                                                                        Choix du festival</div>
+																				</td>
+																			</tr><tr>
+																				<td valign="top" class="textContent" style="width: 35%;padding: 4px;">
+                                                                                    <div mc:edit="body" style="text-align: right;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;font-weight: bold;line-height:135%;">
+                                                                                        Semaine(s)</div>
+																				</td>
+                                                                                <td valign="top" class="textContent" style="padding: 4px;">
+                                                                                    <div mc:edit="body" style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;">
+																						{{IF $ccnbtc_key_mysemaine_vacances_s1 == "true" || $ccnbtc_key_semaine_v1_chartres == "true" || $ccnbtc_key_semaine_v1_reims == "true" || $ccnbtc_key_semaine_v1_denys == "true" || $ccnbtc_key_semaine_v1_vincennes == "true"}}#VACANCES du 1er au 5 août à Tigery {{/IF}}
+																						{{IF $ccnbtc_key_mysemaine_vacances_s2 == "true" || $ccnbtc_key_semaine_v2_chambery == "true" || $ccnbtc_key_semaine_v2_marseille == "true" || $ccnbtc_key_semaine_v2_sophia == "true" || $ccnbtc_key_semaine_v2_stpaul == "true"}}#VACANCES du 5 au 9 août aux Dombes {{/IF}}
+																						{{IF $ccnbtc_key_mysemaine_reinventonsnous_s1 == "true" || $ccnbtc_key_semaine_r1_bordeaux == "true" || $ccnbtc_key_semaine_r1_charpennes == "true" || $ccnbtc_key_semaine_r1_levallois == "true" || $ccnbtc_key_semaine_r1_reims == "true" || $ccnbtc_key_semaine_r1_sophia == "true" || $ccnbt_key_semaine_r1_vincennes == "true" || $ccnbtc_key_semaine_r1_stpaul == "true"}}#REINVENTONS-NOUS du 27 au 31 juillet aux Dombes {{/IF}}
+																						{{IF $ccnbtc_key_mysemaine_reinventonsnous_s2 == "true" || $ccnbtc_key_semaine_r2_bordeaux == "true" || $ccnbtc_key_semaine_r2_charp == "true" || $ccnbtc_key_semaine_r2_marseille == "true" || $ccnbtc_key_semaine_r2_reims == "true" || $ccnbtc_key_semaine_r2_sophia == "true"}}#REINVENTONS-NOUS du 1er au 5 août aux Dombes {{/IF}}
+																						{{IF $ccnbtc_key_mysemaine_reinventonsnous_s3 == "true" || $ccnbtc_key_semaine_r3_angers == "true" || $ccnbtc_key_semaine_r3_chartres == "true" || $ccnbtc_key_semaine_r3_levallois == "true" || $ccnbtc_key_semaine_r3_vincennes == "true"}}#REINVENTONS-NOUS du 5 au 9 août à Tigery {{/IF}}
+																					</div>
+                                                                                </td>																			
+                                                                            </tr><tr>
 																				<td valign="top" class="textContent" colspan="2">
                                                                                     <div mc:edit="body" style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;padding: 4px;margin-bottom:0;color:#FFFFFF;line-height:135%;background:#EA5E6B;">
                                                                                         Présentation</div>

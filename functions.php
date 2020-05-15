@@ -6,6 +6,47 @@ require_once(CCN_LIBRARY_PLUGIN_DIR . '/log.php'); use \ccn\lib\log as log;
 
 //define('BTC_CONFIG', yaml_parse(file_get_contents(__DIR__."/BTC_CONFIG.yml"))); 
 
+/**
+ * =============================================
+ * SUMMARY
+ * =============================================
+ * 
+ * theme prefix = 'ccnbtc'
+ * 
+ * 1. THEME SETUP
+ *    - custom-logo
+ *    - menus setup
+ *    - editor color palette
+ * 
+ * 2. LOAD STYLES AND SCRIPTS
+ *    - All the frontent js and css files (including external libraries)
+ *    - code to add the page slug to the body class
+ * 
+ * 3. TRANSLATION
+ *    - a first approach to translate the inscription form (not very good TODO improve that)
+ * 
+ * 4. ADD CUSTOM FIELDS TO POSTS
+ *    - for articles : field "order" that defines the display order of articles in the page
+ * 
+ * 5. CUSTOM TEXT PARSER
+ *    - a parser that parses any text of the editor to replace text between "{}" with a site option
+ *      this is used for ex for the start and end dates of the festival
+ * 
+ * 6. LOAD CUSTOM POST TYPES
+ *    - defined in the "custom post types" folder
+ * 
+ * 7. LOAD SHORTCODES
+ *    - defined in the "shortcodes" folder
+ * 
+ * 8. LOAD ADMIN PAGES
+ *    - defined in the "admin-pages" folder
+ * 
+ * 9. LOAD CONTACT FORM SHORTCODE
+ *    - the contact form shortcode (a priori sent to web@chemin-neuf.org and contact@bethechurch.fr)
+ * 
+ * 
+ */
+
 /* ========================================================= */
 /*                       THEME SETUP                         */
 /* ========================================================= */
@@ -34,7 +75,7 @@ function ccnbtc_setup() {
 
     // Set up the WordPress core custom background feature.
     add_theme_support( 'custom-background', apply_filters( 'wtp2019_custom_background_args', array(
-        'default-color' => 'ffffff',
+        'default-color' => '#ffffff',
         'default-image' => '',
     ) ) );
 
@@ -101,6 +142,26 @@ add_action( 'after_setup_theme', 'ccnbtc_setup' );
 
 
 /* ========================================================= */
+/*                 DEFINE WIDGET AREAS                       */
+/* ========================================================= */
+
+function ccnbtc_widgets_init() {
+    register_sidebar( array(
+        'name'          => __( 'Important info (COVID)', 'ccnbtc' ),
+        'id'            => 'sidebar-important-info',
+        'description'   => __( 'Place to show important info (created originally for COVID info)', 'ccnbtc' ),
+        'before_widget' => '<section id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</section>',
+        'before_title'  => '<h3 class="important-info-title">',
+        'after_title'   => '</h3>',
+    ) );
+}
+add_action( 'widgets_init', 'ccnbtc_widgets_init' );
+
+
+
+
+/* ========================================================= */
 /*                 LOAD STYLES AND SCRIPTS                   */
 /* ========================================================= */
 
@@ -126,14 +187,15 @@ function ccnbtc_scripts() {
     wp_enqueue_style( 'ccnbtc-fa', 'https://use.fontawesome.com/releases/v5.5.0/css/all.css');
 
     // we load style.css here because it should be loaded after bootstrap css
-    $ccn_enqueue( 'ccnbtc-parent-style', '/style.css', []);
+    //$ccn_enqueue( 'ccnbtc-parent-style', '/style.css', [], filemtime(get_template_directory() . '/style.css'), 'all');
+    wp_enqueue_style( 'ccnbtc-parent-style', get_template_directory_uri() . '/style.css', [], filemtime(get_template_directory() . '/style.css'), 'all');
     // main script of the theme
-    wp_enqueue_script( 'ccnbtc-main-script', get_template_directory_uri() . '/js/main.js', array('jquery'), '031');
+    wp_enqueue_script( 'ccnbtc-main-script', get_template_directory_uri() . '/js/main.js', array('jquery'), filemtime(get_template_directory() . '/js/main.js'));
 
 
     // ## 2 ## For Specific Pages
     // Home Page Festival
-    wp_register_style( 'ccnbtc-festival-style', get_template_directory_uri() . '/pages/festival/page.css', array(), '20190110', 'all');
+    wp_register_style( 'ccnbtc-festival-style', get_template_directory_uri() . '/pages/festival/page.css', array(), filemtime(get_template_directory() . '/pages/festival/page.css'), 'all');
 
     // ## 3 ## For connected users
     // Translation tools
@@ -143,6 +205,10 @@ function ccnbtc_scripts() {
         'root_url' => get_site_url(),
         'nonce' => wp_create_nonce('wp_rest') //secret value created every time you log in and can be used for authentication to alter content 
     ));
+
+    // ## 4 ## For the program COVID page
+    wp_register_style('ccnbtc-programme-covid', get_template_directory_uri() . '/pages/programme-covid/programme-covid.css', array(), filemtime(get_template_directory() . '/pages/programme-covid/programme-covid.css'), 'all');
+    wp_register_script('ccnbtc-programme-covid-script', get_template_directory_uri() . '/pages/programme-covid/programme-covid.js', array(), filemtime(get_template_directory() . '/pages/programme-covid/programme-covid.js'));
 
 }
 add_action( 'wp_enqueue_scripts', 'ccnbtc_scripts' );
@@ -271,6 +337,10 @@ require_once_all_regex(get_template_directory() . '/shortcodes/', "");
 
 require_once_all_regex(get_template_directory() . '/admin-pages/', "");
 
+
+/* ========================================================= */
+/*               LOAD CONTACT FORM SHORTCODE                 */
+/* ========================================================= */
 
 // load contact form shortcode
 ccnlib_register_contact_form(array(

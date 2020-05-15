@@ -21,4 +21,5 @@ get_header();
     <!-- Flèche vers le bas pour changer de slide -->
     <div class="fleche_slide_suivant"><i class="fas fa-chevron-down"></i></div>
 
+<?php get_sidebar(); ?>
 <?php get_footer(); ?>
