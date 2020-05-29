@@ -69,6 +69,7 @@ function ccnbtc_custom_post_type_inscriptions() {
             'value_true' => 'true',
             'wrapper' => ['start' => '','end' => ''],
         ),
+        array('id' => $prefix.'_key_semaine_v1_co', 'copy' => $prefix.'_key_mysemaine_vacances_s1'),
         array('id' => $prefix.'_key_semaine_v1_chartres', 'copy' => $prefix.'_key_mysemaine_vacances_s1'),
         array('id' => $prefix.'_key_semaine_v1_reims', 'copy' => $prefix.'_key_mysemaine_vacances_s1'),
         array('id' => $prefix.'_key_semaine_v1_denys', 'copy' => $prefix.'_key_mysemaine_vacances_s1'),
@@ -538,9 +539,19 @@ function ccnbtc_custom_post_type_inscriptions() {
             'title' => __('Choix du festival'),
             'switch' => [
                 [
+                    'id' => 'choix-pour-communaute-communion',
+                    'title' => __('Choix de la semaine', 'ccnbbtc'),
+                    'condition' => '{{'.$prefix.'_key_jesuis}} == "communautaire"',
+                    'fields' => [
+                        $prefix.'_key_mysemaine_reinventonsnous_s1',
+                        $prefix.'_key_mysemaine_reinventonsnous_s2',
+                        $prefix.'_key_mysemaine_vacances_s2',
+                    ],
+                ],
+                [
                     'id' => 'paroisse-angers',
                     'title' => __('Choix de la semaine pour Angers', 'ccnbbtc'),
-                    'condition' => '{{'.$prefix.'key_ma_paroisse}} == "angers"',
+                    'condition' => '{{'.$prefix.'_key_jesuis}} != "communautaire" && {{'.$prefix.'key_ma_paroisse}} == "angers"',
                     'fields' => [
                         $prefix.'_key_semaine_r3_angers',
                     ],
@@ -548,7 +559,7 @@ function ccnbtc_custom_post_type_inscriptions() {
                 [
                     'id' => 'paroisse-bordeaux',
                     'title' => __('Choix de la semaine pour Bordeaux', 'ccnbbtc'),
-                    'condition' => '{{'.$prefix.'key_ma_paroisse}} == "bordeaux"',
+                    'condition' => '{{'.$prefix.'_key_jesuis}} != "communautaire" && {{'.$prefix.'key_ma_paroisse}} == "bordeaux"',
                     'fields' => [
                         $prefix.'_key_semaine_r1_bordeaux',
                         $prefix.'_key_semaine_r2_bordeaux',
@@ -557,7 +568,7 @@ function ccnbtc_custom_post_type_inscriptions() {
                 [
                     'id' => 'paroisse-chambery',
                     'title' => __('Choix de la semaine pour Chambéry', 'ccnbbtc'),
-                    'condition' => '{{'.$prefix.'key_ma_paroisse}} == "chambery"',
+                    'condition' => '{{'.$prefix.'_key_jesuis}} != "communautaire" && {{'.$prefix.'key_ma_paroisse}} == "chambery"',
                     'fields' => [
                         $prefix.'_key_semaine_v2_chambery',
                     ],
@@ -565,7 +576,7 @@ function ccnbtc_custom_post_type_inscriptions() {
                 [
                     'id' => 'paroisse-charpennes',
                     'title' => __('Choix de la semaine pour Charpennes', 'ccnbbtc'),
-                    'condition' => '{{'.$prefix.'key_ma_paroisse}} == "charpennes"',
+                    'condition' => '{{'.$prefix.'_key_jesuis}} != "communautaire" && {{'.$prefix.'key_ma_paroisse}} == "charpennes"',
                     'fields' => [
                         $prefix.'_key_semaine_r1_charpennes',
                         $prefix.'_key_semaine_r2_charp',
@@ -574,7 +585,7 @@ function ccnbtc_custom_post_type_inscriptions() {
                 [
                     'id' => 'paroisse-chartres-luce',
                     'title' => __('Choix de la semaine pour Chartres Lucé', 'ccnbbtc'),
-                    'condition' => '{{'.$prefix.'key_ma_paroisse}} == "chartres-luce"',
+                    'condition' => '{{'.$prefix.'_key_jesuis}} != "communautaire" && {{'.$prefix.'key_ma_paroisse}} == "chartres-luce"',
                     'fields' => [
                         $prefix.'_key_semaine_v1_chartres',
                         $prefix.'_key_semaine_r3_chartres',
@@ -583,7 +594,7 @@ function ccnbtc_custom_post_type_inscriptions() {
                 [
                     'id' => 'paroisse-levallois',
                     'title' => __('Choix de la semaine pour Levallois', 'ccnbbtc'),
-                    'condition' => '{{'.$prefix.'key_ma_paroisse}} == "levallois"',
+                    'condition' => '{{'.$prefix.'_key_jesuis}} != "communautaire" && {{'.$prefix.'key_ma_paroisse}} == "levallois"',
                     'fields' => [
                         $prefix.'_key_semaine_r1_levallois',
                         $prefix.'_key_semaine_r3_levallois',
@@ -592,7 +603,7 @@ function ccnbtc_custom_post_type_inscriptions() {
                 [
                     'id' => 'paroisse-marseille-mazargues',
                     'title' => __('Choix de la semaine pour Marseille Mazargues', 'ccnbbtc'),
-                    'condition' => '{{'.$prefix.'key_ma_paroisse}} == "marseille-mazargues"',
+                    'condition' => '{{'.$prefix.'_key_jesuis}} != "communautaire" && {{'.$prefix.'key_ma_paroisse}} == "marseille-mazargues"',
                     'fields' => [
                         $prefix.'_key_semaine_r2_marseille',
                         $prefix.'_key_semaine_v2_marseille',
@@ -601,7 +612,7 @@ function ccnbtc_custom_post_type_inscriptions() {
                 [
                     'id' => 'paroisse-reims',
                     'title' => __('Choix de la semaine pour Reims', 'ccnbbtc'),
-                    'condition' => '{{'.$prefix.'key_ma_paroisse}} == "reims"',
+                    'condition' => '{{'.$prefix.'_key_jesuis}} != "communautaire" && {{'.$prefix.'key_ma_paroisse}} == "reims"',
                     'fields' => [
                         $prefix.'_key_semaine_r1_reims',
                         $prefix.'_key_semaine_r2_reims',
@@ -611,7 +622,7 @@ function ccnbtc_custom_post_type_inscriptions() {
                 [
                     'id' => 'paroisse-sophia-antipolis',
                     'title' => __('Choix de la semaine pour Sophia Antipolis', 'ccnbbtc'),
-                    'condition' => '{{'.$prefix.'key_ma_paroisse}} == "sophia-antipolis"',
+                    'condition' => '{{'.$prefix.'_key_jesuis}} != "communautaire" && {{'.$prefix.'key_ma_paroisse}} == "sophia-antipolis"',
                     'fields' => [
                         $prefix.'_key_semaine_r1_sophia',
                         $prefix.'_key_semaine_r2_sophia',
@@ -621,7 +632,7 @@ function ccnbtc_custom_post_type_inscriptions() {
                 [
                     'id' => 'paroisse-st-denys-la-chapelle',
                     'title' => __('Choix de la semaine pour St Deny la Chapelle', 'ccnbbtc'),
-                    'condition' => '{{'.$prefix.'key_ma_paroisse}} == "st-denys-la-chapelle"',
+                    'condition' => '{{'.$prefix.'_key_jesuis}} != "communautaire" && {{'.$prefix.'key_ma_paroisse}} == "st-denys-la-chapelle"',
                     'fields' => [
                         $prefix.'_key_semaine_v1_denys',
                     ],
@@ -629,7 +640,7 @@ function ccnbtc_custom_post_type_inscriptions() {
                 [
                     'id' => 'paroisse-vincennes-st-mande',
                     'title' => __('Choix de la semaine pour Vincennes St Mandé', 'ccnbbtc'),
-                    'condition' => '{{'.$prefix.'key_ma_paroisse}} == "vincennes-st-mande"',
+                    'condition' => '{{'.$prefix.'_key_jesuis}} != "communautaire" && {{'.$prefix.'key_ma_paroisse}} == "vincennes-st-mande"',
                     'fields' => [
                         $prefix.'_key_semaine_r1_vincennes',
                         $prefix.'_key_semaine_r3_vincennes',
@@ -639,7 +650,7 @@ function ccnbtc_custom_post_type_inscriptions() {
                 [
                     'id' => 'paroisse-st-paul-4-vents',
                     'title' => __('Choix de la semaine pour St Paul des 4 vents', 'ccnbbtc'),
-                    'condition' => '{{'.$prefix.'key_ma_paroisse}} == "st-paul-4-vents"',
+                    'condition' => '{{'.$prefix.'_key_jesuis}} != "communautaire" && {{'.$prefix.'key_ma_paroisse}} == "st-paul-4-vents"',
                     'fields' => [
                         $prefix.'_key_semaine_r1_stpaul',
                         $prefix.'_key_semaine_v2_stpaul',
