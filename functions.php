@@ -360,8 +360,8 @@ ccnlib_register_contact_form(array(
                 'model_args' => array( // les arguments qui permettent de populer le model/template HTML du message
                     'title' => __('Que le Seigneur te donne sa paix', 'ccnbtc').' !',
                     'subtitle' => sprintf(__('Nouvelle demande de contact de %s', 'ccnbtc'), '{{ccnlib_key_firstname}} {{ccnlib_key_name}}'),
-                    'body' => 'Coucou ! Une nouvelle demande de contact vient d\'arriver du site Be The Church, merci d\'y répondre avec amour :<br>
-                                Voici les détails de la demande :<br>
+                    'body' => 'Coucou ! Une nouvelle demande de contact vient d\'arriver du site Be The Church, 
+                                voici les détails de la demande :<br>
                                 <b>Prénom: </b>{{ccnlib_key_firstname}}<br>
                                 <b>Nom: </b>{{ccnlib_key_name}}<br>
                                 <b>Email: </b>{{ccnlib_key_email}}<br>

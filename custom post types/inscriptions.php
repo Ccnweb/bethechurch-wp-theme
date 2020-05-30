@@ -64,7 +64,7 @@ function ccnbtc_custom_post_type_inscriptions() {
             'id' => $prefix.'_key_mysemaine_vacances_s1',
             'required' => false,
             'description'  => "Choisir la semaine pour le hashtag #vacances",
-            'label' => __('BTC #VACANCES du 1er au 5 août à Tigery', 'ccnbtc'),
+            'label' => __('BTC du 3 au 7 août aux Dombes', 'ccnbtc'),
             'type' => "checkbox",
             'value_true' => 'true',
             'wrapper' => ['start' => '','end' => ''],
@@ -78,7 +78,7 @@ function ccnbtc_custom_post_type_inscriptions() {
             'id' => $prefix.'_key_mysemaine_vacances_s2',
             'required' => false,
             'description'  => "Choisir la semaine pour le hashtag #vacances",
-            'label' => __('BTC #VACANCES du 5 au 9 août à Dombes', 'ccnbtc'),
+            'label' => __('BTC du 3 au 7 août aux Dombes', 'ccnbtc'),
             'type' => "checkbox",
             'value_true' => 'true',
             'wrapper' => ['start' => '','end' => ''],
@@ -99,7 +99,7 @@ function ccnbtc_custom_post_type_inscriptions() {
         array( // Je choisis ma semaine pour #reinventonsnous s1
             'id' => $prefix.'_key_mysemaine_reinventonsnous_s1',
             'required' => false,
-            'label' => __('BTC #RÉINVENTONS-NOUS du 27 au 31 juillet aux Dombes', 'ccnbtc'),
+            'label' => __('BTC du 27 au 31 juillet aux Dombes', 'ccnbtc'),
             'description'  => "Choisir la semaine pour le hashtag #reinventonsnous",
             'type' => "checkbox",
             'value_true' => 'true',
@@ -116,7 +116,7 @@ function ccnbtc_custom_post_type_inscriptions() {
         array( // Je choisis ma semaine pour #reinventonsnous s2
             'id' => $prefix.'_key_mysemaine_reinventonsnous_s2',
             'required' => false,
-            'label' => __('BTC #RÉINVENTONS-NOUS du 1er au 5 août aux Dombes', 'ccnbtc'),
+            'label' => __('BTC du 3 au 7 août aux Dombes', 'ccnbtc'),
             'description'  => "Choisir la semaine pour le hashtag #reinventonsnous",
             'type' => "checkbox",
             'value_true' => 'true',
@@ -130,7 +130,7 @@ function ccnbtc_custom_post_type_inscriptions() {
         array( // Je choisis ma semaine pour #reinventonsnous s3
             'id' => $prefix.'_key_mysemaine_reinventonsnous_s3',
             'required' => false,
-            'label' => __('BTC #RÉINVENTONS-NOUS du 5 au 9 août à Tigery', 'ccnbtc'),
+            'label' => __('BTC du 3 au 7 août aux Dombes', 'ccnbtc'),
             'description'  => "Choisir la semaine pour le hashtag #reinventonsnous",
             'type' => "checkbox",
             'value_true' => 'true',
@@ -153,7 +153,8 @@ function ccnbtc_custom_post_type_inscriptions() {
             ),
             //'options_preciser' => ['autre*', 'paroisse*'], // * veut dire que c'est requis
             'wrapper' => [
-                'start' => '<p class="warning_covid">Cette programmation sera confirmée en fonction des mesures du gouvernement pour l\'été. Une prochaine mise à jour aura lieu fin mai.<br>Les inscriptions restent ouvertes sous réserve de ces mesures.</p><p class="form-label">'.__('Je suis', 'ccnbtc').'</p>',
+                // <p class="warning_covid">Cette programmation sera confirmée en fonction des mesures du gouvernement pour l\'été. Une prochaine mise à jour aura lieu fin mai.<br>Les inscriptions restent ouvertes sous réserve de ces mesures.</p>
+                'start' => '<p class="form-label">'.__('Je suis', 'ccnbtc').'</p>',
                 'end' => ''
             ],
         ),
@@ -616,7 +617,6 @@ function ccnbtc_custom_post_type_inscriptions() {
                     'fields' => [
                         $prefix.'_key_semaine_r1_reims',
                         $prefix.'_key_semaine_r2_reims',
-                        $prefix.'_key_semaine_v1_reims',
                     ],
                 ],
                 [
@@ -624,7 +624,6 @@ function ccnbtc_custom_post_type_inscriptions() {
                     'title' => __('Choix de la semaine pour Sophia Antipolis', 'ccnbbtc'),
                     'condition' => '{{'.$prefix.'_key_jesuis}} != "communautaire" && {{'.$prefix.'key_ma_paroisse}} == "sophia-antipolis"',
                     'fields' => [
-                        $prefix.'_key_semaine_r1_sophia',
                         $prefix.'_key_semaine_r2_sophia',
                         $prefix.'_key_semaine_v2_sophia',
                     ],
