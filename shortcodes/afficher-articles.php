@@ -125,6 +125,7 @@ function render_HTML($categorie, $query, $compteur) {
     $titre_hidden = false;
     $gouttes = false;
     $degrade_noir = '';
+    $custom_classes = '';
 
     if ($posttags) {
         foreach($posttags as $tag) {
@@ -156,6 +157,7 @@ function render_HTML($categorie, $query, $compteur) {
             if(preg_match("/^degrade\-noir?$/i", $tag->name, $matches)) {
                 $degrade_noir = ' degrade-noir';
             }
+            $custom_classes .= $tag->name . ' ';
         }
     }
     
@@ -202,7 +204,7 @@ function render_HTML($categorie, $query, $compteur) {
         <section 
             id="post__'.$slug.'" 
             data-title="'.str_replace('§', ' ', $title_orig).'" 
-            class="row section layout__'.$mise_en_page.' '.$flex_type.' bg-'.$bg_color.' '.($degrade_noir ? 'p-0' : '').'" 
+            class="row section layout__'.$mise_en_page.' '.$flex_type.' bg-'.$bg_color.' '.($degrade_noir ? 'p-0' : '').' '.$custom_classes.'" 
             data-index="'.$compteur.'" '.$bg_img.'>
     '.$ifeditlink;
     if (in_array($mise_en_page, array('texte-droite', 'texte-centre'))) $html .= $html_title;
@@ -228,6 +230,7 @@ function render_HTML_homepage($categorie, $query, $compteur) {
     // on parse le titre
     $title = get_the_title();
     $title_arr = explode(" ", $title);
+    preg_match("/\[([^\]]+)\]/", $title, $title_matches);
     $slug = basename( get_permalink() );
 
     // Background image
@@ -252,14 +255,28 @@ function render_HTML_homepage($categorie, $query, $compteur) {
     $images_svg .= '<img class="goutte goutte_rouge_petite" src="'.get_template_directory_uri().'/img/goutte rouge petite.svg"/>';
     $images_svg .= '<img class="goutte goutte_bleu_fonce" src="'.get_template_directory_uri().'/img/goutte bleu fonce.svg"/>';    
 
-    $html .= '<h2 class="text-center title mb-auto">
+    $html_title = '<h2 class="text-center title mb-auto">
                 <span class="title_first_part">' . implode(' ', array_slice($title_arr, 0, count($title_arr)-1)) . '</span>
-                <span class="title_second_part">' . $title_arr[count($title_arr)-1] . '</h2>';
+                <span class="title_second_part">' . $title_arr[count($title_arr)-1] . '</span></h2>';
+
+    // if we have text between "[]" in the title, we add a Typed.js effect
+    if ($title_matches && count($title_matches) > 1) {
+        $n = strpos($title, $title_matches[0]);
+        $words = array_map(function($x) {return trim($x);}, explode(',', $title_matches[1]));
+        $words = '<p>'.implode('</p><p>', $words) . '</p>';
+        $typed_id = random_int(100000, 99999999);
+        $html_title = '<h2 class="text-center title mb-auto">
+            <span class="title_first_part">' . substr($title, 0, $n) . '</span>
+            <span class="title_second_part typed" id="typed-'.$typed_id.'" data-typed="typed-words-'. $typed_id .'"></span>
+            <span class="title_third_part">'. substr($title, $n + strlen($title_matches[0])) .'</h2>';
+        $html_title .= '<div style="display:none" id="typed-words-'.$typed_id.'">'.$words.'</div>';
+    }
+    $html .= $html_title;
     $html .= '' . do_shortcode($my_content) . '';
     $html .= '
             </div>'.$images_svg.'
         </section>';
-
+    
     return $html;
 }
 

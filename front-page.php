@@ -3,6 +3,7 @@ setlocale(LC_ALL, 'fr');
 // wp_enqueue_style('ccnbtc-festival-style');
 
 get_header();
+wp_enqueue_script('ccnbtc-typedjs');
 ?>
 
     <!-- Page Content -->

@@ -552,7 +552,7 @@ h2.title {
 }
 
 .title_second_part {
-    display: block;
+    /* display: block; */
     font-size: 6.35vw; /* 8.55vw; */
     -webkit-text-stroke: 1px white;
     -webkit-text-fill-color: transparent;
@@ -981,4 +981,130 @@ ul.ariane_points > li.active {
         margin: 0 0.5rem;
         box-shadow: #00000070 2px 2px 11px;
     }
+}
+
+
+/* ==================================================== */
+/*      GALLERIES
+/* ==================================================== */
+
+section.galerie {padding: 0; margin: 0}
+
+section.galerie.marge-0 > * {margin: 0 !important; padding: 0 !important}
+section.galerie.marge-0 .wp-block-columns {margin: 0; padding: 0}
+section.galerie.marge-0 .wp-block-column {margin: 0; padding: 0}
+
+section.galerie .wp-block-columns {
+    width: 100%;
+    margin-bottom: 1vw;
+}
+
+@media (min-width: 782px) {
+    .wp-block-column:not(:first-child) {
+        margin-left: 1vw;
+    }
+}
+
+section.galerie .wp-block-columns > .wp-block-column {
+    cursor: pointer;
+    overflow: hidden;
+}
+
+section.galerie .wp-block-cover {
+    transition: all 0.2s ease-out;
+}
+
+section.galerie .wp-block-column:hover > .wp-block-cover.zoom {
+    transform: scale(1.16);
+    transition: all 0.2s ease-in;
+}
+
+section.galerie .wp-block-column:hover .wp-block-cover__inner-container {
+    background: rgba(0, 0, 0, 0.5);
+    transition: all 0.2s ease-in;
+}
+section.galerie .wp-block-column:hover .wp-block-cover.red > .wp-block-cover__inner-container,
+section.galerie .wp-block-column:hover .wp-block-cover.rouge > .wp-block-cover__inner-container,
+section.galerie .wp-block-column:hover .wp-block-cover.rose > .wp-block-cover__inner-container {
+    background-color: var(--red);
+}
+section.galerie .wp-block-column:hover .wp-block-cover.green > .wp-block-cover__inner-container,
+section.galerie .wp-block-column:hover .wp-block-cover.vert > .wp-block-cover__inner-container {
+    background-color: var(--green);
+}
+section.galerie .wp-block-column:hover .wp-block-cover.blue > .wp-block-cover__inner-container,
+section.galerie .wp-block-column:hover .wp-block-cover.blue-light > .wp-block-cover__inner-container,
+section.galerie .wp-block-column:hover .wp-block-cover.bleu > .wp-block-cover__inner-container,
+section.galerie .wp-block-column:hover .wp-block-cover.bleuclair > .wp-block-cover__inner-container,
+section.galerie .wp-block-column:hover .wp-block-cover.bleu-clair > .wp-block-cover__inner-container,
+section.galerie .wp-block-column:hover .wp-block-cover.bleu_clair > .wp-block-cover__inner-container {
+    background-color: var(--blue-light);
+}
+section.galerie .wp-block-column:hover .wp-block-cover.blue-klein > .wp-block-cover__inner-container,
+section.galerie .wp-block-column:hover .wp-block-cover.bleuklein > .wp-block-cover__inner-container,
+section.galerie .wp-block-column:hover .wp-block-cover.bleu-foncé > .wp-block-cover__inner-container,
+section.galerie .wp-block-column:hover .wp-block-cover.bleu-klein > .wp-block-cover__inner-container,
+section.galerie .wp-block-column:hover .wp-block-cover.bleu_klein > .wp-block-cover__inner-container,
+section.galerie .wp-block-column:hover .wp-block-cover.bleu_foncé > .wp-block-cover__inner-container {
+    background-color: var(--blue-klein);
+}
+section.galerie .wp-block-column:hover .wp-block-cover.yellow > .wp-block-cover__inner-container,
+section.galerie .wp-block-column:hover .wp-block-cover.jaune > .wp-block-cover__inner-container {
+    background-color: var(--yellow);
+}
+
+section.galerie .wp-block-cover__inner-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: all 0.2s ease-out;
+}
+
+section.galerie .wp-block-cover__inner-container > h3 {
+    font-size: 2.7rem;
+    font-family: fantasy;
+}
+
+/* this class is added when a user clicks on a galerie image to create the page transition effect */
+.goto {
+    transition: all 0.8s ease-in;
+    transform: scale(6);
+    border-radius: 600px;
+    position: relative;
+    z-index: 99999999;
+}
+
+/* animation galerie description text on hover */
+section.galerie .wp-block-column .wp-block-cover__inner-container.cacher-titre > *,
+section.galerie .wp-block-column .wp-block-cover__inner-container.hide-title > *,
+section.galerie .wp-block-column .wp-block-cover__inner-container > *:not(:first-child) {
+    opacity: 0;
+    transform: translateY(220px);
+    transition: all 0.7s cubic-bezier(0.06, 0.65, 0.66, 0.98);
+}
+section.galerie .wp-block-column .wp-block-cover__inner-container > * {max-width: 77%;}
+section.galerie .wp-block-column .wp-block-cover__inner-container > p:not(:first-child) {
+    font-family: cursive;
+    letter-spacing: 0;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+section.galerie .wp-block-column:hover .wp-block-cover__inner-container.cacher-titre > *,
+section.galerie .wp-block-column:hover .wp-block-cover__inner-container.hide-title > *,
+section.galerie .wp-block-column:hover .wp-block-cover__inner-container > *:not(:first-child) {
+    opacity: 1;
+    transform: translateY(0px);
+    transition: all 0.8s cubic-bezier(0.06, 0.65, 0.66, 0.98) 0.15s;
+}
+section.galerie .wp-block-column .wp-block-cover__inner-container > *:first-child {
+    position: absolute;
+    transition: all 0.7s cubic-bezier(0.06, 0.65, 0.66, 0.98);
+}
+section.galerie .wp-block-column:hover .wp-block-cover__inner-container > *:first-child {
+    transform: translateY(-120px);
+    transition: all 0.8s cubic-bezier(0.06, 0.65, 0.66, 0.98) 0.15s;
 }

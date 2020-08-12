@@ -1,6 +1,22 @@
 jQuery(document).ready(function($) {
 
     // ========================================
+    // HREF IMAGE BLOCKS
+    // ========================================
+
+    // here we allow users to click on wp-block-cover to be able to go to the a href
+    jQuery('section.galerie .wp-block-cover a').each(function() {
+        let url = jQuery(this).attr('href');
+        console.log('galerie url : ', url, jQuery(this).closest('.wp-block-cover'))
+        jQuery(this).closest('.wp-block-cover').click(function() {
+            window.location.href = url;
+            jQuery(this).closest('.wp-block-column').addClass('goto');
+            jQuery(this).find('.wp-block-cover__inner-container').html('');
+            jQuery(this).find('.wp-block-cover__inner-container').addClass('goto');
+        })
+    })
+
+    // ========================================
     // ANIMER LES GOUTTES
     // ========================================
 

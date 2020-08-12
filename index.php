@@ -1,6 +1,7 @@
 <?php 
 setlocale(LC_ALL, 'fr');
 get_header();
+wp_enqueue_script('ccnbtc-typedjs');
 ?>
 
     <!-- Page Content -->

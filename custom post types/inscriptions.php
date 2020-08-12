@@ -546,7 +546,6 @@ function ccnbtc_custom_post_type_inscriptions() {
                     'fields' => [
                         $prefix.'_key_mysemaine_reinventonsnous_s1',
                         $prefix.'_key_mysemaine_reinventonsnous_s2',
-                        $prefix.'_key_mysemaine_vacances_s2',
                     ],
                 ],
                 [
@@ -589,7 +588,7 @@ function ccnbtc_custom_post_type_inscriptions() {
                     'condition' => '{{'.$prefix.'_key_jesuis}} != "communautaire" && {{'.$prefix.'key_ma_paroisse}} == "chartres-luce"',
                     'fields' => [
                         $prefix.'_key_semaine_v1_chartres',
-                        $prefix.'_key_semaine_r3_chartres',
+                        /* $prefix.'_key_semaine_r3_chartres', */
                     ],
                 ],
                 [
@@ -607,7 +606,7 @@ function ccnbtc_custom_post_type_inscriptions() {
                     'condition' => '{{'.$prefix.'_key_jesuis}} != "communautaire" && {{'.$prefix.'key_ma_paroisse}} == "marseille-mazargues"',
                     'fields' => [
                         $prefix.'_key_semaine_r2_marseille',
-                        $prefix.'_key_semaine_v2_marseille',
+                        /* $prefix.'_key_semaine_v2_marseille', */
                     ],
                 ],
                 [
@@ -625,7 +624,7 @@ function ccnbtc_custom_post_type_inscriptions() {
                     'condition' => '{{'.$prefix.'_key_jesuis}} != "communautaire" && {{'.$prefix.'key_ma_paroisse}} == "sophia-antipolis"',
                     'fields' => [
                         $prefix.'_key_semaine_r2_sophia',
-                        $prefix.'_key_semaine_v2_sophia',
+                        /* $prefix.'_key_semaine_v2_sophia', */
                     ],
                 ],
                 [
@@ -643,7 +642,6 @@ function ccnbtc_custom_post_type_inscriptions() {
                     'fields' => [
                         $prefix.'_key_semaine_r1_vincennes',
                         $prefix.'_key_semaine_r3_vincennes',
-                        $prefix.'_key_semaine_v1_vincennes',
                     ],
                 ],
                 [

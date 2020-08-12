@@ -196,6 +196,8 @@ function ccnbtc_scripts() {
     // ## 2 ## For Specific Pages
     // Home Page Festival
     wp_register_style( 'ccnbtc-festival-style', get_template_directory_uri() . '/pages/festival/page.css', array(), filemtime(get_template_directory() . '/pages/festival/page.css'), 'all');
+    wp_register_script( 'typedjs', 'https://cdn.jsdelivr.net/npm/typed.js@2.0.11', [], true);
+    wp_register_script( 'ccnbtc-typedjs', get_template_directory_uri() . '/js/ccn-typed.js', ['jquery', 'typedjs'], filemtime(get_template_directory() . '/js/ccn-typed.js'), true);
 
     // ## 3 ## For connected users
     // Translation tools
@@ -205,10 +207,24 @@ function ccnbtc_scripts() {
         'root_url' => get_site_url(),
         'nonce' => wp_create_nonce('wp_rest') //secret value created every time you log in and can be used for authentication to alter content 
     ));
-
+    
     // ## 4 ## For the program COVID page
-    wp_register_style('ccnbtc-programme-covid', get_template_directory_uri() . '/pages/programme-covid/programme-covid.css', array(), filemtime(get_template_directory() . '/pages/programme-covid/programme-covid.css'), 'all');
-    wp_register_script('ccnbtc-programme-covid-script', get_template_directory_uri() . '/pages/programme-covid/programme-covid.js', array(), filemtime(get_template_directory() . '/pages/programme-covid/programme-covid.js'));
+    // wp_register_style('ccnbtc-programme-covid', get_template_directory_uri() . '/pages/programme-covid/programme-covid.css', array(), filemtime(get_template_directory() . '/pages/programme-covid/programme-covid.css'), 'all');
+    // wp_register_script('ccnbtc-programme-covid-script', get_template_directory_uri() . '/pages/programme-covid/programme-covid.js', array(), filemtime(get_template_directory() . '/pages/programme-covid/programme-covid.js'));
+
+    // Magic templates
+    $root_dir = get_template_directory();
+    foreach (scandir($root_dir) as $filename) {
+        // $fullpath = $root_dir . '/' . $filename;
+        if (preg_match("/\-template\.php$/", $filename) == 1) {
+            preg_match("/^(.+)\-template\.php$/", $filename, $matches);
+            $page_name = $matches[1];
+            $fcss = get_template_directory() . '/pages/'.$page_name.'/'.$page_name.'.css';
+            $fjs = get_template_directory() . '/pages/'.$page_name.'/'.$page_name.'.js';
+            if (file_exists($fcss)) wp_register_style('ccnbtc-'.$page_name, get_template_directory_uri() . '/pages/'.$page_name.'/'.$page_name.'.css', array(), filemtime($fcss), 'all');
+            if (file_exists($fjs)) wp_register_script('ccnbtc-'.$page_name.'-script', get_template_directory_uri() . '/pages/'.$page_name.'/'.$page_name.'.js', array(), filemtime($fjs));
+        }
+    }
 
 }
 add_action( 'wp_enqueue_scripts', 'ccnbtc_scripts' );
