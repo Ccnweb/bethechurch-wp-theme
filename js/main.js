@@ -89,6 +89,40 @@ jQuery(document).ready(function($) {
     });
 
     // ========================================
+    // INITIALISE CONTRÔLE DU DEFILEMENT DES LISTES DE CARRES
+    // ========================================
+
+    jQuery('.scroll-arrow.arrow-prev').each(function() {
+        let step = jQuery(this).next().find('div.carre').eq(0).width() + 10;
+        jQuery(this).click(function() {
+            let container = jQuery(this).next();
+            container.animate( { scrollLeft: container.scrollLeft() - step}, 300);
+        })
+    })
+    jQuery('.scroll-arrow.arrow-next').each(function() {
+        let step = jQuery(this).prev().find('div.carre').eq(0).width() + 10;
+        jQuery(this).click(function() {
+            let container = jQuery(this).prev();
+            container.animate( { scrollLeft: container.scrollLeft() + step}, 300);
+        })
+    })
+
+    // ========================================
+    // Appearance animations on scroll
+    // ========================================
+
+    jQuery('.translate-appear').each(function(i) {
+        if (jQuery(this).position().top > jQuery(window).height()) jQuery(this).addClass((i % 2 == 0) ? 'translate-hide-left' : 'translate-hide-right' )
+    })
+    let windowHeight = jQuery(window).height();
+    jQuery(window).on('scroll', function() {
+        let scrollPos = jQuery(window).scrollTop();
+        jQuery('.translate-hide-left, .translate-hide-right').each(function() {
+            if (jQuery(this).position().top <= windowHeight + scrollPos) jQuery(this).removeClass('translate-hide-left').removeClass('translate-hide-right')
+        })
+    })
+
+    // ========================================
     // Corrections HTML à la volée
     // ========================================
 
@@ -114,7 +148,7 @@ jQuery(document).ready(function($) {
             if (regex_res && regex_res.length > 2) {
                 let hours = regex_res[1].substr(0, regex_res[1].length-2);
                 let minutes = regex_res[1].substr(regex_res[1].length-2);
-                let horaire = `<span class="has-text-color has-rouge-color">${hours}<sup>${minutes}</sup></span>`;
+                let horaire = `<span class="has-text-color has-jaune-color">${hours}<sup>${minutes}</sup></span>`;
                 $(this).html(horaire + ' ' + regex_res[2]);
             }
         }

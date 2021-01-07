@@ -1,0 +1,109 @@
+body {
+    background: url(/wp-content/themes/bethechurch-wp-theme/img/doodles_transparent.png);
+    background-size: 250px;
+    background-color: hsl(30 24% 97% / 1);
+}
+
+section {
+    background: var(--yellow);
+}
+
+section.section {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 33vh;
+    padding: 0;
+    width: auto;
+    max-width: 1000px;
+    margin: auto;
+    margin-bottom: 2rem;
+    box-shadow: #949494ba 8px 13px 11px -3px;
+}
+
+.intervenant_content::before {
+    content: '\201C';
+    font-size: 8rem;
+    position: absolute;
+    top: 3rem;
+    left: 3.2rem;
+    font-family: Georgia;
+    color: #ffffff66;
+}
+
+.intervenant_content h2 {
+    margin: 1rem;
+    margin-right: auto;
+    margin-left: 4rem;
+    text-align: left !important;
+    font-size: 3vw;
+    line-height: 3vw;
+    font-family: "Louis George Café";
+}
+
+.intervenant_content > p {
+    font-size: calc(12px + 0.5vw);
+    margin: 0.3rem 4rem;
+    color: white;
+}
+
+.intervenant_content p.workshop {
+    font-size: 0.9rem;
+    text-align: right;
+    line-height: 1rem;
+    margin-top: 1rem;
+    color: var(--green);
+    font-weight: bold;
+}
+
+.img_intervenant_mobile {
+    height: 50vw;
+}
+
+.img_intervenant {
+    height: 16rem;
+    max-width: 16rem;
+    border-radius: 16rem;
+}
+
+/* Special classes : TODO include this in a more standard way */
+p.special_intervenant_intro {
+    width: 60%;
+    font-size: 1.8rem;
+    line-height: 2rem;
+    color: white;
+    background: hsl(46deg 100% 49%);
+    box-shadow: #808080bf 0 6px 12px 0px;
+    margin: 7rem auto 3rem auto;
+    padding: 2rem 3rem !important;
+    backdrop-filter: blur(2px);
+}
+
+@media screen and (max-width: 768px) {
+    .intervenant_content h2 {
+        margin: 1rem;
+        margin-right: auto;
+        margin-left: auto;
+        text-align: center !important;
+        font-size: 2rem;
+        line-height: 2.1rem;
+        font-family: "Louis George Café";
+    }
+    .intervenant_content > p {
+        margin: 0.3rem 1rem;
+    }
+    .img_intervenant_mobile {
+        height: 50vw;
+        border-radius: 239px;
+        min-width: 48vw;
+    }
+    p.special_intervenant_intro {
+        width: auto;
+        margin: 5rem auto 2rem auto;
+        font-size: 1.2rem;
+        line-height: 1.7rem;
+        padding: 2rem 2rem !important;
+        letter-spacing: 0px;
+    }
+}

@@ -1,0 +1,169 @@
+/* ==================================================== */
+/*                    FORMULAIRES                       */
+/* ==================================================== */
+
+/* Les formulaires */
+.pum-container.popmake {
+    top: 20px !important;
+}
+
+.pum-content.popmake-content {
+    padding: 2rem;
+}
+
+.pum-content.popmake-content > p:first-child {
+    display: none;
+}
+
+.pum-content.popmake-content .frm_forms .frm_form_field,
+.pum-content.popmake-content .frm_forms .frm_primary_label, 
+.pum-content.popmake-content .frm_forms .frm_radio > label,
+.pum-content.popmake-content .frm_forms .frm_checkbox > label {
+    color: white;
+}
+
+.pum-content.popmake-content .frm_forms h3 {
+    color: var(--yellow);
+}
+
+.frm_add_form_row.frm_button {
+    background-color: #51d26f;
+    border-color: hsl(134 57% 37% / 1);
+}
+
+.frm_remove_form_row.frm_button {
+    background-color: #f55656;
+    border-color: hsl(0 78% 54% / 1);
+    color: white;
+}
+
+.frm_remove_form_row.frm_button i.frm_icon_font,
+.frm_remove_form_row.frm_button i.frm_icon_font::before {
+    color: white !important;
+}
+
+.frm_description {
+    color: #bbb !important;
+}
+
+input {
+    margin-top: .5rem;
+    padding: 4px;
+    outline: none;
+    border: 1px solid #d6d6d6;
+    background: whitesmoke;
+    border-radius: 0;
+}
+label.input-group-text, select {margin-top: .5rem;}
+
+.frm_input_group.frm_with_box.frm_with_post > input[type=number] {
+    margin-top: 0;
+}
+
+.frm_input_group.frm_with_box.frm_with_post > .frm_inline_box {
+    background: var(--yellow);
+    border-color: hsl(245 37% 82% / 1);
+}
+
+/* popups */
+.pum-content .row {
+    min-height: 70vh;
+}
+
+.pum-container .popmake {
+    margin-top: 4rem;
+}
+
+#popmake-879 p {
+    display: flex;
+    justify-content: center;
+}
+
+
+
+.form-group, .form-row {
+    margin: 1rem 0;
+}
+
+/* titre d'un step */
+h2.fs-title {
+    line-height: 1.2rem;
+}
+
+/* radio buttons */
+.form-radio-container {
+    color: #545454;
+    text-align: left;
+    margin-bottom: 1rem;
+}
+
+/* checkboxes */
+.form-check-label {
+    color: #545454;
+    text-align: left;
+}
+
+/* date picker */
+.datepickers-container {
+    z-index: 1000000;
+}
+
+/* labels/titres de fields */
+p.form-label {
+    color: #333;
+    margin-top: 1rem;
+    margin-bottom: 3px;
+    font-weight: bold;
+}
+
+/* texte descriptif */
+p.form-description, p.form-description p {
+    letter-spacing: 0px;
+    margin-bottom: 0.2rem;
+}
+
+/* + button to add new dynamic elements */
+.add_repeat_element {
+    background: var(--green);
+    border: none;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50px;
+    color: white;
+    box-shadow: #28a745 0px 1px 3px;
+    cursor: pointer;
+}
+
+.ccnlib_delete_repeat_element {
+    background: white;
+    color: #888;
+    border: none;
+    height: 2rem;
+    width: 2rem;
+    cursor: pointer;
+}
+
+/* final submit button */
+#ccnbtc_inscrire_submit {
+    width: 100%;
+}
+
+/* form errors */
+input.invalid {
+    border: 2px solid var(--red);
+}
+
+.invalid-feedback.show {display: block;}
+
+
+/* PREINSCRIPTIONS */
+#ccnbtc_preinscr_preinscrire_submit {
+    border-radius: 0px;
+    text-decoration: underline;
+    background: none;
+    outline: none;
+    border: none;
+    margin-top: 1rem;
+    cursor: pointer;
+    color: white;
+}

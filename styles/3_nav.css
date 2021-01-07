@@ -1,0 +1,54 @@
+/* ==================================================== */
+/*                 MENU NAVIGATION                      */
+/* ==================================================== */
+
+nav.menu-principal {
+    background: white;
+}
+
+ul.menu_principal {
+    margin-left: 4cm;
+}
+
+/* titres des menus */
+li.menu-item {
+    margin-right: 4vw;
+}
+
+a.nav-link {
+    font-family: 'Louis George Café';
+    color: rgb(0, 0, 0) !important;
+}
+
+/* modifie le style par défaut pour faire un dropdown on hover */
+ul.navbar-nav > li:hover > ul.dropdown-menu {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.3s ease-in;
+}
+
+.navbar-nav li > ul.dropdown-menu {
+    display: none;
+    opacity: 0;
+    transform: translateY(-30px);
+    margin: -2px;
+    padding-top: 4px;
+    border: none;
+    border-radius: 0 0 20px 20px;
+    transition: all 0.3s ease-in;
+}
+
+a.dropdown-toggle.nav-link::after {
+    display: none;
+}
+
+/* mettre le menu langues tout à droite */
+ul#menu-menu-principal > li:last-child {
+    /* display: none; */
+    justify-self: flex-end;
+    margin-left: auto;
+}
+
+/* enelver le border par défaut du bouton hamburger */
+.navbar-light .navbar-toggler {border: none;}

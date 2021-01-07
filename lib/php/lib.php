@@ -55,6 +55,35 @@ function require_once_all_regex($dir_path, $regex = "") {
 endif;
 
 /* ==================================== */
+/*     ENQUEUE STYLES IN DIR            */
+/* ==================================== */
+if (!function_exists('enqueue_styles_regex')):
+    /**
+     * Require once all files in $dir_path that have a filename matching $regex
+     * 
+     * @param string $dir_path
+     * @param string $regex
+     */
+    function enqueue_styles_regex($dir_path, $regex = "") {    
+        if ($regex == "") $regex = "//";
+    
+        $template_dir = get_template_directory();
+        $template_url = get_template_directory_uri();
+
+        foreach (scandir($dir_path) as $filename) {
+            $path = $dir_path . '/' . $filename;
+            $path_url = str_replace($template_dir, $template_url, $path);
+            if ($filename[0] != '.' && is_file($path) && preg_match("/\.css$/i", $path) == 1 && preg_match($regex, $filename) == 1) {
+                wp_enqueue_style( 'ccnbtc-'.preg_replace("/\.css$/i", "", $filename).'-style', $path_url, [], filemtime($path), 'all');
+            } else if ($filename[0] != '.' && is_dir($path)) {
+                enqueue_styles_regex($path, $regex);
+            }
+        }
+    }
+    endif;
+
+
+/* ==================================== */
 /*     LOW-LEVEL USEFUL FUNCTIONS       */
 /* ==================================== */
 
@@ -79,7 +108,7 @@ endif;
 | Returns or echoes the date in French format (dd/mm/YYYY) for WordPress themes.
 |
 */
-function ccn_date_format($format, $timestamp = null, $lang = 'fr', $echo = null) {
+function btc_date_format($format, $timestamp = null, $lang = 'fr', $echo = null) {
     $lang = strtolower($lang);
     if ($lang != 'fr') {
         setlocale(LC_ALL, $lang);

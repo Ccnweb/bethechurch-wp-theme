@@ -39,7 +39,9 @@ function ccnbtc_shortcode_afficher_liste_carres() {
         $query = new WP_Query( $query_args );
         
         // == 4. == en construit le HTML
-        $html = '<div class="d-flex flex-row carre_container">';
+        $html = '<div class="d-flex flex-row" style="align-items:center;width:100%;">';
+        $html .= '<div class="scroll-arrow arrow-prev">&#8249;</div>';
+        $html .= '<div class="d-flex flex-row carre_container">';
         $compteur = 1;
 
         if ( $query->have_posts() ) {
@@ -57,6 +59,11 @@ function ccnbtc_shortcode_afficher_liste_carres() {
 
         $html .= "</div>";
         
+        // == 5. == We add the overflow/scroll arrows
+        $html .= '<div class="scroll-arrow arrow-next">&#8250;</div>';
+        
+        $html .= "</div>";
+
         return $html;
     };
 

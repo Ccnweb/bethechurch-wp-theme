@@ -11,55 +11,23 @@
 * GitHub Theme URI: https://github.com/Ccnweb/bethechurch-wp-theme
 */
 
-/* Special classes : TODO include this in a more standard way */
-p.special_intervenant_intro {
-    width: 60%;
+/* @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap'); */
+
+
+
+/* .mb-0 {margin-bottom: 0;} .mb-1{margin-bottom: 1rem;} .mb-2{margin-bottom: 2rem;} .mb-3{margin-bottom: 3rem;} .mb-5{margin-bottom: 5rem;}
+.mt-0 {margin-top: 0;} .mt-1{margin-top: 1rem;} .mt-2{margin-top: 2rem;} .mt-3{margin-top: 3rem;} .mt-5{margin-top: 5rem;}
+.mr-0 {margin-right: 0 !important;} .mr-1{margin-right: 1rem !important;} .mr-2{margin-right: 2rem !important;} .mr-3{margin-right: 3rem !important;} .mr-5{margin-right: 5rem !important;}
+.mv-0 {margin-bottom: 0; margin-top: 0rem;} .mv-1{margin-bottom: 1rem; margin-top: 1rem;} .mv-2{margin-bottom: 2rem; margin-top: 2rem;} .mv-3{margin-bottom: 3rem; margin-top: 3rem;} .mv-5{margin-bottom: 5rem; margin-top: 5rem;} */
+
+
+.fond-grise, .fond-gris {
+    background: #0000006b;
+    padding: 3rem !important;
+    max-width: 900px;
+    width: 90%;
     margin: auto;
-    font-size: 1.8rem;
-    line-height: 2rem;
-    padding: 5rem 1rem !important;
-}
-
-/* ==================================================== */
-/*                   LES POLICES                        */
-/* ==================================================== */
-
-@font-face {
-    font-family: 'Helvetica Neue';
-    src: url('fonts/HelveticaNeue.ttf');
-    src: url('fonts/HelveticaNeue.ttf') format('truetype');
-    font-style: normal
-}
-
-@font-face {
-    font-family: 'Louis George Café';
-    src: url('fonts/Louis George Cafe.ttf');
-    src: url('fonts/Louis George Cafe.ttf') format('truetype');
-    font-style: normal
-}
-
-@font-face {
-    font-family: 'Futura Extra Black BT';
-    src: url('fonts/Futura Extra Black.ttf');
-    src: url('fonts/Futura Extra Black.ttf') format('truetype');
-    font-style: normal
-}
-
-/* ==================================================== */
-/*                     GLOBAL                           */
-/* ==================================================== */
-
-:root {
-    --green: #31D2AE;
-    --red: #EA5E6B;
-    --yellow: #FCC300;
-    --blue-klein: #242148;
-    --blue-light: #35ADB7; /*#34ACB6;*/
-}
-
-html, body {
-    font-family: 'Helvetica Neue', Roboto;
-    overflow-x: hidden;
+    text-align: justify;
 }
 
 /* bugfix lorsqu'on ajoute onepage-scroll car sinon la page ne scroll pas :( */
@@ -75,6 +43,10 @@ h2 {
     line-height: calc(3.8rem + 0.5vw);
     color: white;
     margin: 0;
+}
+
+h3.has-medium-font-size {
+    font-size: 2.3rem;
 }
 
 h2.point::after {
@@ -105,10 +77,51 @@ p {
     text-align: justify;
 }
 
+p.has-small-font-size {
+    font-size: 1.4rem !important;
+}
+
 p.has-medium-font-size {
     font-size: 2.2rem;
-    line-height: 2rem;
+    line-height: 2.6rem;
     max-width: 800px;
+}
+@media screen and (max-width: 768px) {
+    p.has-medium-font-size {
+        font-size: 1.5rem;
+        line-height: 1.9rem;
+    }
+    .carre_container {
+        overflow-x: scroll;
+    }
+}
+
+.scroll-arrow {display: none;}
+@media screen and (min-width: 768px) {
+    .carre_container {
+        overflow-x: hidden;
+    }
+    .scroll-arrow {
+        display: block;
+        background: white;
+        border-radius: 50px;
+        padding: 0;
+        width: 44px;
+        height: 44px;
+        line-height: 30px;
+        text-align: center;
+        font-size: 61px;
+        font-family: "Futura Extra Black BT";
+        cursor: pointer;
+        z-index: 1200;
+    }
+    .arrow-prev {
+        margin-right: -22px;
+    }
+    .arrow-next {
+        padding-left: 2px;
+        margin-left: -22px;
+    }
 }
 
 @media screen and (min-width: 768px) {
@@ -129,13 +142,13 @@ p.has-medium-font-size {
         margin-left: auto;
         margin-right: auto;
     }
+    body.page__enfants p {
+        font-size: 1.5rem;
+        line-height: 1.7rem;
+    }
 }
 
-.bg-red p, .bg-rose p, .bg-rouge p, .bg-vert p, .bg-green p, .bg-bleu-klein p, .bg-blue-klein p {color: white;}
-.bg-red h3, .bg-rouge h3, .bg-vert h3, .bg-green h3, .bg-bleu-klein h3, .bg-blue-klein h3 {color: white;}
 
-.text-shadow-black {text-shadow: black 1px 1px 3px;}
-.translucent-box {color: #333; background: hsla(0, 0%, 100%, 0.33)}
 
 td {
     padding: 0.6rem;
@@ -162,7 +175,7 @@ a.wp-block-button__link {
     margin: 1rem 1rem;
     font-family: 'Helvetica Neue';
     letter-spacing: 3px;
-    font-size: 1rem;
+    font-size: 1rem; 
     min-width: 170px;
     transition: all 0.2s ease-in;
 }
@@ -189,17 +202,7 @@ a.wp-block-button__link.has-bleu-klein-background-color:hover {
     border: none;
 }
 
-/* Les formulaires */
 
-input {
-    margin-top: .5rem;
-    padding: 4px;
-    outline: none;
-    border: 1px solid #d6d6d6;
-    background: whitesmoke;
-    border-radius: 0;
-}
-label.input-group-text, select {margin-top: .5rem;}
 
 .wp-block-column.gouttes {
     margin-top: -4rem;
@@ -213,50 +216,15 @@ label.input-group-text, select {margin-top: .5rem;}
     left: -47px;
 }
 
-/* ==================================================== */
-/*                 HELPFUL CLASSES                      */
-/* ==================================================== */
-
-.cacher, .hide {display: none !important;}
-
-.bg-green, .bg-vert, .has-vert-background-color {background: var(--green)}
-.bg-red, .bg-rouge, .has-rouge-background-color, .bg-rose {background: var(--red)}
-.bg-yellow, .bg-jaune, .has-jaune-background-color {background: var(--yellow)}
-.bg-blue-klein, .bg-bleu-klein, .has-bleu-klein-background-color {background: var(--blue-klein) !important}
-.bg-blue-light, .bg-bleu-clair, .has-bleu-clair-background-color {background: var(--blue-light)}
-
-.has-text-color.has-blanc-color, .has-text-color.has-blanc-color a, .txt-white, .txt-blanc {color:white}
-.has-text-color.has-noir-color, .txt-black, .txt-noir {color:black}
-.has-text-color.has-vert-color, .txt-green, .txt-vert {color:var(--green)}
-.has-text-color.has-rouge-color, .txt-red, .txt-rouge, .rose {color:var(--red)}
-.has-text-color.has-jaune-color, .txt-yellow, .txt-jaune {color:var(--yellow)}
-.has-text-color.has-bleu-klein-color, .txt-blue-klein, .txt-bleu-klein, .bleu-klein, .bleu-fonce {color:var(--blue-klein)}
-.has-text-color.has-bleu-clair-color, .txt-blue-light, .txt-bleu-clair {color:var(--blue-ligth)}
-
-.btn-red {
-    color:white; 
-    background: var(--red);
-    border: 1px solid hsla(354, 77%, 44%, 1);
-    box-shadow: hsla(354, 77%, 44%, 1) 0 3px 0;
-    transition: all 0.2s;
-}
-.btn-red:hover {    
-    transform: translateY(2px);
-    box-shadow: hsla(354, 77%, 44%, 1) 0 1px 0;
-    transition: all 0.1s;
+.typed-cursor {
+    position: relative;
+    top: -0.5vw;
+    font-size: max(3rem, 6.35vw);
 }
 
-.font-cafe {font-family: 'Louis George Café'}
 
-.ombre {box-shadow: #1d1d1d9e 2px 2px 8px 1px;}
 
-.hollow {
-    -webkit-text-stroke: 1px white;
-    -webkit-text-fill-color: transparent;
-}
-.hollow.has-text-color.has-noir-color {
-    -webkit-text-stroke: 1px black;
-}
+
 
 ul.calendar {
     list-style: none;
@@ -278,262 +246,12 @@ ul.calendar li::before {
 
 .alignright {text-align:right;}
 
-/* ==================================================== */
-/*                 MENU NAVIGATION                      */
-/* ==================================================== */
-
-nav.menu-principal {
-    background: white;
-}
-
-ul.menu_principal {
-    margin-left: 4cm;
-}
-
-/* titres des menus */
-li.menu-item {
-    margin-right: 4vw;
-}
-
-a.nav-link {
-    font-family: 'Louis George Café';
-    color: rgb(0, 0, 0) !important;
-}
-
-/* modifie le style par défaut pour faire un dropdown on hover */
-ul.navbar-nav > li:hover > ul.dropdown-menu {
-    display: block;
-    opacity: 1;
-    transform: translateY(0);
-    transition: all 0.3s ease-in;
-}
-
-.navbar-nav li > ul.dropdown-menu {
-    display: none;
-    opacity: 0;
-    transform: translateY(-30px);
-    margin: -2px;
-    padding-top: 4px;
-    border: none;
-    border-radius: 0 0 20px 20px;
-    transition: all 0.3s ease-in;
-}
-
-a.dropdown-toggle.nav-link::after {
-    display: none;
-}
-
-/* mettre le menu langues tout à droite */
-ul#menu-menu-principal > li:last-child {
-    /* display: none; */
-    justify-self: flex-end;
-    margin-left: auto;
-}
-
-/* enelver le border par défaut du bouton hamburger */
-.navbar-light .navbar-toggler {border: none;}
 
 
 
-/* ==================================================== */
-/*                 LOGO BE THE CHURCH                   */
-/* ==================================================== */
-
-a.custom-logo-link {
-    position: fixed;
-    z-index: 200;
-    top: 0.4cm;
-    left: 1.4cm;
-}
-
-a.custom-logo-link > img {
-    width: 3cm;
-    height: 3cm;
-    transition: all 0.12s cubic-bezier(0.18, 0.89, 0.59, 1.67);
-}
-
-img.custom-logo:hover {
-    transform: rotate(45deg);
-    transition: all 0.07s ease-in;
-}
-
-@media screen and (max-width: 768px) {
-    a.custom-logo-link {
-        top: 0.3cm;
-        left: 1cm;
-    }
-    a.custom-logo-link > img {
-        width: 1cm;
-        height: 1cm;
-    }
-}
-
-
-/* ==================================================== */
-/*                 BOUTON RÉSERVER                      */
-/* ==================================================== */
-.reserver_place a {
-    border-radius: 0;
-    /* background: var(--red); */
-    border: none;
-}
-
-/* ==================================================== */
-/*                    FORMULAIRES                       */
-/* ==================================================== */
-
-/* popups */
-.pum-content .row {
-    min-height: 70vh;
-}
-
-.pum-container .popmake {
-    margin-top: 4rem;
-}
-
-#popmake-879 p {
-    display: flex;
-    justify-content: center;
-}
 
 
 
-.form-group, .form-row {
-    margin: 1rem 0;
-}
-
-/* titre d'un step */
-h2.fs-title {
-    line-height: 1.2rem;
-}
-
-/* radio buttons */
-.form-radio-container {
-    color: #545454;
-    text-align: left;
-    margin-bottom: 1rem;
-}
-
-/* checkboxes */
-.form-check-label {
-    color: #545454;
-    text-align: left;
-}
-
-/* date picker */
-.datepickers-container {
-    z-index: 1000000;
-}
-
-/* labels/titres de fields */
-p.form-label {
-    color: #333;
-    margin-top: 1rem;
-    margin-bottom: 3px;
-    font-weight: bold;
-}
-
-/* texte descriptif */
-p.form-description, p.form-description p {
-    letter-spacing: 0px;
-    margin-bottom: 0.2rem;
-}
-
-/* + button to add new dynamic elements */
-.add_repeat_element {
-    background: var(--green);
-    border: none;
-    height: 2rem;
-    width: 2rem;
-    border-radius: 50px;
-    color: white;
-    box-shadow: #28a745 0px 1px 3px;
-    cursor: pointer;
-}
-
-.ccnlib_delete_repeat_element {
-    background: white;
-    color: #888;
-    border: none;
-    height: 2rem;
-    width: 2rem;
-    cursor: pointer;
-}
-
-/* final submit button */
-#ccnbtc_inscrire_submit {
-    width: 100%;
-}
-
-/* form errors */
-input.invalid {
-    border: 2px solid var(--red);
-}
-
-.invalid-feedback.show {display: block;}
-
-
-/* PREINSCRIPTIONS */
-#ccnbtc_preinscr_preinscrire_submit {
-    border-radius: 0px;
-    text-decoration: underline;
-    background: none;
-    outline: none;
-    border: none;
-    margin-top: 1rem;
-    cursor: pointer;
-    color: white;
-}
-
-
-
-/* ==================================================== */
-/*                      SLIDES                          */
-/* ==================================================== */
-
-.section {
-    position: relative;
-    min-height: 100vh;
-    padding: 2rem;
-}
-
-.section > div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding-bottom: 2rem;
-    padding-top: 2rem;
-}
-@media screen and (min-width: 768px) {
-    .section {
-        padding: 0 3rem;
-    }
-    .section > div.mise_en_page__texte-droite:not(.intervenant_content) {
-        padding-right: 7rem;
-    }
-}
-
-.fleche_slide_suivant {
-    position: fixed;
-    bottom: 3px;
-    font-size: calc(1.6rem + 1vw);
-    color: white;
-    margin-left: 50%;
-    cursor: pointer;
-    text-shadow: white 0px 1px 2px;
-}
-
-
-section.section .degrade-noir {
-    padding: 5rem 3rem 2rem 3rem !important;
-    background: linear-gradient(0deg,black 10%, transparent 100%);
-    width: 100vw !important;
-    margin-left: 15px;
-}
-section.section .degrade-noir > p {
-    max-width: 27cm;
-}
 
 
 /* ==================================================== */
@@ -596,10 +314,14 @@ h2.title + p {
 .bg-blanc .slide_text ul {color:black;}
 .slide_text ul li {
     padding-right: 2rem;
-    list-style-type: square;
+    list-style-type: none;
     font-size: 1rem;
     font-family: "Louis George Café";
     letter-spacing: 2px;
+}
+#post__journee-type li {
+    font-size: 1.7rem;
+    letter-spacing: 0px;
 }
 
 .notitle-text-left {
@@ -658,36 +380,6 @@ h2.title + p {
 }
 
 /* ==================================================== */
-/*    TODO PASSER CETTE PARTIE DANS intervenants/intervenants.css
-/* ==================================================== */
-
-.intervenant_content > h2 {
-    color: black;
-    font-size: 3vw;
-    line-height: 3vw;
-    margin: 1rem;
-    font-family: "Louis George Café";
-}
-
-.intervenant_content > p {
-    font-size: calc(12px + 0.5vw);
-    margin: 0.3rem 4rem;
-}
-
-.intervenant_content p.workshop {
-    font-size: 0.9rem;
-    text-align: right;
-    line-height: 1rem;
-    margin-top: 1rem;
-    color: var(--green);
-    font-weight: bold;
-}
-
-.img_intervenant_mobile {
-    height: 50vw;
-}
-
-/* ==================================================== */
 /*    TODO PASSER CETTE PARTIE DANS programme/programme.css
 /* ==================================================== */
 
@@ -708,7 +400,7 @@ h2.programme {
 }
 
 .carre_container {
-    overflow-x: scroll;
+    /* overflow-x: scroll; */
     overflow-y: hidden;
     width: 100%;
     white-space: nowrap;
@@ -716,6 +408,7 @@ h2.programme {
 }
 
 .carre {
+    position: relative;
     width: 20vw;
     display: inline-block;
     margin: 0.3rem;
@@ -756,6 +449,7 @@ h2.programme {
 
 .page__enfants .wp-block-column:first-child {
     flex-shrink: 2;
+    flex-basis: auto;
 }
 
 .page__enfants .wp-block-column:nth-child(2n) {
@@ -826,6 +520,8 @@ h2.programme {
 
 .edit_post_link {
     position: absolute;
+    top: 0;
+    left: 0;
     z-index: 1000000;
     padding: 3px 15px;
     background: var(--green);
@@ -1001,7 +697,7 @@ section.galerie .wp-block-columns {
 
 @media (min-width: 782px) {
     .wp-block-column:not(:first-child) {
-        margin-left: 1vw;
+        margin-left: 2rem;
     }
 }
 
@@ -1012,6 +708,7 @@ section.galerie .wp-block-columns > .wp-block-column {
 
 section.galerie .wp-block-cover {
     transition: all 0.2s ease-out;
+    padding: 0;
 }
 
 section.galerie .wp-block-column:hover > .wp-block-cover.zoom {
@@ -1087,8 +784,6 @@ section.galerie .wp-block-column .wp-block-cover__inner-container > *:not(:first
 }
 section.galerie .wp-block-column .wp-block-cover__inner-container > * {max-width: 77%;}
 section.galerie .wp-block-column .wp-block-cover__inner-container > p:not(:first-child) {
-    font-family: cursive;
-    letter-spacing: 0;
     font-size: 1.3rem;
     margin-bottom: 0.5rem;
 }
@@ -1107,4 +802,51 @@ section.galerie .wp-block-column .wp-block-cover__inner-container > *:first-chil
 section.galerie .wp-block-column:hover .wp-block-cover__inner-container > *:first-child {
     transform: translateY(-120px);
     transition: all 0.8s cubic-bezier(0.06, 0.65, 0.66, 0.98) 0.15s;
+}
+
+
+
+/* ====================================
+        MENU FOOTER
+==================================== */
+
+.menu-footer {
+    padding: 2rem;
+    background: #222;
+}
+.menu-footer > ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+}
+.menu-footer a {
+    color: white;
+}
+.menu-footer a:hover {
+    color: var(--blue-light);
+}
+.menu-footer a.fab {
+    font-size: 1.6rem;
+}
+
+.footer-legal {
+    display: flex;
+}
+
+.footer-legal > div {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    padding-left: 1rem;
+}
+
+.footer-legal .logo-ccn {
+    height: 4rem;
+}
+
+.footer-legal .info {
+    color: #eee;
+    margin-left: 1rem;
+    font-size: 0.8rem;
+    line-height: 0.9rem;
 }

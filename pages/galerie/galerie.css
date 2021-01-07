@@ -12,6 +12,10 @@ main {
     }
 }
 
+.blocks-gallery-item {
+    margin: 0 !important;
+}
+
 .wp-block-cover {
     cursor: pointer;
 }

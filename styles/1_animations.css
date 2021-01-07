@@ -1,0 +1,10 @@
+/* ==================================================== */
+/*                    ANIMATIONS                        */
+/* ==================================================== */
+
+/* slide elements to the left or right to make them appear/disappear */
+/* to use this, just add the class translate-appear and toggle class translate-hide-right or left */
+.translate-appear {transition: all 0.8s cubic-bezier(0.11, 0.54, 0.76, 1.01);}
+.translate-hide-right {opacity: 0; transform: translateX(100vw); transition: all 0.6s ease-in;}
+.translate-show {transform: translateX(0); transition: all 0.6s ease-in;}
+.translate-hide-left {opacity: 0; transform: translateX(-100vw); transition: all 0.6s ease-in;}

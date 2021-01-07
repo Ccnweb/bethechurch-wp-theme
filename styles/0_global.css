@@ -1,0 +1,98 @@
+/* ==================================================== */
+/*                   LES POLICES                        */
+/* ==================================================== */
+
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url('../fonts/HelveticaNeue.ttf');
+    src: url('../fonts/HelveticaNeue.ttf') format('truetype');
+    font-style: normal
+}
+
+@font-face {
+    font-family: 'Louis George Café';
+    src: url('../fonts/Louis George Cafe.ttf');
+    src: url('../fonts/Louis George Cafe.ttf') format('truetype');
+    font-style: normal
+}
+
+@font-face {
+    font-family: 'Futura Extra Black BT';
+    src: url('../fonts/Futura Extra Black.ttf');
+    src: url('../fonts/Futura Extra Black.ttf') format('truetype');
+    font-style: normal
+}
+
+.font-cafe {font-family: 'Louis George Café'}
+
+
+/* ==================================================== */
+/*                     GLOBAL                           */
+/* ==================================================== */
+
+:root {
+    --green: #31D2AE;
+    --red: #EA5E6B;
+    --yellow: #FCC300;
+    --orange: hsl(24 77% 64% / 1);
+    --blue-klein: #242148;
+    --blue-light: #35ADB7; /*#34ACB6;*/
+}
+
+html, body {
+    font-family: 'Helvetica Neue', Roboto;
+    overflow-x: hidden;
+}
+
+/* ==================================================== */
+/*                 HELPFUL CLASSES                      */
+/* ==================================================== */
+
+.cacher, .hide {display: none !important;}
+
+.text-shadow-black {text-shadow: black 1px 1px 3px;}
+.translucent-box {color: #333; background: hsla(0, 0%, 100%, 0.33)}
+
+.ombre {box-shadow: #1d1d1d9e 2px 2px 8px 1px;}
+
+.hollow {
+    -webkit-text-stroke: 1px white;
+    -webkit-text-fill-color: transparent;
+}
+.hollow.has-text-color.has-noir-color {
+    -webkit-text-stroke: 1px black;
+}
+
+.wp-block-button.ml-0 a {margin-left: 0;}
+
+.w-75 {width: 75%;}
+
+/* ==================================================== */
+/*                     COLORS                           */
+/* ==================================================== */
+
+
+.bg-orange p, .fond-orange p, .bg-red p, .bg-rose p, .fond-rouge p, .bg-rouge p, .bg-vert p, .fond-vert p, .bg-green p, .fond-bleu-klein p, .bg-bleu-klein p, .bg-blue-klein p {color: white;}
+.bg-orange h3, .fond-orange h3, .bg-red h3, .fond-rouge h3, .bg-rouge h3, .bg-vert h3, .fond-vert h3, .bg-green h3, .fond-bleu-klein h3, .bg-bleu-klein h3, .bg-blue-klein h3 {color: white;}
+.bg-orange h2, .fond-orange h2, .bg-red h2, .fond-rouge h2, .bg-rouge h2, .bg-vert h2, .fond-vert h2, .bg-green h2, .fond-bleu-klein h2, .bg-bleu-klein h2, .bg-blue-klein h2 {color: white;}
+
+.fond-vert, .bg-green, .bg-vert, .has-vert-background-color {background: var(--green)}
+.fond-rouge, .bg-red, .bg-rouge, .has-rouge-background-color, .bg-rose {background: var(--red)}
+.fond-jaune, .bg-yellow, .bg-jaune, .has-jaune-background-color {background: var(--yellow)}
+.fond-bleu-klein, .bg-blue-klein, .bg-bleu-klein, .has-bleu-klein-background-color {background: var(--blue-klein) !important}
+.fond-bleu-clair, .bg-blue-light, .bg-bleu-clair, .has-bleu-clair-background-color {background: var(--blue-light)}
+.fond-orange, .bg-orange, .has-orange-background-color {background: var(--orange)}
+
+.has-text-color.has-blanc-color, .has-text-color.has-blanc-color a, .txt-white, .txt-blanc {color:white !important;}
+.has-text-color.has-noir-color, .txt-black, .txt-noir {color:black}
+.has-text-color.has-vert-color, .txt-green, .txt-vert {color:var(--green)}
+.has-text-color.has-rouge-color, .txt-red, .txt-rouge, .rose {color:var(--red)}
+.has-text-color.has-jaune-color, .txt-yellow, .txt-jaune {color:var(--yellow)}
+.has-text-color.has-orange-color, .txt-orange {color:var(--orange)}
+.has-text-color.has-bleu-klein-color, .txt-blue-klein, .txt-bleu-klein, .bleu-klein, .bleu-fonce {color:var(--blue-klein)}
+.has-text-color.has-bleu-clair-color, .txt-blue-light, .txt-bleu-clair {color:var(--blue-ligth)}
+
+
+
+
+

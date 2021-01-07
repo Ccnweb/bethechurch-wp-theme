@@ -1,0 +1,48 @@
+/* ==================================================== */
+/*                      SLIDES                          */
+/* ==================================================== */
+
+.section {
+    position: relative;
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+.section > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+}
+@media screen and (min-width: 768px) {
+    .section {
+        padding: 0 3rem;
+        padding-top: 1rem;
+    }
+    .section > div.mise_en_page__texte-droite:not(.intervenant_content) {
+        padding-right: 7rem;
+    }
+}
+
+.fleche_slide_suivant {
+    position: fixed;
+    bottom: 3px;
+    font-size: calc(1.6rem + 1vw);
+    color: white;
+    margin-left: 50%;
+    cursor: pointer;
+    text-shadow: white 0px 1px 2px;
+}
+
+
+section.section .degrade-noir {
+    padding: 5rem 3rem 2rem 3rem !important;
+    background: linear-gradient(0deg,black 10%, transparent 100%);
+    width: 100vw !important;
+    margin-left: 15px;
+}
+section.section .degrade-noir > p {
+    max-width: 27cm;
+}

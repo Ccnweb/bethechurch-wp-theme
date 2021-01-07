@@ -94,6 +94,7 @@ function ccnbtc_setup() {
     // source: https://www.wpbeginner.com/wp-themes/how-to-add-custom-navigation-menus-in-wordpress-3-0-themes/
     register_nav_menus( array(
         'header' => 'Menu principal.',
+        'menu-footer' => esc_html__( 'Pied de page', 'ccnbtc' ),
     ) );
 
     // Les palettes de couleur dans l'éditeur d'articles
@@ -124,6 +125,11 @@ function ccnbtc_setup() {
             'name'  => __( 'Jaune', 'ccnbtc'),
             'slug'  => 'jaune',
             'color' => '#FCC300', 
+        ),
+        array(
+            'name'  => __( 'Orange', 'ccnbtc'),
+            'slug'  => 'orange',
+            'color' => '#ea955d', 
         ),
         array(
             'name'  => __( 'Bleu Klein', 'ccnbtc'),
@@ -188,6 +194,7 @@ function ccnbtc_scripts() {
 
     // we load style.css here because it should be loaded after bootstrap css
     //$ccn_enqueue( 'ccnbtc-parent-style', '/style.css', [], filemtime(get_template_directory() . '/style.css'), 'all');
+    enqueue_styles_regex(get_template_directory() . '/styles');
     wp_enqueue_style( 'ccnbtc-parent-style', get_template_directory_uri() . '/style.css', [], filemtime(get_template_directory() . '/style.css'), 'all');
     // main script of the theme
     wp_enqueue_script( 'ccnbtc-main-script', get_template_directory_uri() . '/js/main.js', array('jquery'), filemtime(get_template_directory() . '/js/main.js'));
@@ -196,6 +203,7 @@ function ccnbtc_scripts() {
     // ## 2 ## For Specific Pages
     // Home Page Festival
     wp_register_style( 'ccnbtc-festival-style', get_template_directory_uri() . '/pages/festival/page.css', array(), filemtime(get_template_directory() . '/pages/festival/page.css'), 'all');
+    wp_register_style( 'ccnbtc-intervenants-style', get_template_directory_uri() . '/pages/intervenants/intervenants.css', array(), filemtime(get_template_directory() . '/pages/intervenants/intervenants.css'), 'all');
     wp_register_script( 'typedjs', 'https://cdn.jsdelivr.net/npm/typed.js@2.0.11', [], true);
     wp_register_script( 'ccnbtc-typedjs', get_template_directory_uri() . '/js/ccn-typed.js', ['jquery', 'typedjs'], filemtime(get_template_directory() . '/js/ccn-typed.js'), true);
 
@@ -333,6 +341,27 @@ function my_plugin_select_empty_parser( $prev_parser_class ) {
     return 'CcnParser';
 }
 add_filter( 'block_parser_class', 'my_plugin_select_empty_parser', 10, 1 ); 
+
+
+/* ========================================================= */
+/*                Social Network logos in menu               */
+/* ========================================================= */
+
+add_filter( 'nav_menu_link_attributes', 'ccnbtc_open_external_nav_link_new_window' );
+function ccnbtc_open_external_nav_link_new_window( $atts ) {
+	
+	$regex_prefix = "/^https?\:\/\/([^\.]+\.)?";
+	$regex_suffix = "\./";
+	$social_medias = ['facebook', 'instagram', 'twitter', 'youtube'];
+	$icons = ['facebook' => 'fa-facebook-square', 'instagram' => 'fa-instagram', 'twitter' => 'fa-twitter', 'youtube' => 'fa-youtube'];
+
+	if ( preg_match( $regex_prefix."(".implode('|', $social_medias).")".$regex_suffix, $atts['href'], $match ) ) {
+		$atts['target'] = '_blank';
+		$social = $match[2];
+		$atts['class']  = "mr-1 fab ".$icons[$social];
+	}
+	return $atts;
+}
 
 
 /* ========================================================= */

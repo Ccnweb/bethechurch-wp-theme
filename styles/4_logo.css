@@ -1,0 +1,32 @@
+/* ==================================================== */
+/*                 LOGO BE THE CHURCH                   */
+/* ==================================================== */
+
+a.custom-logo-link {
+    position: fixed;
+    z-index: 200;
+    top: 0.4cm;
+    left: 1.4cm;
+}
+
+a.custom-logo-link > img {
+    width: 3cm;
+    height: 3cm;
+    transition: all 0.12s cubic-bezier(0.18, 0.89, 0.59, 1.67);
+}
+
+img.custom-logo:hover {
+    transform: rotate(45deg);
+    transition: all 0.07s ease-in;
+}
+
+@media screen and (max-width: 768px) {
+    a.custom-logo-link {
+        top: 0.3cm;
+        left: 1cm;
+    }
+    a.custom-logo-link > img {
+        width: 1cm;
+        height: 1cm;
+    }
+}

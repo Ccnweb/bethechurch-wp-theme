@@ -126,6 +126,7 @@ function render_HTML($categorie, $query, $compteur) {
     $gouttes = false;
     $degrade_noir = '';
     $custom_classes = '';
+    $custom_inner_classes = '';
 
     if ($posttags) {
         foreach($posttags as $tag) {
@@ -157,7 +158,12 @@ function render_HTML($categorie, $query, $compteur) {
             if(preg_match("/^degrade\-noir?$/i", $tag->name, $matches)) {
                 $degrade_noir = ' degrade-noir';
             }
-            $custom_classes .= $tag->name . ' ';
+
+            if(preg_match("/^inner\-/i", $tag->name, $matches)) {
+                $custom_inner_classes .= substr($tag->name, 6) . ' ';
+            } else {
+                $custom_classes .= $tag->name . ' ';
+            }
         }
     }
     
@@ -177,6 +183,7 @@ function render_HTML($categorie, $query, $compteur) {
 
     // mb-auto
     $ifmbauto = ($mise_en_page == 'texte-centre' && !$degrade_noir) ? ' mb-auto' : '';
+    // if (strpos($custom_classes, 'mt-auto') >= 0) $ifmbauto = '';
 
     // taille de la colonne du texte du slide
     $text_column_classes = ($mise_en_page !== 'texte-centre') ? 'col-sm-12 col-md-8 d-flex flex-column align-items-start': 'col-md-12';
@@ -208,7 +215,7 @@ function render_HTML($categorie, $query, $compteur) {
             data-index="'.$compteur.'" '.$bg_img.'>
     '.$ifeditlink;
     if (in_array($mise_en_page, array('texte-droite', 'texte-centre'))) $html .= $html_title;
-    $html .= '<div class="slide_text '.$text_column_classes.' '.$special_texte_no_title.$ifmbauto.$degrade_noir.' mise_en_page__'.$mise_en_page.'">' . do_shortcode($my_content) . '</div>';
+    $html .= '<div class="slide_text '.$text_column_classes.' '.$special_texte_no_title.$ifmbauto.$degrade_noir.' mise_en_page__'.$mise_en_page.' '.$custom_inner_classes.'">' . do_shortcode($my_content) . '</div>';
     if ($mise_en_page == 'texte-gauche') $html .= $html_title;
     $html .= '
             </div>'.$images_svg.'
