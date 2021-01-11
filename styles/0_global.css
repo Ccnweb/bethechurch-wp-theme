@@ -78,7 +78,7 @@ html, body {
 
 .fond-vert, .bg-green, .bg-vert, .has-vert-background-color {background: var(--green)}
 .fond-rouge, .bg-red, .bg-rouge, .has-rouge-background-color, .bg-rose {background: var(--red)}
-.fond-jaune, .bg-yellow, .bg-jaune, .has-jaune-background-color {background: var(--yellow)}
+.fond-jaune, .bg-yellow, .bg-jaune, .has-jaune-background-color {background: var(--yellow) !important;}
 .fond-bleu-klein, .bg-blue-klein, .bg-bleu-klein, .has-bleu-klein-background-color {background: var(--blue-klein) !important}
 .fond-bleu-clair, .bg-blue-light, .bg-bleu-clair, .has-bleu-clair-background-color {background: var(--blue-light)}
 .fond-orange, .bg-orange, .has-orange-background-color {background: var(--orange)}
@@ -92,7 +92,7 @@ html, body {
 .has-text-color.has-bleu-klein-color, .txt-blue-klein, .txt-bleu-klein, .bleu-klein, .bleu-fonce {color:var(--blue-klein)}
 .has-text-color.has-bleu-clair-color, .txt-blue-light, .txt-bleu-clair {color:var(--blue-ligth)}
 
-
+.has-normal-font-size {font-size: 1rem !important;}
 
 
 

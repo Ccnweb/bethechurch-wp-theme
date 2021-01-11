@@ -247,7 +247,7 @@ function render_HTML_homepage($categorie, $query, $compteur) {
     $ifeditlink = (current_user_can('edit_posts')) ? '<a class="edit_post_link" href="'.get_edit_post_link(get_the_ID()).'">'.__('Éditer', 'ccnbtc').'</a>' : '';
 
     $html = '
-        <section id="post__'.$slug.'" class="row section bg-yellow" data-title="'.$title.'" data-index="'.$compteur.'" '.$bg_img.'>
+        <section id="post__'.$slug.'" class="row section bg-bleu-klein" data-title="'.$title.'" data-index="'.$compteur.'" '.$bg_img.'>
         '.$ifeditlink.'
             <div class="col-lg-12 d-flex flex-col">
     ';
@@ -260,7 +260,7 @@ function render_HTML_homepage($categorie, $query, $compteur) {
     $images_svg .= '<img class="goutte goutte_jaune" src="'.get_template_directory_uri().'/img/goutte verte.svg"/>';
     $images_svg .= '<img class="goutte goutte_bleu_clair" src="'.get_template_directory_uri().'/img/goutte bleu clair.svg"/>';
     $images_svg .= '<img class="goutte goutte_rouge_petite" src="'.get_template_directory_uri().'/img/goutte rouge petite.svg"/>';
-    $images_svg .= '<img class="goutte goutte_bleu_fonce" src="'.get_template_directory_uri().'/img/goutte bleu fonce.svg"/>';    
+    $images_svg .= '<img class="goutte goutte_bleu_fonce" src="'.get_template_directory_uri().'/img/goutte gauche-droite jaune.svg"/>';    
 
     $html_title = '<h2 class="text-center title mb-auto">
                 <span class="title_first_part">' . implode(' ', array_slice($title_arr, 0, count($title_arr)-1)) . '</span>
