@@ -2,7 +2,7 @@
 <!--    LE MENU PRINCIPAL DE NAVIGATION    -->
 <!--  #################################### -->
 
-<nav class="navbar navbar-expand-md navbar-light fixed-top menu-principal" role="navigation">
+<nav class="navbar navbar-expand-md navbar-light fixed-top menu-principal" role="navigation" <?php if(is_admin_bar_showing()) echo 'style="top:32px"'; ?>>
     <div class="container-fluid d-flex justify-content-end">
         
         <!-- Logo -->

@@ -172,7 +172,6 @@ add_action( 'widgets_init', 'ccnbtc_widgets_init' );
 /* ========================================================= */
 
 function ccnbtc_scripts() {
-
     $ccn_enqueue = function($name, $path, $dependencies, $displays = 'all') {
         if (!file_exists($path)) $path = get_template_directory_uri() . '/' . $path;
         $vers = date("ymd-Gis", filemtime( $path ));
@@ -180,10 +179,10 @@ function ccnbtc_scripts() {
         if (preg_match("/.+\.js$/", $path)) wp_enqueue_script($name, $path, $dependencies, $vers, $displays);
         if (preg_match("/.+\.css$/", $path)) wp_enqueue_style($name, $path, $dependencies, $vers, $displays);
     };
-
+    
     // ## 1 ## For all pages
     wp_enqueue_script('jquery');
-
+    
     // Bootstrap
     wp_enqueue_style('ccnbtc-bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css', array(), '4.1.3', 'all');
     wp_enqueue_script('ccnbtc-popper', 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js', array('jquery'));

@@ -2,6 +2,10 @@
 /*                    FORMULAIRES                       */
 /* ==================================================== */
 
+.pum-active {
+    display: block !important; /* this rule is necessary since the migration to Hostinger, it may be due to the WordPress update to 5.7.1 */
+}
+
 /* Les formulaires */
 .pum-container.popmake {
     top: 20px !important;
