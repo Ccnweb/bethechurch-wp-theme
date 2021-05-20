@@ -132,10 +132,8 @@ jQuery(document).ready(function($) {
     if (inscr_status == "INSCRIPTIONS FERMÉES") {
         btn_inscr.hide();
     } else if (inscr_status == 'PRÉ-INSCRIPTION') {
-        console.log("COCO ", btn_inscr.attr('rel'));
         $('#inscription_btn').css({display: "none"})
     } else if (inscr_status == 'INSCRIPTION') {
-        console.log("COCO2 ", btn_inscr.attr('rel'));
         $('#ccnbtc_preinscr_preinscrire_form').hide();
     }
 
