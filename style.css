@@ -763,6 +763,7 @@ section.galerie .wp-block-column:hover > .wp-block-cover.zoom {
 section.galerie .wp-block-column:hover .wp-block-cover__inner-container {
     background: rgba(0, 0, 0, 0.5);
     transition: all 0.2s ease-in;
+    min-height: 430px;
 }
 section.galerie .wp-block-column:hover .wp-block-cover.red > .wp-block-cover__inner-container,
 section.galerie .wp-block-column:hover .wp-block-cover.rouge > .wp-block-cover__inner-container,
