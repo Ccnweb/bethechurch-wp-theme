@@ -7,7 +7,7 @@ wp_enqueue_script('ccnbtc-typedjs');
 ?>
 
     <!-- Page Content -->
-    <div class="container-fluid h-100" id="fullpage">
+    <div class="" id="fullpage">
       <!-- <div class="row">
         <div class="col-lg-12 text-center"> -->
           
@@ -22,7 +22,8 @@ wp_enqueue_script('ccnbtc-typedjs');
 
 
     <!-- Flèche vers le bas pour changer de slide -->
-    <div class="fleche_slide_suivant"><i class="fas fa-chevron-down"></i></div>
+    <!-- <div class="fleche_slide_suivant"><i class="fas fa-chevron-down"></i></div> -->
 
 <?php get_sidebar(); ?>
+
 <?php get_footer(); ?>

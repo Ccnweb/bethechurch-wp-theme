@@ -10,8 +10,8 @@ a.custom-logo-link {
 }
 
 a.custom-logo-link > img {
-    width: 3cm;
-    height: 3cm;
+    width: 2.6cm;
+    height: 2.6cm;
     transition: all 0.12s cubic-bezier(0.18, 0.89, 0.59, 1.67);
 }
 

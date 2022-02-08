@@ -5,7 +5,7 @@ jQuery(document).ready(function($) {
     // ========================================
 
     // here we allow users to click on wp-block-cover to be able to go to the a href
-    jQuery('section.galerie .wp-block-cover a').each(function() {
+    /* jQuery('.wp-block-columns.is-style-squares .wp-block-cover a').each(function() {
         let url = jQuery(this).attr('href');
         console.log('galerie url : ', url, jQuery(this).closest('.wp-block-cover'))
         jQuery(this).closest('.wp-block-cover').click(function() {
@@ -13,6 +13,16 @@ jQuery(document).ready(function($) {
             jQuery(this).closest('.wp-block-column').addClass('goto');
             jQuery(this).find('.wp-block-cover__inner-container').html('');
             jQuery(this).find('.wp-block-cover__inner-container').addClass('goto');
+        })
+    }) */
+    jQuery('.wp-block-columns.is-style-squares .wp-block-cover h3').each(function() {
+        let url = jQuery(this).find('a').attr('href');
+        let me = $(this).clone()
+        me.addClass('square-title')
+        jQuery(this).closest('.wp-block-cover').prepend(me)
+        // jQuery(this).closest('.wp-block-cover').prepend('<h3 class="square-title">' + $(this).html() + '</h3>')
+        jQuery(this).closest('.wp-block-cover').click(function() {
+            window.location.href = url;  
         })
     })
 
@@ -260,7 +270,7 @@ jQuery(document).ready(function($) {
         })
     }
     
-    if ($('body').hasClass('page__programme2')) {
+    /* if ($('body').hasClass('page__programme2')) {
         console.log('init ariane 4 programme2')
         initArianePoints('main > .wp-block-group:visible', {
             tooltips: function(section, n) {
@@ -278,6 +288,108 @@ jQuery(document).ready(function($) {
                 else $('ul.ariane_points').removeClass('black');
             }
         });
+    } */
+
+
+
+    // ============================================
+    // Gouttes 2.0
+    // ============================================
+
+    function place_gouttes(gouttes, root_el) {
+        let w = root_el.width()
+        let h = root_el.height()
+        for (let g of gouttes) {
+            let posX = 0; let posY = 0;
+            if (g.angle !== undefined) {
+                let rad = g.angle * Math.PI / 180;
+                posX = Math.round(g.dist * Math.cos(rad) * w / 2) + w / 2;
+                posY = - Math.round(g.dist * Math.sin(rad) * h / 2) + h / 2;
+            } else {
+                posX = g.x
+                posY = g.y
+            }
+            let vBox = [
+                `viewBox="${-g.strokeW/1.6 || 0} ${-g.strokeW/1.6 || 0} ${70.8 + (g.strokeW/1.1 || 0)} ${120.65 + (g.strokeW/1.1 || 0)}"`,
+                `viewBox="${-g.strokeW/1.6 || 0} ${-g.strokeW/1.6 || 0} ${140.76 + (g.strokeW/1.1 || 0)} ${191.16 + (g.strokeW/1.1 || 0)}"`,
+            ];
+            let paths = [
+                `<path class="cls-1" fill="${g.color}" stroke="${g.stroke || ''}" stroke-width="${g.strokeW || 0}"  d="M13.26,120.65c11.39-28.93,6.52-52.52-7.55-75A34.16,34.16,0,0,1,2,36.45c-2.83-10.35-3.8-20.62,5.41-29,9.39-8.53,21.05-8.6,32.53-5.88C61.19,6.63,74.2,27.18,70,48.9,64.05,79.93,40.49,99,13.26,120.65Z"/>`,
+                `<path class="cls-1" fill="${g.color}" stroke="${g.stroke || ''}" stroke-width="${g.strokeW || 0}" d="M2.15,191.16C-4,133.76,1.57,79.4,39.14,33.24,54.77,14,74.75.21,101,0c33.31-.26,49.5,27.42,33.74,56.94-8.27,15.49-21,26.82-35.6,35.42C58,116.56,22.14,145.63,2.15,191.16Z"/>`,
+            ];
+            g.size = g.size ? `calc(${g.size} * min(10vw,10vh))` : g.sizeAbs
+            let svg_code = `<svg class="svg-goutte" xmlns="http://www.w3.org/2000/svg" ${vBox[g.path]} style="transform-origin:center;transform:rotate(${g.rot}deg) scaleX(${g.flip});height:${g.size};position:absolute;top:${posY}px;left:${posX}px;z-index:1">
+                ${paths[g.path]}
+            </svg>`;
+            root_el.append(svg_code)
+        }
     }
+
+    function compute_gouttes() {
+        $('.wp-block-cover.gouttes').each(function() {
+            $(this).css({position: 'relative'})
+            $(this).find('.svg-goutte').remove()
+            let gouttes = [
+                // {path:0, color: '', size: 0.2, rot: 0, flip: 1, dist: 0, angle: 0},
+                {path:1, color: 'var(--green)', size: 1.5, rot: 0, flip: 1, dist: 0.69, angle: 50},
+                {path:0, color: 'transparent', stroke: "var(--blue-light)", strokeW: 5, size: 1.3, rot: -30, flip: 1, dist: 0.77, angle: 62},
+                {path:0, color: 'var(--red)', size: 1.6, rot: -73, flip: 1, dist: 0.8, angle: 125},
+                {path:0, color: 'var(--blue-light)', size: 1.3, rot: -26, flip: 1, dist: 0.72, angle: 175},
+                {path:0, color: 'var(--green)', size: 2.3, rot: -73, flip: -1, dist: 0.81, angle: 193},
+                {path:0, color: 'transparent', stroke: "var(--yellow)", strokeW: 3, size: 2.3, rot: -115, flip: -1, dist: 0.93, angle: -122},
+                {path:0, color: 'var(--blue-light)', size: 1.3, rot: 130, flip: 1, dist: 0.9, angle: -109},
+                {path:0, color: 'transparent', stroke: "var(--red)", strokeW: 3.5, size: 1.7, rot: 110, flip: 1, dist: 0.83, angle: -62},
+                {path:1, color: 'var(--yellow)', size: 1.6, rot: 35, flip: 1, dist: 0.85, angle: -19},
+                {path:0, color: 'var(--red)', size: 1.75, rot: 0, flip: 1, dist: 0.77, angle: 0},
+            ]
+            place_gouttes(gouttes, $(this))
+    
+        })
+
+        $('.wp-block-media-text.gouttes-left').each(function() {
+            $(this).css({position: 'relative'})
+            $(this).find('.svg-goutte').remove()
+            let w = $(this).width()
+            let h = $(this).height()
+            console.log('dim', w, h)
+            let gouttes = [
+                {path:1, color: 'var(--yellow)', sizeAbs: window.outerWidth * 0.065, rot: 0, flip: -1, x: 30, y: 50},
+                {path:0, color: 'transparent', stroke: "var(--green)", strokeW: 3, sizeAbs: window.outerWidth * 0.11, rot: 25, flip: -1, x: 90, y: -50},
+            ]
+            place_gouttes(gouttes, $(this))
+        })
+
+        $('h2.gouttes-right, h3.gouttes-right, h4.gouttes-right').each(function() {
+            $(this).css({position: 'relative'})
+            $(this).find('.svg-goutte').remove()
+            let w = $(this).width()
+            let h = $(this).height()
+            console.log('dim', w, h)
+            let gouttes = [
+                {path:1, color: 'transparent', stroke: "var(--blue-light)", strokeW: 7, sizeAbs: window.outerWidth * 0.07, rot: 38, flip: 1, x: w*0.85, y: -10},
+                {path:0, color: 'var(--yellow)', sizeAbs: window.outerWidth * 0.1, rot: 0, flip: 1, x: w*0.75, y: -130},
+            ]
+            place_gouttes(gouttes, $(this))
+        })
+
+        $('.wp-block-cover.gouttes-diagonale, .wp-block-cover.gouttes-diagonal').each(function() {
+            $(this).css({position: 'relative'})
+            $(this).find('.svg-goutte').remove()
+            let w = $(this).width()
+            let h = $(this).height()
+            console.log('dim diag', w, h)
+            let gouttes = [
+                {path:0, color: 'transparent', stroke: "var(--red)", strokeW: 2, sizeAbs: window.outerWidth * 0.12, rot: 190, flip: 1, x: window.outerWidth * 0.07, y: h-window.outerWidth * 0.07},
+                {path:1, color: 'var(--yellow)', sizeAbs: window.outerWidth * 0.07, rot: 220, flip: 1, x: window.outerWidth * 0.06, y: h-window.outerWidth * 0.12},
+                {path:1, color: 'var(--green)', sizeAbs: window.outerWidth * 0.083, rot: 20, flip: -1, x: window.outerWidth * 0.82, y: -30},
+                {path:1, color: 'var(--blue-light)', sizeAbs: window.outerWidth * 0.083, rot: 0, flip: 1, x: window.outerWidth * 0.87, y: 40},
+            ]
+            place_gouttes(gouttes, $(this))
+        })
+    }
+
+    compute_gouttes()
+    $(window).resize(compute_gouttes)
+    
 
 });

@@ -114,12 +114,12 @@ function ccnbtc_setup() {
         array(
             'name'  => __( 'Vert', 'ccnbtc' ),
             'slug'  => 'vert',
-            'color'	=> '#31D2AE',
+            'color'	=> '#39CD9E',
         ),
         array(
             'name'  => __( 'Rouge', 'ccnbtc' ),
             'slug'  => 'rouge',
-            'color'	=> '#EA5E6B',
+            'color'	=> '#FF6D53',
         ),
         array(
             'name'  => __( 'Jaune', 'ccnbtc'),
@@ -139,7 +139,7 @@ function ccnbtc_setup() {
         array(
             'name'  => __( 'Bleu clair pelorous', 'ccnbtc'),
             'slug'  => 'bleu-clair',
-            'color' => '#34ACB6', 
+            'color' => '#3864FF', 
         ),
     ) );
 
@@ -235,6 +235,29 @@ function ccnbtc_scripts() {
 
 }
 add_action( 'wp_enqueue_scripts', 'ccnbtc_scripts' );
+
+
+
+
+/**
+ * Adds all blocks style variants
+ */
+add_action( 'enqueue_block_editor_assets', function() {
+
+    // Columns, image variants
+    wp_enqueue_script(
+        'block-variants',
+        get_template_directory_uri().'/js/admin/block-variants.js',
+        ['wp-blocks', 'wp-element', 'wp-editor', 'wp-rich-text'],
+        filemtime(__DIR__.'/js/admin/block-variants.js')
+    );
+
+});
+
+
+
+
+
 
 
 // Add Page Slug to Body Class

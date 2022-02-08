@@ -23,7 +23,25 @@
     font-style: normal
 }
 
+@font-face {
+    font-family: 'Futura BT';
+    src: url('../fonts/futura medium bt.ttf');
+    src: url('../fonts/futura medium bt.ttf') format('truetype');
+    font-style: normal
+}
+
+@font-face {
+    font-family: 'Futura Light BT';
+    src: url('../fonts/futura light bt.ttf');
+    src: url('../fonts/futura light bt.ttf') format('truetype');
+    font-style: normal
+}
+
 .font-cafe {font-family: 'Louis George Café'}
+.font-futura {font-family: 'Futura BT'}
+.font-futura-light {font-family: 'Futura Light BT'; letter-spacing: 1px;}
+.font-futura-light strong {font-family: 'Futura BT'}
+.font-futura-black {font-family: 'Futura Extra Black BT'}
 
 
 /* ==================================================== */
@@ -31,12 +49,12 @@
 /* ==================================================== */
 
 :root {
-    --green: #31D2AE;
-    --red: #EA5E6B;
+    --green: #39CD9E; /* #31D2AE; */
+    --red: #FF6D53; /* #EA5E6B; */
     --yellow: #FCC300;
     --orange: hsl(24 77% 64% / 1);
     --blue-klein: #242148;
-    --blue-light: #35ADB7; /*#34ACB6;*/
+    --blue-light: #3864FF; /* #35ADB7 #34ACB6;*/
 }
 
 html, body {
@@ -83,14 +101,14 @@ html, body {
 .fond-bleu-clair, .bg-blue-light, .bg-bleu-clair, .has-bleu-clair-background-color {background: var(--blue-light)}
 .fond-orange, .bg-orange, .has-orange-background-color {background: var(--orange)}
 
-.has-text-color.has-blanc-color, .has-text-color.has-blanc-color a, .txt-white, .txt-blanc {color:white !important;}
-.has-text-color.has-noir-color, .txt-black, .txt-noir {color:black}
-.has-text-color.has-vert-color, .txt-green, .txt-vert {color:var(--green)}
-.has-text-color.has-rouge-color, .txt-red, .txt-rouge, .rose {color:var(--red)}
-.has-text-color.has-jaune-color, .txt-yellow, .txt-jaune {color:var(--yellow)}
-.has-text-color.has-orange-color, .txt-orange {color:var(--orange)}
-.has-text-color.has-bleu-klein-color, .txt-blue-klein, .txt-bleu-klein, .bleu-klein, .bleu-fonce {color:var(--blue-klein)}
-.has-text-color.has-bleu-clair-color, .txt-blue-light, .txt-bleu-clair {color:var(--blue-ligth)}
+.has-blanc-color, .has-blanc-color a, .txt-white, .txt-blanc {color:white !important;}
+.has-noir-color, .txt-black, .txt-noir {color:black}
+.has-vert-color, .txt-green, .txt-vert {color:var(--green)}
+.has-rouge-color, .txt-red, .txt-rouge, .rose {color:var(--red)}
+.has-jaune-color, .txt-yellow, .txt-jaune {color:var(--yellow)}
+.has-orange-color, .txt-orange {color:var(--orange)}
+.has-bleu-klein-color, .txt-blue-klein, .txt-bleu-klein, .bleu-klein, .bleu-fonce {color:var(--blue-klein)}
+.has-bleu-clair-color, .txt-blue-light, .txt-bleu-clair {color:var(--blue-light)}
 
 .has-normal-font-size {font-size: 1rem !important;}
 

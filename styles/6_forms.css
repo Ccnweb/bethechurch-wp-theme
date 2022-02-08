@@ -30,9 +30,28 @@
     color: var(--yellow);
 }
 
+.frm_forms {
+    margin-top: 2rem;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.frm_error {
+    font-size: 0.7rem;
+    color: var(--red);
+}
+
+.frm_message {
+    background: var(--green);
+    padding: 1rem 2rem;
+    border-radius: 12px;
+}
+
 .frm_add_form_row.frm_button {
     background-color: #51d26f;
     border-color: hsl(134 57% 37% / 1);
+    cursor: pointer;
 }
 
 .frm_remove_form_row.frm_button {
@@ -51,13 +70,28 @@
 }
 
 input {
-    margin-top: .5rem;
+    margin-top: 1rem;
+    text-indent: 10px;
     padding: 4px;
     outline: none;
     border: 1px solid #d6d6d6;
-    background: whitesmoke;
+    background: white;
+    font-family: "Futura BT";
     border-radius: 0;
 }
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--blue-klein);
+    font-size: 0.8rem;
+}
+
+textarea {
+    padding-top: 0.5rem;
+    margin-top: 1rem;
+    text-indent: 10px
+}
+
 label.input-group-text, select {margin-top: .5rem;}
 
 .frm_input_group.frm_with_box.frm_with_post > input[type=number] {
@@ -67,6 +101,27 @@ label.input-group-text, select {margin-top: .5rem;}
 .frm_input_group.frm_with_box.frm_with_post > .frm_inline_box {
     background: var(--yellow);
     border-color: hsl(245 37% 82% / 1);
+}
+
+.frm_submit {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.frm_submit button {
+    text-transform: uppercase;
+    padding: 0.5rem 2rem;
+    background-color: var(--green);
+    color: white;
+    border-radius: 30px;
+    outline: none;
+    border: none;
+    margin: 0;
+    font-family: 'Futura BT';
+    letter-spacing: 1px;
+    font-size: 1rem;
+    transition: all 0.2s ease-in;
 }
 
 /* popups */
